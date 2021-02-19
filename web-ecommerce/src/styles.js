@@ -7,7 +7,7 @@ const globalStyle = createGlobalStyle`
 	}
 	html, body {
 		width: 100%;
-		min-height: 900px;
+		min-height: 100%;
 		background-image: linear-gradient(180deg, #22202c 0%, #402845 100%);
 		margin: 0;
 		a, h1, p, input {
@@ -17,3 +17,5 @@ const globalStyle = createGlobalStyle`
 	}
 
 `;
+
+export default globalStyle;
