@@ -4,6 +4,13 @@ export const Container = styled.main`
 	height: 500px;
 	display: flex;
 	justify-content: center;
+	div{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 25px;
+		font-size: 1.6em;
+	}
 	form {
 		width: 100%;
 		display: flex;
@@ -19,9 +26,6 @@ export const Container = styled.main`
 			padding: 0 8px;
 			border: none;
 			color: #000;
-			&:hover {
-				border: none;
-			}
 			&:last-child  {
 					margin-top: 8px;
 					background-color: green;
