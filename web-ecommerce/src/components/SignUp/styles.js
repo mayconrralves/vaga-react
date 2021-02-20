@@ -3,7 +3,15 @@ import styled from 'styled-components';
 export const Container = styled.main`
 	height: 500px;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
+	div{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 25px;
+		font-size: 1.6em;
+	}
 	form {
 		width: 100%;
 		display: flex;
