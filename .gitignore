@@ -21,3 +21,7 @@ web-ecommerce/.env.production.local
 web-ecommerce/npm-debug.log*
 web-ecommerce/yarn-debug.log*
 web-ecommerce/yarn-error.log*
+
+# server
+server/uploads/
+server/node_modules

@@ -12,6 +12,8 @@ import users from './users';
 
 const port = 3333; 
 const upload = multer(multerConfig);
+
+
 const registerUser = (req, res) => {
 	const { name, email, password, address } = req.body;
 	const user = users.find(user => user.email === email);
@@ -33,6 +35,7 @@ const registerUser = (req, res) => {
 		users[users.length-1]
 		)
 }
+
 const updateUser = (req, res)=> {
 	const id = req.userId;
 	const { email, password, name, address, urlAvatar } = req.body;
@@ -45,6 +48,15 @@ const updateUser = (req, res)=> {
 
 	return res.json(users[id-1]);
 }
+
+const getUser = (req, res ) => {
+	const id = req.userId;
+
+	return res.json(
+		users[id-1],
+		);
+}
+
 const updatePhoto = (req, res) => {
 	const { originalname: name,filename} = req.file;
 	const id = req.userId;
@@ -117,16 +129,13 @@ const addOrder = (req, res) => {
 }
 
 const server = express();
+
 const routes = new Router();
+
 server.use(routes);
 routes.use(express.json());
-routes.get('/', (req, res)=> {
-	return res.json({
-		teste: 'ok'
-	});
-});
 
-routes.get('/login', login);
+routes.post('/login', login);
 routes.post('/register', registerUser);
 routes.get('/products', getProducts);
 routes.get('/product', getProduct);
@@ -135,12 +144,10 @@ routes.use(middlewareAuth);
 routes.post('/cart/close', addOrder);
 routes.use('/uploads',
 			express.static(path.resolve(__dirname, 'uploads'))
-		);
+);
+
 routes.post('/user/photo/update',upload.single('avatar'), updatePhoto);
 routes.put('/user/update', updateUser);
-routes.get('/store', (req,res)=> {
-	return res.json({
-		'teste': 'ok2'
-	});
-});
+routes.get('/user', getUser );
+
 server.listen(port);
