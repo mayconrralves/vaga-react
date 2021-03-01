@@ -1,27 +1,22 @@
-import React, {useEffect } from 'react';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { Router } from 'react-router-dom';
+import {PersistGate } from 'redux-persist/integration/react';
+import {store, persistor } from './store';
 import GlobalStyle from './styles';
-import { getProducts, getProduct, signin, register } from './api';
+import history from './services/history';
 function App() {
-  useEffect(()=> {
-    const products = async () => {
-      // const data = await register({
-      //   name: 'mm',
-      //   email:'demo@demo.com',
-      //   "password": '123456',
-      //   "address": "rua dos bobos"
-      // })
-      const data = await signin('demo@demo.com', '123456');
-      console.log(data);
-
-
-    }
-
-    products();
-  });
+  
   return (
-    <div className="App">
-      <GlobalStyle />
-    </div>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <Router history={history}>
+          
+        </Router>
+        <GlobalStyle />
+      </PersistGate>  
+    </Provider>
+    
   );
 }
 
