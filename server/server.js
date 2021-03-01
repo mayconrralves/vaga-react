@@ -3,6 +3,7 @@ import jsonwebtoken from 'jsonwebtoken';
 import multer from 'multer';
 import multerConfig from './multerConfig';
 import path from 'path';
+import cors from 'cors';
 import products from './loadingProducts';
 import { jwtSecret } from './config';
 import middlewareAuth from './middlewareAuth';
@@ -39,7 +40,6 @@ const registerUser = (req, res) => {
 const updateUser = (req, res)=> {
 	const id = req.userId;
 	const { email, password, name, address, urlAvatar } = req.body;
-	console.log(users)
 	if(email) users[id-1].email = email;
 	if(password) users[id-1].password = password;
 	if(name) users[id-1].name = name;
@@ -51,14 +51,25 @@ const updateUser = (req, res)=> {
 
 const getUser = (req, res ) => {
 	const id = req.userId;
-
+	const { name, email, address, urlAvatar } = users[id-1];
 	return res.json(
-		users[id-1],
+		 {
+		 	name,
+		 	email,
+		 	address,
+		 	urlAvatar,
+		 }
 		);
 }
 
 const updatePhoto = (req, res) => {
+	if(!req.file){
+		return res.status(400).json({
+			error: 'unsent file'
+		});
+	}
 	const { originalname: name,filename} = req.file;
+
 	const id = req.userId;
 	const path = 'http://localhost:'+port+'/uploads/'+filename;
 	users[id-1].urlAvatar = path;
@@ -75,7 +86,14 @@ const login = (req, res) => {
 					error: 'no authorization'
 			});
 	}
+	const { name, address, urlAvatar} = user;
 	return res.json({
+		user: {
+			name,
+			email,
+			address,
+			urlAvatar
+		},
 		token: jsonwebtoken.sign({userId: user.id}, jwtSecret, {
 			expiresIn: '1d'
 		}),
@@ -90,9 +108,13 @@ const getProduct = (req, res) => {
 	const { id } = req.query;
 
     const product = products.filter(p=>p.id === id);
-
+    if(!product.length){
+    	return res.status(400).json({
+    		error: 'Product no found',
+    	});
+    }
     return res.json(
-    	product
+    	{product: product[0]}
     	);
 }
 
@@ -108,7 +130,7 @@ const addOrder = (req, res) => {
 		}
 	}
 	if(productsLessZero.length){
-		return res.json({
+		return res.status(400).json({
 			error: 'The order is not possible. Some products with quantity less than zero',
 			products: productsLessZero
 		})
@@ -133,6 +155,7 @@ const server = express();
 const routes = new Router();
 
 server.use(routes);
+routes.use(cors());
 routes.use(express.json());
 
 routes.post('/login', login);

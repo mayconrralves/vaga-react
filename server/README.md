@@ -6,6 +6,7 @@ A api em questão utiliza JWT token, e atende requisições Restful;
 
 - Depois de ter clonado todo o projeto, execute yarn ou npm install para instalar as dependências;
 - Em senguida, execute: yarn/npm start.
+- A api executa na porta 3333. Caso queira mudar é só mudar varíavel port em server.js.
 - Essa api não salva dados em banco de dados e mantém tudo na memória run, com a exceção das imagens para avatar, seu fim é para facilitar a construção do front-end.
 - Usuários devem ser cadastrados antes de qualquer ação protegida;
 - Depois deve se fazer o login.
@@ -49,7 +50,7 @@ A api em questão utiliza JWT token, e atende requisições Restful;
 - /login
   - Rota POST;
   - Recebe email e password;
-  - Retorna o token JWT;
+  - Retorna os dados do usuário e o token JWT;
 
 - /user
   - Rota GET;
