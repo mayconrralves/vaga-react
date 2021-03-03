@@ -33,13 +33,12 @@ export const getProduct = async id  => {
  	}
 }
 
-export const register = async ({name, email, password, address}) => {
+export const register = async ( { name, email, password} ) => {
 	try {
 		const { data } = await api.post('/register', {
 			name,
 			email,
 			password,
-			address,
 		});
 		return data;
 	} catch(error) {
