@@ -4,14 +4,18 @@ const api = axios.create({
 	baseURL: "http://127.0.0.1:3333",
 });
 
+const errorMsg = (error) => {
+	return error.message === 'Network Error' ?
+		 { error: 'Error Network' } :
+		 error.response.data; 
+}
 export const getProducts =  async () => {
 	try {
 		const { data } = await api.get('/products');
 		return { data };
 	}
 	catch(error){
-		console.log(error)
-		return error.response.data;
+		return errorMsg(error);
 	}
 }
 
@@ -25,7 +29,7 @@ export const getProduct = async id  => {
  		return data;
  	}
  	catch(error){
- 		return error.response.data;
+ 		return errorMsg(error);
  	}
 }
 
@@ -39,7 +43,7 @@ export const register = async ({name, email, password, address}) => {
 		});
 		return data;
 	} catch(error) {
-		return error.response.data;
+		return errorMsg(error);
 	}
 }
 
@@ -51,7 +55,7 @@ export const signin = async (email, password) => {
 		});
 		return data;
 	} catch(error) {
-		return error.response.data;
+		return errorMsg(error);
 	}
 }
 
@@ -61,7 +65,7 @@ export const getUser = async () => {
 		return data;
 	}
 	catch(error){
-		return error.response.data;
+		return errorMsg(error);
 	}
 }
 
@@ -80,7 +84,7 @@ export const updateUser = async (user)=>{
 		return data;
 	}
 	catch(error){
-		return error.response.data;
+		return errorMsg(error);
 	}
 }
 
@@ -89,7 +93,7 @@ export const closeCart = async (products)=>{
 		const { data } = await api.post('/cart/close', products);
 		return data;
 	}catch(error){
-		return error.response.data;
+		return errorMsg(error);
 	}
 }
 
@@ -101,6 +105,6 @@ export const addPhoto = async(file) => {
 		const { data } = await api.post('/user/photo/update', formData);
 		return data;
 	} catch(error) {
-		return error.response.data;
+		return errorMsg(error);
 	}
 }
