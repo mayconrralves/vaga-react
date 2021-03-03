@@ -23,6 +23,7 @@ const registerUser = (req, res) => {
 			error: "email already exists"
 		});
 	}
+	console.log('register', name, email, password);
 	users.push({
 		id: users.length+1,
 		email,
@@ -33,8 +34,12 @@ const registerUser = (req, res) => {
 
 	});
 	return res.json (
-		users[users.length-1]
-		)
+		{
+			id:  users.length+1,
+			email,
+			name,
+		}
+	);
 }
 
 const updateUser = (req, res)=> {
@@ -45,13 +50,14 @@ const updateUser = (req, res)=> {
 	if(name) users[id-1].name = name;
 	if(address) users[id-1].address = address;
 	if(urlAvatar) users[id-1].urlAvatar = urlAvatar;
-
+	console.log('updateUser', req.body);
 	return res.json(users[id-1]);
 }
 
 const getUser = (req, res ) => {
 	const id = req.userId;
 	const { name, email, address, urlAvatar } = users[id-1];
+	console.log('getUser', users[id-1]);
 	return res.json(
 		 {
 		 	name,
@@ -73,6 +79,7 @@ const updatePhoto = (req, res) => {
 	const id = req.userId;
 	const path = 'http://localhost:'+port+'/uploads/'+filename;
 	users[id-1].urlAvatar = path;
+	console.log('update photo');
 	res.json({
 		name,
 		path, 
@@ -87,6 +94,7 @@ const login = (req, res) => {
 			});
 	}
 	const { name, address, urlAvatar} = user;
+	console.log('login', email, password);
 	return res.json({
 		user: {
 			name,
@@ -101,6 +109,7 @@ const login = (req, res) => {
 }
 
 const getProducts = (req, res) => {
+	console.log('get products');
 	return res.json(products);
 }
 
@@ -113,6 +122,7 @@ const getProduct = (req, res) => {
     		error: 'Product no found',
     	});
     }
+	console.log('getProduct', product[0]);
     return res.json(
     	{product: product[0]}
     	);
@@ -144,7 +154,8 @@ const addOrder = (req, res) => {
 		total,
 		listProducts,
 
-	})
+	});
+	console.log('orders');
 	return res.json(
 		orders[orders.length-1]
 	)
