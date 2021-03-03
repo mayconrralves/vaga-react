@@ -1,7 +1,7 @@
 
-export const initialRequest = (email, password)=>{
+export const signInRequest = (email, password)=>{
 	return {
-		type: '@auth/INITIAL_REQUEST',
+		type: '@auth/SIGNIN_REQUEST',
 		payload: {
 			email,
 			password
@@ -18,8 +18,11 @@ export const successRequest = (token) => {
 	}
 }
 
-export const failedRequest = () => {
+export const failedRequest = (msg) => {
 	return {
 		type: '@auth/FAILED_REQUEST',
+		payload:{
+			msg,
+		}
 	}
 }
