@@ -29,7 +29,7 @@ const registerUser = (req, res) => {
 		email,
 		password,
 		name,
-		address,
+		address: address ? address : ' ',
 		urlAvatar: '',
 
 	});
