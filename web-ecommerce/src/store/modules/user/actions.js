@@ -5,7 +5,7 @@ export  const  updateUsers = () =>{
 	}
 }
 
-export const getUsers = () => {
+export const getUser = () => {
 	return {
 		type: '@user/CREATE_USER_REQUEST',
 	}
