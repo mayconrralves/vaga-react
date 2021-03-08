@@ -4,14 +4,13 @@ import multer from 'multer';
 import multerConfig from './multerConfig';
 import path from 'path';
 import cors from 'cors';
-import products from './loadingProducts';
-import { jwtSecret } from './config';
+import { products } from './loadingProducts';
+import { jwtSecret, port } from './config';
 import middlewareAuth from './middlewareAuth';
 import orders from './orders';
 import users from './users';
 
 
-const port = 3333; 
 const upload = multer(multerConfig);
 
 
@@ -178,6 +177,9 @@ routes.use(middlewareAuth);
 routes.post('/cart/close', addOrder);
 routes.use('/uploads',
 			express.static(path.resolve(__dirname, 'uploads'))
+);
+routes.use('/imgs',
+			express.static(path.resolve(__dirname, 'imgs'))
 );
 
 routes.post('/user/photo/update',upload.single('avatar'), updatePhoto);
