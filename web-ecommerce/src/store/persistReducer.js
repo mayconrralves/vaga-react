@@ -5,7 +5,7 @@ export default function persist(reducers) {
 	const persistedReducer = persistReducer({
 		'key': 'ecommerce',
 		storage,
-		whitelist: [ 'auth','user' ],
+		whitelist: [ 'auth' ],
 	}, reducers);
 
 	return persistedReducer;

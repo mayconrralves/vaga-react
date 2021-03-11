@@ -3,6 +3,7 @@ import api from '../../../api';
 import { signin } from '../../../api';
 import history from  '../../../services/history';
 import { successRequest, failedRequest } from './actions';
+
 export function* login ({ payload }){
 	const {email, password} = payload;
 	const response = yield call(signin, email, password);
