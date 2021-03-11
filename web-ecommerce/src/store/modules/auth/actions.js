@@ -26,3 +26,9 @@ export const failedRequest = (msg) => {
 		}
 	}
 }
+
+export const signOut = () => {
+	return {
+		type: '@auth/SIGN_OUT'
+	}
+}

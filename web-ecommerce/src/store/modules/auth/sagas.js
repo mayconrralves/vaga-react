@@ -6,7 +6,6 @@ import { successRequest, failedRequest } from './actions';
 export function* login ({ payload }){
 	const {email, password} = payload;
 	const response = yield call(signin, email, password);
-	console.log(email, password, response);
 	if(response.error){
 		return yield put(failedRequest(response.error));
 	}
