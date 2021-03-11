@@ -77,7 +77,7 @@ export const getUser = async () => {
 */
 export const updateUser = async (user)=>{
 	try{
-		const { data } = await api.post('/user/update',{
+		const { data } = await api.put('/user/update',{
 			...user,
 		});
 		return data;
@@ -107,3 +107,5 @@ export const addPhoto = async(file) => {
 		return errorMsg(error);
 	}
 }
+
+export default api;
