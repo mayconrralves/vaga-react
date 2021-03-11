@@ -6,13 +6,13 @@ const api = axios.create({
 
 const errorMsg = (error) => {
 	return error.message === 'Network Error' ?
-		 { error: 'Error Network' } :
+		 { error: 'Problema no servidor' } :
 		 error.response.data; 
 }
 export const getProducts =  async () => {
 	try {
 		const { data } = await api.get('/products');
-		return { data };
+		return  data ;
 	}
 	catch(error){
 		return errorMsg(error);
