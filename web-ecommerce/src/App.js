@@ -7,7 +7,6 @@ import GlobalStyle from './styles';
 import history from './services/history';
 import Routes from './routes';
 function App() {
-  
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
