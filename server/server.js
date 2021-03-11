@@ -16,6 +16,11 @@ const upload = multer(multerConfig);
 
 const registerUser = (req, res) => {
 	const { name, email, password, address } = req.body;
+	if(!name || !email || !password){
+		return res.status(401).json({
+			error: "name, password and email are required"
+		})
+	}
 	const user = users.find(user => user.email === email);
 	if(user){
 		return res.status(401).json({
@@ -86,6 +91,11 @@ const updatePhoto = (req, res) => {
 }
 const login = (req, res) => {
 	const {email, password} = req.body;
+	if(!email && !password){
+		return res.status(401).json({
+			error: "email and password are required"
+		});
+	}
 	const user = users.find(user => user.email === email && user.password === password);
 	if(!user){
 		return res.status(401).json({
@@ -173,13 +183,14 @@ routes.post('/register', registerUser);
 routes.get('/products', getProducts);
 routes.get('/product', getProduct);
 
+routes.use('/imgs',
+			express.static(path.resolve(__dirname, 'imgs'))
+);
 routes.use(middlewareAuth);
+//rotas protegidas
 routes.post('/cart/close', addOrder);
 routes.use('/uploads',
 			express.static(path.resolve(__dirname, 'uploads'))
-);
-routes.use('/imgs',
-			express.static(path.resolve(__dirname, 'imgs'))
 );
 
 routes.post('/user/photo/update',upload.single('avatar'), updatePhoto);
