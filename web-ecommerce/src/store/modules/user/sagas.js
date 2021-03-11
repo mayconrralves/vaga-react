@@ -1,6 +1,7 @@
 import { all, takeLatest, put, call } from 'redux-saga/effects';
 
 import { register, signin, getUser } from '../../../api';
+import { signOut } from '../auth/actions';
 import { 
 	successRequest as successRequestUser, 
 	failedRequest as failedRequestUser, 
@@ -40,6 +41,7 @@ export function* createUser( { payload } ){
 export function* getCurrentUser(){
 	const response = yield call(getUser);
 	if(response.error){
+		yield put(signOut());
 		return yield put(failedRequestUser(response.error));
 	}
 	return yield put(successRequestUser(response));
