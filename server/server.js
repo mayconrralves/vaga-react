@@ -59,6 +59,11 @@ const updateUser = (req, res)=> {
 }
 
 const getUser = (req, res ) => {
+	if(req.userId){
+		return res.status(401).json({
+			error: "user no exists"
+		});
+	}
 	const id = req.userId;
 	const { name, email, address, urlAvatar } = users[id-1];
 	console.log('getUser', users[id-1]);
