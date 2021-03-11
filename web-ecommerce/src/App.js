@@ -16,7 +16,6 @@ function App() {
         <GlobalStyle />
       </PersistGate>  
     </Provider>
-    
   );
 }
 
