@@ -28,6 +28,7 @@ export const register = async ( { name, email, password} ) => {
 	try {
 		const { data } = await api.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp',
 			 {
+			 	displayName: name,
 				email,
 				password,
 				returnSecureToken: true
@@ -38,6 +39,17 @@ export const register = async ( { name, email, password} ) => {
 				}
 			},
 		);
+		const database = {};
+		database[data.localId] = {
+			address: '',
+		}
+		const dataUser  = await api.put('https://e-commerce-44c28-default-rtdb.firebaseio.com/users.json', 
+			database,
+			{
+			params: {
+				auth: data.idToken,
+			}
+		});
 		return data;
 	} catch(error) {
 		return errorMsg(error);
@@ -65,9 +77,29 @@ export const signin = async (email, password) => {
 }
 
 export const getUser = async () => {
+	const { token } = configToken;
 	try {
-		const { data } = await api.get('/user');
-		return data;
+		const { data } = await api.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup', {
+			idToken: token,
+		},{
+			params: {
+				key: "AIzaSyCYks1I9N7xTxslbkF3-JiP_nypFhO3D7w"
+			}
+		});
+		const otherData = await api.get('https://e-commerce-44c28-default-rtdb.firebaseio.com/users.json', {
+			params: {
+				auth: token,
+			}
+		});
+		const {displayName, localId, email} = data.users[0];
+		const { address } = Object.values(otherData.data)[0];
+		return {
+				displayName,
+				localId,
+				email,
+				address
+			}
+			;
 	}
 	catch(error){
 		return errorMsg(error);
@@ -83,9 +115,12 @@ export const getUser = async () => {
 */
 export const updateUser = async (user)=>{
 	try{
-		const { data } = await api.put('/user/update',{
-			...user,
-		});
+		const { data } = await api.put('https://identitytoolkit.googleapis.com/v1/accounts:update'
+				,{
+					...user,
+					returnSecureToken: true,
+					idToken: configToken.token,
+				});
 		return data;
 	}
 	catch(error){
