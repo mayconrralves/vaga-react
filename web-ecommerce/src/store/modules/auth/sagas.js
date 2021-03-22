@@ -1,6 +1,5 @@
 import { takeLatest, all, call, put} from 'redux-saga/effects';
-import api from '../../../api';
-import { signin } from '../../../api';
+import { signin, configToken } from '../../../api';
 import history from  '../../../services/history';
 import { successRequest, failedRequest } from './actions';
 
@@ -10,8 +9,8 @@ export function* login ({ payload }){
 	if(response.error){
 		return yield put(failedRequest(response.error));
 	}
-	const { token } = response;
-	yield put(successRequest(token));
+	const { idToken } = response;
+	yield put(successRequest(idToken));
 	history.replace('/shop');
 
 	return;
@@ -23,7 +22,7 @@ export function setToken({ payload }){
 	const { token } = payload.auth;
 
 	if(token){
-		api.defaults.headers.Authorization = `Bearer ${token}`;
+		configToken.token = token;
 	}
 }
 

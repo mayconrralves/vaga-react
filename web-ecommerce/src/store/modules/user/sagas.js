@@ -50,6 +50,5 @@ export function* getCurrentUser(){
 
 export default all([
 		takeLatest('@user/CREATE_USER_REQUEST', createUser ),
-		takeLatest('persist/REHYDRATE', getCurrentUser),
-		
+		takeLatest('persist/REHYDRATE', getCurrentUser),		
 	]);
