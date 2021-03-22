@@ -23,7 +23,7 @@ export function* createUser( { payload } ){
 	const { idToken, idLocal } = response;
 	yield put(successRequestUser(idLocal));
 	yield put(successRequestAuth(idToken));
-	history.replace('/shop');
+	history.replace('/');
 	return;
 
 }
