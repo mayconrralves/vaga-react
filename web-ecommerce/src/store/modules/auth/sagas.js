@@ -11,7 +11,7 @@ export function* login ({ payload }){
 	}
 	const { idToken } = response;
 	yield put(successRequest(idToken));
-	history.replace('/shop');
+	history.replace('/');
 
 	return;
 }
