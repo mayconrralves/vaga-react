@@ -13,8 +13,12 @@ export default function Header(){
 			<Title />
 			<nav>
 				{
-					token ? 
-					<button onClick= {() => dispatch(signOut()) }>Sair</button> : (
+					token ? (
+						<>
+							<button onClick= { () => dispatch(signOut()) }>Sair</button>
+							<Link to='/user' >Perfil</Link>
+						</>		
+					) : (
 						<>
 							<Link to='/signup'>Cadastrar</Link>
 							<Link to='/login'>Entrar</Link>
