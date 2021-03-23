@@ -16,7 +16,7 @@ export default function Header(){
 					token ? (
 						<>
 							<button onClick= { () => dispatch(signOut()) }>Sair</button>
-							<Link to='/user' >Perfil</Link>
+							<Link to='/profile' >Perfil</Link>
 						</>		
 					) : (
 						<>

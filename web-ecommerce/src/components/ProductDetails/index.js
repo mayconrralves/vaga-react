@@ -3,11 +3,10 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {Container } from './styles';
 
-export default function ProductDetails() {
+export default function ProductDetails(props) {
 	const { products } = useSelector(state => state.products);
-	const { id } = useParams();
+	const {id} = useParams();
 	const [ product, _]  = useState(products.filter(product=> product.id === id)[0]);
-
 	return (
 		<Container>
 			<img src={product.img} alt={product.description}/>
