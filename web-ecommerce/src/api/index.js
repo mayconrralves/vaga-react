@@ -24,11 +24,11 @@ export const getProducts =  async () => {
 }
 
 
-export const register = async ( { name, email, password} ) => {
+export const register = async ( { displayName, email, password} ) => {
 	try {
 		const { data } = await api.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp',
 			 {
-			 	displayName: name,
+			 	displayName,
 				email,
 				password,
 				returnSecureToken: true
@@ -113,14 +113,23 @@ export const getUser = async () => {
 	address,
 	urlAvatar
 */
-export const updateUser = async (user)=>{
+export const updateUser = async ({ address, email, displayName, password})=>{
+	const user = {};
+	if(email) user.email = email;
+	if(displayName) user.displayName = displayName;
+	if(password) user.password = password;
 	try{
-		const { data } = await api.put('https://identitytoolkit.googleapis.com/v1/accounts:update'
+		const { data } = await api.post('https://identitytoolkit.googleapis.com/v1/accounts:update'
 				,{
 					...user,
-					returnSecureToken: true,
 					idToken: configToken.token,
+					//returnSecureToken: true
+				}, {
+					params: {
+						key: "AIzaSyCYks1I9N7xTxslbkF3-JiP_nypFhO3D7w"
+					}
 				});
+		configToken.token = data.idToken;
 		return data;
 	}
 	catch(error){
