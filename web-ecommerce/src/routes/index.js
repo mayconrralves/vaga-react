@@ -1,32 +1,26 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route,useLocation } from 'react-router-dom';
+
+import CustomRoute from './CustomRoute';
+
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
 import Shop from '../pages/Shop';
 import Profile from '../pages/Profile';
 import NotFound from '../components/NotFound';
 import Details from '../components/ProductDetails';
-import { store } from '../store';
 
-export default function Navigation(){
-	const { token } = store.getState().auth;
+export default function Navigation(props){
+
+	
 	return (
 		<Switch>
-				<Route path='/' exact component={Shop} />
-				{
-					!token && <>
-						<Route path='/login' exact component={SignIn} /> 
-						<Route path='/signup' exact component={SignUp} />
-					</>
-				}
-				<Route path='/details/:id' exact component={Details} />
-				{
-					token && <>
-								<Route path='/profile' exact component={Profile} />
-							</>
-				}
-				<Route component={NotFound} />
-
+				<CustomRoute path='/' exact component={Shop} />
+				<CustomRoute path='/login' exact component={SignIn} /> 
+				<CustomRoute path='/signup' exact component={SignUp} />
+				<CustomRoute path='/details/:id' exact component={Details} />
+				<CustomRoute path='/profile' exact component={Profile}  protect />
+				<CustomRoute component={NotFound} />
 		</Switch>
 	)
 	
