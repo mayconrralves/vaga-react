@@ -1,7 +1,12 @@
 
-export  const  updateUsers = () =>{
+export  const  updateUser = ({displayName, email, password}) =>{
 	return {
 		type: '@user/UPDATE_USER_REQUEST',
+		payload: {
+			displayName,
+			email,
+			password,
+		}
 	}
 }
 
@@ -11,11 +16,11 @@ export const getUser = () => {
 	}
 }
 
-export const createUser = ({name, email, password}) => {
+export const createUser = ({displayName, email, password}) => {
 	return {
 		type: '@user/CREATE_USER_REQUEST',
 		payload: {
-			name,
+			displayName,
 			email,
 			password,
 		}

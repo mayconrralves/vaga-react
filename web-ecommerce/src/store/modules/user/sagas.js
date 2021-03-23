@@ -1,6 +1,6 @@
 import { all, takeLatest, put, call } from 'redux-saga/effects';
 
-import { register,  getUser } from '../../../api';
+import { register,  getUser,updateUser } from '../../../api';
 import { signOut } from '../auth/actions';
 import { 
 	successRequest as successRequestUser, 
@@ -33,12 +33,28 @@ export function* getCurrentUser(){
 	if(response.error){
 		return yield put(failedRequestUser(response.error));
 	}
-	console.log(response)
 	return yield put(successRequestUser(response));
 }
 
+export function* updateUserSaga({ payload }){
+	const response = yield call(updateUser, payload);
+	if(response.error){
+		return yield put(failedRequestUser(response.error));
+	}
+	const { email, localId, displayName, idToken} = response;
+	if(idToken) {
+		yield put(successRequestAuth(idToken));
+	}
+
+	return yield put(successRequestUser({
+		email,
+		localId,
+		displayName
+	}));
+}
 
 export default all([
 		takeLatest('@user/CREATE_USER_REQUEST', createUser ),
-		takeLatest('persist/REHYDRATE', getCurrentUser),		
+		takeLatest('persist/REHYDRATE', getCurrentUser),
+		takeLatest('@user/UPDATE_USER_REQUEST', updateUserSaga),		
 	]);
