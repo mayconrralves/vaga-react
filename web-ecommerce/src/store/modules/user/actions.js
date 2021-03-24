@@ -12,7 +12,7 @@ export  const  updateUser = ({displayName, email, password}) =>{
 
 export const getUser = () => {
 	return {
-		type: '@user/CREATE_USER_REQUEST',
+		type: '@user/GET_USER_REQUEST',
 	}
 }
 

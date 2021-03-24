@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../../store/modules/user/actions';
+import { updateUser, getUser } from '../../store/modules/user/actions';
 import { Container } from './styles';
 
 
 export default function Profile(){
-	const { user } = useSelector(state=> state.user);
+	const { user, success } = useSelector(state=> state.user);
 	const dispatch = useDispatch();
-	return user ? (
+	useEffect(()=> {
+		 dispatch(getUser());
+	},[]);
+	return success ? (
 			<Container>
 				<h2>
 					Atualizar cadastro

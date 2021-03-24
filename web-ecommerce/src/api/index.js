@@ -129,7 +129,9 @@ export const updateUser = async ({ address, email, displayName, password})=>{
 						key: "AIzaSyCYks1I9N7xTxslbkF3-JiP_nypFhO3D7w"
 					}
 				});
-		configToken.token = data.idToken;
+
+		if (password) configToken.token = data.idToken;
+
 		return data;
 	}
 	catch(error){

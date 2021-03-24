@@ -30,6 +30,7 @@ export function* createUser( { payload } ){
 
 export function* getCurrentUser(){
 	const response = yield call(getUser);
+	
 	if(response.error){
 		return yield put(failedRequestUser(response.error));
 	}
@@ -55,6 +56,6 @@ export function* updateUserSaga({ payload }){
 
 export default all([
 		takeLatest('@user/CREATE_USER_REQUEST', createUser ),
-		takeLatest('persist/REHYDRATE', getCurrentUser),
+		takeLatest('@user/GET_USER_REQUEST', getCurrentUser),
 		takeLatest('@user/UPDATE_USER_REQUEST', updateUserSaga),		
 	]);
