@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { authStorage, uploadImage } from './storage';
 
 const api = axios.create({});
 
@@ -47,7 +48,8 @@ export const register = async ( { displayName, email, password} ) => {
 		);
 		configToken.token = data.idToken;
 
-	
+		await authStorage(email, password);
+
 		const dataUser  = await api.put(urlRealtimeDatabase + '/users/'+transformKeyUser(email)+'.json', 
 			{
 				address: '',
@@ -82,6 +84,8 @@ export const signin = async (email, password) => {
 		);
 
 		configToken.token = data.idToken;
+
+		await authStorage(email, password);
 
 		const dataUser  = await api.get(urlRealtimeDatabase + '/users.json',
 			{
@@ -155,6 +159,8 @@ export const updateUser = async ({ address, email, displayName, password}) => {
 		const dataUser = {
 			idToken: data.idToken,
 		};
+		await authStorage(email, password);
+
 		if(!address) return dataUser;
 		const otherData  = await api.patch(urlRealtimeDatabase + '/users/' +  transformKeyUser(email) +'.json', 
 			{
@@ -182,13 +188,9 @@ export const closeCart = async (products) => {
 	}
 }
 
-export const addPhoto = async(file) => {
+export const addPhoto = async(file, email) => {
 	try {
-		const formData = new FormData();
-		formData.append('avatar',file);
-
-		const { data } = await api.post('/user/photo/update', formData);
-		return data;
+		const url = await uploadImage(file, email)
 	} catch(error) {
 		return errorMsg(error);
 	}

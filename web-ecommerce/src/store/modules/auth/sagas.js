@@ -3,6 +3,8 @@ import { signin, configToken } from '../../../api';
 import history from  '../../../services/history';
 import { successRequest, failedRequest } from './actions';
 import { cleanUser } from '../user/actions';
+import { signOut } from '../../../api/storage';
+
 
 export function* login ({ payload }){
 	const {email, password} = payload;
@@ -26,14 +28,15 @@ export function setToken({ payload }){
 	}
 }
 
-export function* signOut(){
+export function* logout(){
 	yield put(cleanUser());
 	configToken.token = '';
+	yield signOut();
 	history.replace('/');
 }
 
 export default all([
 	takeLatest('@auth/SIGNIN_REQUEST', login ),
 	takeLatest('persist/REHYDRATE', setToken),
-	takeLatest('@auth/SIGN_OUT', signOut),
+	takeLatest('@auth/SIGN_OUT', logout),
 	]);
