@@ -2,6 +2,7 @@ import { takeLatest, all, call, put} from 'redux-saga/effects';
 import { signin, configToken } from '../../../api';
 import history from  '../../../services/history';
 import { successRequest, failedRequest } from './actions';
+import { cleanUser } from '../user/actions';
 
 export function* login ({ payload }){
 	const {email, password} = payload;
@@ -26,7 +27,9 @@ export function setToken({ payload }){
 	}
 }
 
-export function signOut(){
+export function* signOut(){
+	yield put(cleanUser());
+	configToken.token = '';
 	history.replace('/');
 }
 

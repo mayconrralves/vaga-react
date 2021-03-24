@@ -17,18 +17,18 @@ export default function SignUp(){
 				</div>
 				<Formik
 					initialValues={{
-						name: '',
+						displayName: '',
 						email: '',
 						password:'',
 						confirmPassword: ''
 					}}
 					onSubmit={ ( values ) => {
-						const {name, email, password } = values;
-						dispatch(createUser({name, email, password}));
+						const {displayName, email, password } = values;
+						dispatch(createUser({displayName, email, password}));
 						}}
 				>
 					<Form>
-						<Field name='name' type='text' placeholder='Seu Nome...' />				
+						<Field name='displayName' type='text' placeholder='Seu Nome...' />				
 						<Field name='email' type='email' placeholder='Seu email...' />				
 						<Field name='password' type='password' placeholder='Sua senha...' />				
 						<Field name='confirmPassword' type='password' placeholder='Confirme sua senha...' />				

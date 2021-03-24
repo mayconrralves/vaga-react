@@ -1,6 +1,6 @@
 import { all, takeLatest, put, call } from 'redux-saga/effects';
 
-import { register,  getUser,updateUser } from '../../../api';
+import { register,  getUser,updateUser, configToken } from '../../../api';
 import { signOut } from '../auth/actions';
 import { 
 	successRequest as successRequestUser, 
@@ -14,15 +14,16 @@ import history from  '../../../services/history';
 
 export function* createUser( { payload } ){
 
-	const {name, email, password } = payload;
+	const {displayName, email, password } = payload;
 
-	const response = yield call(register, { name, email, password } );
+	const response = yield call(register, { displayName, email, password } );
 	if(response.error){
 		return yield put(failedRequestUser(response.error));
 	}
-	const { idToken, idLocal } = response;
-	yield put(successRequestUser(idLocal));
+	const { idToken } = response;
+	yield put(successRequestUser(response));
 	yield put(successRequestAuth(idToken));
+	configToken.token = idToken;
 	history.replace('/');
 	return;
 

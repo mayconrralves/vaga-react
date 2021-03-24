@@ -44,3 +44,9 @@ export const failedRequest = (msg) => {
 		}
 	}
 }
+
+export const cleanUser = () => {
+	return {
+		type: '@user/CLEAN_USER',
+	}
+}

@@ -35,6 +35,13 @@ export default function reducer(state=INITIAL_STATE, action){
 				draft.fail = true;
 				draft.msgError = action.payload.msg;
 			});
+		case '@user/CLEAN_USER':
+			return produce(state, draft=>{
+				draft.user = null;
+				draft.fail= false;
+				draft.success = false;
+				draft.msgError = '';
+			});
 		default:
 			return state;
 	}
