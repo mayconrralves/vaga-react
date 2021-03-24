@@ -42,16 +42,11 @@ export function* updateUserSaga({ payload }){
 	if(response.error){
 		return yield put(failedRequestUser(response.error));
 	}
-	const { email, localId, displayName, idToken} = response;
-	if(idToken) {
-		yield put(successRequestAuth(idToken));
+	if(response.idToken) {
+		yield put(successRequestAuth(response.idToken));
 	}
 
-	return yield put(successRequestUser({
-		email,
-		localId,
-		displayName
-	}));
+	return yield getCurrentUser();
 }
 
 export default all([

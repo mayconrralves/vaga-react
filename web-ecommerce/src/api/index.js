@@ -15,6 +15,10 @@ const errorMsg = (error) => {
 		 { error: 'Problema no servidor' } :
 		 error.response.data; 
 }
+/*Configure string to be  able  to use as a user key*/
+const transformKeyUser = (s) => {
+	return s.replaceAll('.', '_')
+}
 export const getProducts =  async () => {
 	const { token } = configToken;
 	const params = token ? { auth: token } : null;
@@ -41,23 +45,22 @@ export const register = async ( { displayName, email, password} ) => {
 				params: { key }
 			},
 		);
-		const database = {};
-		database[data.localId] = {
-			address: '',
-		}
-		const dataUser  = await api.put(urlRealtimeDatabase + '/users.json', 
-			database,
+		configToken.token = data.idToken;
+
+	
+		const dataUser  = await api.put(urlRealtimeDatabase + '/users/'+transformKeyUser(email)+'.json', 
+			{
+				address: '',
+			},
 			{
 			params: {
 				auth: data.idToken,
 			}
 		});
-		configToken.token = data.idToken;
 		return {
 			address: dataUser.address,
 			email: data.email,
 			displayName: data.displayName,
-			localId: data.localId,
 			idToken: data.idToken,
 		};
 	} catch(error) {
@@ -77,12 +80,21 @@ export const signin = async (email, password) => {
 				params: { key }
 			},
 		);
+
 		configToken.token = data.idToken;
+
+		const dataUser  = await api.get(urlRealtimeDatabase + '/users.json',
+			{
+			params: {
+				auth: data.idToken,
+				print: 'pretty',
+			}
+		});
 		return {
 			email,
-			idLocal: data.idLocal,
 			displayName: data.displayName,
 			idToken: data.idToken,
+			address: dataUser.data.address,
 		};
 	} catch(error) {
 		return errorMsg(error);
@@ -97,16 +109,16 @@ export const getUser = async () => {
 		},{
 			params: { key }
 		});
-		const otherData = await api.get(urlRealtimeDatabase + '/users.json', {
+		const {displayName, email} = data.users[0];
+
+		const otherData = await api.get(urlRealtimeDatabase + '/users/'+transformKeyUser(email)+'.json', {
 			params: {
 				auth: token,
 			}
 		});
-		const {displayName, localId, email} = data.users[0];
-		const { address } = Object.values(otherData.data)[0];
+		const { address } = otherData.data;
 		return {
 				displayName,
-				localId,
 				email,
 				address
 			}
@@ -124,7 +136,7 @@ export const getUser = async () => {
 	address,
 	urlAvatar
 */
-export const updateUser = async ({ address, email, displayName, password})=>{
+export const updateUser = async ({ address, email, displayName, password}) => {
 	const user = {};
 	if(email) user.email = email;
 	if(displayName) user.displayName = displayName;
@@ -134,21 +146,34 @@ export const updateUser = async ({ address, email, displayName, password})=>{
 				,{
 					...user,
 					idToken: configToken.token,
-					//returnSecureToken: true
+					returnSecureToken: true
 				}, {
 					params: { key }
 				});
 
 		if (password) configToken.token = data.idToken;
-
-		return data;
+		const dataUser = {
+			idToken: data.idToken,
+		};
+		if(!address) return dataUser;
+		const otherData  = await api.patch(urlRealtimeDatabase + '/users/' +  transformKeyUser(email) +'.json', 
+			{
+				address,
+			},
+			{
+			params: {
+				auth: configToken.token,
+			}
+		});
+		data.address = otherData.data.address;
+		return dataUser;
 	}
 	catch(error){
 		return errorMsg(error);
 	}
 }
 
-export const closeCart = async (products)=>{
+export const closeCart = async (products) => {
 	try {
 		const { data } = await api.post('/cart/close', products);
 		return data;

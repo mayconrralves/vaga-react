@@ -26,7 +26,7 @@ export default function Profile(){
 						}}
 					onSubmit={ ( values ) => {
 						const {email, password, displayName, address } = values;
-						dispatch(updateUser({displayName, email, password}));
+						dispatch(updateUser({displayName, email, password, address}));
 						}}
 				>
 					<Form>
