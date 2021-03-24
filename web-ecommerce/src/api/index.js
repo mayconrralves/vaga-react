@@ -30,7 +30,6 @@ export const getProducts =  async () => {
 
 export const register = async ( { displayName, email, password} ) => {
 	try {
-		console.log(displayName)
 		const { data } = await api.post( baseUrlGlobal + '/accounts:signUp',
 			 {
 			 	displayName,
@@ -53,6 +52,7 @@ export const register = async ( { displayName, email, password} ) => {
 				auth: data.idToken,
 			}
 		});
+		configToken.token = data.idToken;
 		return {
 			address: dataUser.address,
 			email: data.email,
@@ -77,7 +77,13 @@ export const signin = async (email, password) => {
 				params: { key }
 			},
 		);
-		return data;
+		configToken.token = data.idToken;
+		return {
+			email,
+			idLocal: data.idLocal,
+			displayName: data.displayName,
+			idToken: data.idToken,
+		};
 	} catch(error) {
 		return errorMsg(error);
 	}

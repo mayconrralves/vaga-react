@@ -1,6 +1,6 @@
 import { all, takeLatest, put, call } from 'redux-saga/effects';
 
-import { register,  getUser,updateUser, configToken } from '../../../api';
+import { register,  getUser,updateUser } from '../../../api';
 import { signOut } from '../auth/actions';
 import { 
 	successRequest as successRequestUser, 
@@ -23,7 +23,6 @@ export function* createUser( { payload } ){
 	const { idToken } = response;
 	yield put(successRequestUser(response));
 	yield put(successRequestAuth(idToken));
-	configToken.token = idToken;
 	history.replace('/');
 	return;
 

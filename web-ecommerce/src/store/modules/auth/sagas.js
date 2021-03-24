@@ -12,7 +12,6 @@ export function* login ({ payload }){
 	}
 	const { idToken } = response;
 	yield put(successRequest(idToken));
-	configToken.token = idToken;
 	history.replace('/');
 
 	return;
