@@ -113,7 +113,7 @@ export const getUser = async () => {
 		},{
 			params: { key }
 		});
-		const {displayName, email} = data.users[0];
+		const {displayName, email, photoUrl } = data.users[0];
 
 		const otherData = await api.get(urlRealtimeDatabase + '/users/'+transformKeyUser(email)+'.json', {
 			params: {
@@ -124,7 +124,8 @@ export const getUser = async () => {
 		return {
 				displayName,
 				email,
-				address
+				address,
+				photoUrl
 			}
 			;
 	}
@@ -188,10 +189,21 @@ export const closeCart = async (products) => {
 	}
 }
 
-export const addPhoto = async(file, email) => {
+export const addPhoto = async(file) => {
 	try {
-		const url = await uploadImage(file, email)
+		const url = await uploadImage(file);
+		const { data } = await api.post( baseUrlGlobal + '/accounts:update',
+			 {
+			 	photoUrl: url,
+			 	idToken: configToken.token,
+			 },
+			{
+				params: { key }
+			},
+		);
+		return data;
 	} catch(error) {
 		return errorMsg(error);
 	}
 }
+

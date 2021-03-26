@@ -21,14 +21,17 @@ export const authStorage = async (email, password) => {
 		return false;
 	}
 }
-export const uploadImage = async (file, email) => {
+export const uploadImage = async (file) => {
 	try {
+		const format = file.name.split('.').reverse()[0];
+		const email = app.auth().currentUser.email;
+		const image = 'users/'+ email + '.' + format;
 		const storageRef = app.storage().ref();
-	    const fileRef = storageRef.child('users/'+ email);
+	    const fileRef = storageRef.child( image );
 	    await fileRef.put(file);
 	    const storage = app.storage();
-	    const pathReference = storage.ref('users/'+ email);
-	    const url = await pathReference.getDownloadURL();
+	    const pathReference = storage.ref( image );
+	    const url =  await pathReference.getDownloadURL();
 	  	return url;
 	} catch(error) {
 		return error;

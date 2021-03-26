@@ -1,6 +1,6 @@
 import { all, takeLatest, put, call } from 'redux-saga/effects';
 
-import { register,  getUser,updateUser } from '../../../api';
+import { register,  getUser,updateUser, addPhoto } from '../../../api';
 import { signOut } from '../auth/actions';
 import { 
 	successRequest as successRequestUser, 
@@ -49,8 +49,20 @@ export function* updateUserSaga({ payload }){
 	return yield getCurrentUser();
 }
 
+export function* setAvatar({ payload }){
+	const { file } = payload;
+	
+	const response = yield addPhoto(file);
+	if(response.error){
+		return yield put(failedRequestUser(response.error));
+	}
+	yield getCurrentUser();
+	
+	
+}
 export default all([
 		takeLatest('@user/CREATE_USER_REQUEST', createUser ),
 		takeLatest('@user/GET_USER_REQUEST', getCurrentUser),
-		takeLatest('@user/UPDATE_USER_REQUEST', updateUserSaga),		
+		takeLatest('@user/UPDATE_USER_REQUEST', updateUserSaga),
+		takeLatest('@user/SET_AVATAR', setAvatar),		
 	]);

@@ -51,3 +51,12 @@ export const cleanUser = () => {
 		type: '@user/CLEAN_USER',
 	}
 }
+
+export const setAvatar = (file) => {
+	return {
+		type: '@user/SET_AVATAR',
+		payload : {
+			file,
+		}
+	}
+}
