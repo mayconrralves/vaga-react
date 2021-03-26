@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { getProducts } from '../../store/modules/products/actions';
 import {Container } from './styles';
 
 export default function ProductDetails(props) {
-	const { products } = useSelector(state => state.products);
+	const dispatch = useDispatch();
+	const { products, success } = useSelector(state => state.products);
 	const {id} = useParams();
-	const [ product, _]  = useState(products.filter(product=> product.id === id)[0]);
-	return (
+	const [ product, setProduct]  = useState(products.filter(product=> product.id === id)[0]);
+	useEffect(()=>{
+		if(!success) {
+			dispatch(getProducts());
+		} else {
+			setProduct(products.filter(product=> product.id === id)[0]);
+		}
+	}, [success]);
+	return product ? ( 
 		<Container>
 			<img src={product.img} alt={product.description}/>
 			<section>
@@ -24,5 +33,7 @@ export default function ProductDetails(props) {
 				</div>
 			</section>
 		</Container>
-		) 
+		) : (
+			<h1>Loading</h1>
+		)
 }

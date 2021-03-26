@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../store/modules/products/actions';
-export default function Store(){	const [quantityItem, setQuantityItem] = useState(1);
+export default function Store(){	
 	const dispatch = useDispatch();
 	const { msgError, products} = useSelector(state=>state.products);
 	const listProducts = ( ) => {
