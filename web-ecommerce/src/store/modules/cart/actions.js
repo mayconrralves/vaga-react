@@ -1,39 +1,27 @@
-export const addCart = () => {
+export const addProductInCart = product => {
 	return {
-		type: "@cart/ADD_CART"
-	}
-}
-
-export const successCart =  product  => {
-	return {
-		type: "@cart/SUCCESS_ADD_CART",
+		type: "@cart/ADD_CART",
 		payload: {
 			product,
 		}
 	}
 }
 
-export const failedCart = () => {
-	return {
-		type: "@cart/FAILED_ADD_CART"
-	}
-}
-
-export const updateCartSum = quantidade => {
+export const updateCartSum = quantityPurchase => {
 	return {
 		type: "@cart/UPDATE_CART_SUM",
 		payload: {
-			quantity,
+			quantityPurchase,
 		}
 	}
 }
 
 
-export const updateCartSub = quantidade => {
+export const updateCartSub = quantityPurchase => {
 	return {
 		type: "@cart/UPDATE_CART_SUB",
 		payload: {
-			quantity,
+			quantityPurchase,
 		}
 	}
 }
@@ -49,6 +37,15 @@ export const deleteProductInCart = id => {
 		type: "@cart/DELETE_PRODUCT_IN_CART",
 		payload: {
 			id,
+		}
+	}
+}
+
+export const  setCartProducts = products => {
+	return {
+		type: '@cart/SET_PRODUCTS_IN_CART',
+		payload: {
+			products,
 		}
 	}
 }
