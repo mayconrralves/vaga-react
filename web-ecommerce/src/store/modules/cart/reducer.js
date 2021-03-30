@@ -18,22 +18,19 @@ export default function Cart(state=INITIAL_STATE, action){
 			});
 		case "@cart/UPDATE_CART_SUM":
 			return produce(state, draft => {
-				const index = draft.products.findIndex(product => product.id === action.payload.product.id);
-				draft.product[index].quantityPurchase++;
+				draft.products[action.payload.index].quantityPurchase++;
 			});
 		case "@cart/UPDATE_CART_SUB":
 			return produce(state, draft => {
-				const index = draft.products.findIndex(product => product.id === action.payload.product.id);
-				draft.product[index].quantityPurchase--;
+				draft.products[action.payload.index].quantityPurchase--;
 			});
 		case  "@cart/DELETE_CART":
 			return produce(state, draft=>{
-				draft.products = null;
+				draft.products = [];
 			});
 		case "@cart/DELETE_PRODUCT_IN_CART":
 			return produce(state, draft=>{
-				const index = draft.products.findIndex(product => product.id === action.payload.product.id);
-				draft.products.splice(index, 1);
+				draft.products.splice(action.payload.index, 1);
 			});
 		case "@cart/SET_PRODUCTS_IN_CART":
 			return produce(state, draft=>{

@@ -2,8 +2,24 @@ import React from 'react';
 import { Container } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
+
+import { updateCartSum, updateCartSub, deleteProductInCart} from '../../store/modules/cart/actions';
 export default function Cart(){
 	const { products } = useSelector(state=>state.cart);
+	const dispatch = useDispatch();
+
+	const updateSum = index => {
+		dispatch(updateCartSum(index));
+	}
+
+	const updateSub = index => {
+		if(products[index].quantityPurchase-1 < 1){
+			dispatch(deleteProductInCart(index));
+		} else {
+			dispatch(updateCartSub(index));
+		}
+	}
+
 	const printProductsInCart = () => {
 		return products.map((product,index)=>{
 			return (
@@ -15,11 +31,15 @@ export default function Cart(){
 						<p><strong>Quantidade: </strong> {product.quantity} </p>
 						<p>
 							<strong>Quantidade: </strong> 
-							<button><FiMinusSquare /></button>
+							<button onClick={()=> updateSub(index)}>
+								<FiMinusSquare />
+							</button>
 							{product.quantityPurchase} 
-							<button><FiPlusSquare /></button>
+							<button onClick={()=> updateSum(index)}>
+								<FiPlusSquare />
+							</button>
 						</p>
-						<p><strong>Total: R$ {parseFloat(product.price) * product.quantity}</strong></p>
+						<p><strong>Total: R$ {parseFloat(product.price) * product.quantityPurchase}</strong></p>
 					</li>
 				)
 		});

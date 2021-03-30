@@ -7,21 +7,21 @@ export const addProductInCart = product => {
 	}
 }
 
-export const updateCartSum = quantityPurchase => {
+export const updateCartSum = index => {
 	return {
 		type: "@cart/UPDATE_CART_SUM",
 		payload: {
-			quantityPurchase,
+			index,
 		}
 	}
 }
 
 
-export const updateCartSub = quantityPurchase => {
+export const updateCartSub = index => {
 	return {
 		type: "@cart/UPDATE_CART_SUB",
 		payload: {
-			quantityPurchase,
+			index,
 		}
 	}
 }
@@ -32,11 +32,11 @@ export const deleteCart = () => {
 	}
 }
 
-export const deleteProductInCart = id => {
+export const deleteProductInCart = index => {
 	return {
 		type: "@cart/DELETE_PRODUCT_IN_CART",
 		payload: {
-			id,
+			index,
 		}
 	}
 }
