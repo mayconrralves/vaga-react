@@ -25,7 +25,7 @@ export default function Header(){
 						</>
 					)
 				}
-				<Link to='/cart/close'>Carrinho</Link>
+				<Link to='/cart'>Carrinho</Link>
 			</nav>
 		</Container>
 		);
