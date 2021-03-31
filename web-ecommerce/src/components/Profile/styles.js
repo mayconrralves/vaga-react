@@ -51,6 +51,9 @@ export const Container = styled.main`
 				background-color: green;
 				height: 30px;
 				margin-top: 4px;
+				&:focus {
+					outline: none;
+				}
 			}
 		}
 		
@@ -58,6 +61,9 @@ export const Container = styled.main`
 			&[type='file'] {
 		  			display: none;
 				}
+			&:focus {
+				outline: none;
+			}
 		}
 		form {
 			width: 80%;

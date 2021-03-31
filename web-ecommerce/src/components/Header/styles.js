@@ -6,14 +6,17 @@ export const Container = styled.header`
 	flex-direction: row;
 	background-color: rgba(129, 182, 34, .5);
 	align-items: center;
+	justify-content: space-between;
 	h1 {
 		padding-left: 70px;
 		width: 50%;
 	}
 	nav {
-		width: 50%;
-		text-align: right;
-		padding-right: 70px;
+		width: 35%;
+		display: flex;
+		align-items: baseline;
+		justify-content: space-around;
+		margin-right: 40px;
 		button {
 			width: 80px;
 			height: 28px;
@@ -23,15 +26,19 @@ export const Container = styled.header`
 			border: 0;
 			color: #fff;
 			background-color: #FF7077;
-			margin-right: 16px;
+			&:focus {
+				outline: none;
+			}
 		}
 		a {
 			color: #fff;
-			margin-right: 25px;
 			text-decoration: none;
 			font-weight: bold;
 			font-size: 1.2em;
-		}
+			svg {
+				padding-top: 3px;
+				font-size: 1em;
+			}
 
 	}
 

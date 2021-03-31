@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signOut} from '../../store/modules/auth/actions';
 import { Container } from './styles';
 import Title from '../Title';
+import { FaShoppingCart } from "react-icons/fa";
+
 export default function Header(){
 
 	const token = useSelector(state => state.auth.token);
@@ -25,7 +27,8 @@ export default function Header(){
 						</>
 					)
 				}
-				<Link to='/cart'>Carrinho</Link>
+				<Link to='/shop'>Shop</Link>
+				<Link to='/cart'><FaShoppingCart /></Link>
 			</nav>
 		</Container>
 		);

@@ -33,6 +33,7 @@ export const Container = styled.main`
 					flex-direction: column;
 					align-items: center;
 					margin-bottom: 12px;
+					color: #000;
 					h3 {
 						margin: 8px 0;
 						font-size: 1.3em;

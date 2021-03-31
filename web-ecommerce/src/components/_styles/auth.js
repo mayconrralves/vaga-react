@@ -35,11 +35,15 @@ export const Container = styled.main`
 			padding: 0 8px;
 			border: none;
 			color: #000;
+			&:focus {
+						outline: none;
+					}
 			&:last-child  {
 					margin-top: 8px;
 					background-color: green;
 					color: #fff;
 					font-weight: bold;
+
 				}
 		}
 	}
