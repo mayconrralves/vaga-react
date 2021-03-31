@@ -17,6 +17,7 @@ export default function Navigation(props){
 	return (
 		<Switch>
 				<CustomRoute path='/' exact component={Shop} />
+				<CustomRoute path='/shop' exact component={Shop} />
 				<CustomRoute path='/login' exact component={SignIn} /> 
 				<CustomRoute path='/signup' exact component={SignUp} />
 				<CustomRoute path='/details/:id' exact component={Details} />
