@@ -3,7 +3,8 @@ import auth from './auth/sagas';
 import user from './user/sagas';
 import products from './products/sagas';
 import cart from './cart/sagas';
+import orders from './orders/sagas';
 
 export default function* rootSaga(){
-	return yield all([auth, user, products, cart]);
+	return yield all([auth, user, products, cart, orders]);
 }

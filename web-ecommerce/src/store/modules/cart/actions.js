@@ -49,3 +49,9 @@ export const  setCartProducts = products => {
 		}
 	}
 }
+
+export const closeCart = () => {
+	return {
+	type: '@cart/CLOSE_CART_REQUEST',
+	}
+}
