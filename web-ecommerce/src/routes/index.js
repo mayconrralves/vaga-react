@@ -10,6 +10,7 @@ import Profile from '../pages/Profile';
 import NotFound from '../components/NotFound';
 import Details from '../pages/ProductDetails';
 import Cart from '../pages/Cart';
+import CloseCart from '../components/CloseCart';
 
 export default function Navigation(props){
 
@@ -23,6 +24,7 @@ export default function Navigation(props){
 				<CustomRoute path='/details/:id' exact component={Details} />
 				<CustomRoute path='/cart' exact component={Cart}  />
 				<CustomRoute path='/profile' exact component={Profile}  protect />
+				<CustomRoute path='/cart/close' exact component={CloseCart}  protect />
 				<CustomRoute component={NotFound} />
 		</Switch>
 	)

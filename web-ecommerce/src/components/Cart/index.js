@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
@@ -72,6 +73,9 @@ export default function Cart(){
  			<ul>
  				{printProductsInCart()}
  			</ul>
+			 {
+				 products.length && <Link to='/cart/close'>Fechar Carrinho</Link>
+			 }
  		</Container>
  		) : (
  			<h2>Carrinho vazio</h2>
