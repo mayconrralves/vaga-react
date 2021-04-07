@@ -168,10 +168,11 @@ export const updateUser = async ({ address, email, displayName, password}) => {
 				address,
 			},
 			{
-			params: {
-				auth: configToken.token,
+				params: {
+					auth: configToken.token,
+				}
 			}
-		});
+		);
 		data.address = otherData.data.address;
 		return dataUser;
 	}
@@ -182,7 +183,7 @@ export const updateUser = async ({ address, email, displayName, password}) => {
 
 export const closeCart = async (products) => {
 	try {
-		const { data } = await api.post('/cart/close', products);
+		const { data } = await api.post('/closeCart', products);
 		return data;
 	}catch(error){
 		return errorMsg(error);
@@ -207,3 +208,62 @@ export const addPhoto = async(file) => {
 	}
 }
 
+export const updateProducts = async (id, quantity) => {
+	try {
+		const data  = await api.patch(urlRealtimeDatabase + '/products/' + id + '.json', 
+			{
+				quantity,
+			},
+			{
+				params: {
+					auth: configToken.token,
+				}
+			}
+		);
+	return data;
+	}catch(error){
+		return errorMsg(error);
+	}
+	
+}
+export const createOrder = async ( email, orders ) => {
+	try {	
+		const { data }  = await api.post(
+			urlRealtimeDatabase + 
+			'/orders/' + 
+			transformKeyUser(email)+
+			'.json', 
+			{
+				...orders,
+			},
+			{
+				params: {
+					auth: configToken.token,
+				}
+			}
+		);
+		return data;
+	}catch(error){
+		return errorMsg(error);
+	}
+	
+}
+
+export const getOrders =  async email => {
+	try {
+		const { data } = await api.get(
+			urlRealtimeDatabase + 
+			'/orders/'+
+			transformKeyUser(email)+
+			'.json', {
+				params: {
+					auth: configToken.token,
+				}
+			}
+		);
+		return  data ;
+	}
+	catch(error){
+		return errorMsg(error);
+	}
+}
