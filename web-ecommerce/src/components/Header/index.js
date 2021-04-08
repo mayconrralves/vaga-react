@@ -19,6 +19,7 @@ export default function Header(){
 						<>
 							<button onClick= { () => dispatch(signOut()) }>Sair</button>
 							<Link to='/profile' >Perfil</Link>
+							<Link to='/orders' >Pedidos</Link>
 						</>		
 					) : (
 						<>

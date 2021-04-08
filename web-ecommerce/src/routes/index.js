@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route,useLocation } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
 import CustomRoute from './CustomRoute';
 
@@ -10,6 +10,7 @@ import Profile from '../pages/Profile';
 import NotFound from '../components/NotFound';
 import Details from '../pages/ProductDetails';
 import Cart from '../pages/Cart';
+import Orders from '../components/Orders';
 import CloseCart from '../components/CloseCart';
 
 export default function Navigation(props){
@@ -17,15 +18,16 @@ export default function Navigation(props){
 	
 	return (
 		<Switch>
-				<CustomRoute path='/' exact component={Shop} />
-				<CustomRoute path='/shop' exact component={Shop} />
-				<CustomRoute path='/login' exact component={SignIn} /> 
-				<CustomRoute path='/signup' exact component={SignUp} />
-				<CustomRoute path='/details/:id' exact component={Details} />
-				<CustomRoute path='/cart' exact component={Cart}  />
-				<CustomRoute path='/profile' exact component={Profile}  protect />
-				<CustomRoute path='/cart/close' exact component={CloseCart}  protect />
-				<CustomRoute component={NotFound} />
+				<CustomRoute path='/' exact component={ Shop } />
+				<CustomRoute path='/shop' exact component={ Shop } />
+				<CustomRoute path='/login' exact component={ SignIn } /> 
+				<CustomRoute path='/signup' exact component={ SignUp } />
+				<CustomRoute path='/details/:id' exact component={ Details } />
+				<CustomRoute path='/cart' exact component={ Cart }  />
+				<CustomRoute path='/profile' exact component={ Profile }  protect />
+				<CustomRoute path='/cart/close' exact component={ CloseCart }  protect />
+				<CustomRoute path='/orders' exact component={ Orders }  protect />
+				<CustomRoute component={ NotFound } />
 		</Switch>
 	)
 	
