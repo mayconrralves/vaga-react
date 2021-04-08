@@ -15,7 +15,7 @@ export const Container = styled.main`
 		display: flex;
 		align-items: flex-start;
 		flex-direction: column;
-		justify-content: space-between;
+		justify-content: flex-start;
 		.details-product{
 			h3 {
 				font-size: 2em;
@@ -30,6 +30,11 @@ export const Container = styled.main`
 		.buy-function {
 			display: flex;
 			width: 100%;
+			margin-top: 60px;
+			strong {
+				font-size: 1.8em;
+				color: red;
+			}
 			input, button {
 				height: 60px;
 				font-size: 1.4em;

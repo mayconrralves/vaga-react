@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../store/modules/products/actions';
 import { addProductInCart } from '../../store/modules/cart/actions';
@@ -50,18 +50,26 @@ export default function ProductDetails(props) {
 					<p><b>Quantidade: </b> {product.quantity}  unidades</p>
 					<p><b>Preço:</b>  {product.price}</p>
 				</div>
-				<div className='buy-function'>
-					<input 
-						defaultValue={quantityPurchase}
-						onChange={ e=>setQuantityPurchase(parseFloat(e.target.value)) } 
-						name='quantity'
-					/>
-					<button 
-						onClick={purchaseProduct}
-					>
-						Comprar
-					</button>
-				</div>
+				{
+					product.quantity ? (
+						<div className='buy-function'>
+							<input 
+								defaultValue={quantityPurchase}
+								onChange={ e=>setQuantityPurchase(parseFloat(e.target.value)) } 
+								name='quantity'
+							/>
+							<button 
+								onClick={purchaseProduct}
+							>
+								Comprar
+							</button>
+						</div>
+					) : (
+						<div className='buy-function'>
+							<strong>Produto indisponível</strong>
+						</div>
+					)
+				}
 			</section>
 		</Container>
 		) : (
