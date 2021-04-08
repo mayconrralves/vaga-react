@@ -8,7 +8,8 @@ import { MdDelete } from "react-icons/md";
 import { 
 	updateCartSum, 
 	updateCartSub, 
-	deleteProductInCart ,
+	deleteProductInCart,
+	cleanCart,
 } from '../../store/modules/cart/actions';
 
 export default function Cart(){
@@ -75,7 +76,11 @@ export default function Cart(){
  			</ul>
 			 {
 				 products.length && <div className='buttons-cart'>
-					 <button>Esvaziar carrinho</button>
+					 <button 
+					 onClick={()=> dispatch(cleanCart())}
+					 >
+						 Esvaziar carrinho
+					</button>
 					 <Link to='/cart/close'>Fechar Carrinho</Link>
 				 </div>
 			 }

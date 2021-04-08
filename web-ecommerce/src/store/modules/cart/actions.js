@@ -55,3 +55,9 @@ export const closeCart = () => {
 	type: '@cart/CLOSE_CART_REQUEST',
 	}
 }
+
+export const cleanCart = () => {
+	return {
+		type: '@cart/CLEAN_CART',
+	}
+}

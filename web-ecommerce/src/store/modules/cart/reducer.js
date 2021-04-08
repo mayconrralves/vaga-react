@@ -36,6 +36,10 @@ export default function Cart(state=INITIAL_STATE, action){
 			return produce(state, draft=>{
 				draft.products = action.payload.products;
 			});
+		case "@cart/CLEAN_CART":
+			return produce(state, draft=>{
+				draft.products = [];
+			});
 		default:
 			return state;
 	}
