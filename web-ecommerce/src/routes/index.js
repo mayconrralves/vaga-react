@@ -10,8 +10,8 @@ import Profile from '../pages/Profile';
 import NotFound from '../components/NotFound';
 import Details from '../pages/ProductDetails';
 import Cart from '../pages/Cart';
-import Orders from '../components/Orders';
-import CloseCart from '../components/CloseCart';
+import Orders from '../pages/Orders';
+import CloseCart from '../pages/CloseCart';
 
 export default function Navigation(props){
 
