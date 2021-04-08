@@ -74,7 +74,10 @@ export default function Cart(){
  				{printProductsInCart()}
  			</ul>
 			 {
-				 products.length && <Link to='/cart/close'>Fechar Carrinho</Link>
+				 products.length && <div className='buttons-cart'>
+					 <button>Esvaziar carrinho</button>
+					 <Link to='/cart/close'>Fechar Carrinho</Link>
+				 </div>
 			 }
  		</Container>
  		) : (

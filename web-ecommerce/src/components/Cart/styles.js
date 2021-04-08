@@ -2,14 +2,18 @@ import styled from 'styled-components';
 
 export const Container = styled.main`
 	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	ul {
-		width: 100%;
+		width: 70%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		margin-top: 12px;
+		padding: 0;
 		li {
-			width: 70%;
+			width: 100%;
 			background-color: rgba(129, 182, 34, .7);
 			margin: 6px 0;
 			padding: 6px;
@@ -53,5 +57,25 @@ export const Container = styled.main`
 				}
 		}
 
+	}
+	.buttons-cart {
+		display: flex;
+		width: 70%;
+		justify-content: space-between;
+		button, a {
+			border: 0;
+			background-color: green;
+			display: flex;
+			width: 40%;
+			height: 50px;
+			margin: 30px 0;
+			border-radius: 12px;
+			color: #fff;
+			font-size: 1.2em;
+			font-weight: bold;
+			text-decoration: none;
+			align-items: center;
+			justify-content: center;
+	}
 	}
 `;

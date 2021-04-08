@@ -17,9 +17,6 @@ export default function CloseCart(){
         dispatch(closeCartRequest(user.email, products));
     }
     const calculatorTotal = () => {
-        for(let p of products){
-            console.log(p.price)
-        }
         return products.reduce((total, product)=> (
             total + parseFloat(product.price) * parseInt(product.quantityPurchase)
         ),0);
