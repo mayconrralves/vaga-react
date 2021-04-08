@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Container } from './styles';
 import history from '../../services/history';
 import { closeCartRequest } from '../../store/modules/orders/actions';
@@ -40,7 +41,7 @@ export default function CloseCart(){
     useEffect(()=>{
         dispatch(getUser());
     },[]);
-    return (
+    return products.length ? (
         <Container>
             <h3>Fechar Pedido?</h3>
             <ul>
@@ -55,5 +56,7 @@ export default function CloseCart(){
                 <button onClick={backForCart}>Cancelar</button>
             </div>            
         </Container>
+    ) : (
+        <Redirect to='/shop' />
     )
 }

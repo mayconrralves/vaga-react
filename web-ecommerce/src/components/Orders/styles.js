@@ -1,12 +1,27 @@
 import styled from 'styled-components';
 
-
 export const Container = styled.main`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+        width: 70%;
+        height: 50px;
+        color: #fff;
+        background-color: rgba(129, 182, 34, .7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        margin: 20px 0 10px 0;
+    }
     ul {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 0;
         li {
             background-color: rgba(129, 182, 34, .7);
             height: auto;

@@ -11,6 +11,11 @@ export const Container = styled.main`
         font-size: 1.8em;
         background-color: rgba(129, 182, 34, .7);
         border-radius: 12px;
+        margin-top: 20px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     ul {
         width: 70%;
@@ -18,47 +23,49 @@ export const Container = styled.main`
         align-items: center;
         padding: 0;
         li {
-        background-color: rgba(129, 182, 34, .7);
-        border-radius: 12px;
-        width: 100%;
-        height: auto;
-        padding-bottom: 20px;
-        margin: 15px 0;
-        list-style: none;
-        h4{
-            text-align: center;
-            font-size: 1.5em;
-            margin: 15px 0;
-            color: #fff;
-        }
-
-        section {
-            display: flex;
-            flex-direction: row;
+            background-color: rgba(129, 182, 34, .7);
+            border-radius: 12px;
             width: 100%;
-            font-size: 1em;
-            justify-content: space-around;
-            align-items: center;
-            img {
-                width: 15%;
+            height: auto;
+            padding-bottom: 20px;
+            margin: 15px 0;
+            list-style: none;
+            h4{
+                text-align: center;
+                font-size: 1.5em;
+                margin: 15px 0;
+                color: #fff;
             }
-            div {
-                width: 70%;
+
+            section {
                 display: flex;
-                flex-direction: column;
-                p {
-                    margin-bottom: 5px;
-                    color: #fff;
+                flex-direction: row;
+                width: 100%;
+                font-size: 1em;
+                justify-content: space-around;
+                align-items: center;
+                img {
+                    width: 15%;
+                }
+                div {
+                    width: 70%;
+                    display: flex;
+                    flex-direction: column;
+                    p {
+                        margin-bottom: 5px;
+                        color: #fff;
+                    }
                 }
             }
         }
-    }
     }
     
     .total{
         width: 70%;
         font-size: 1.8em;
         display: flex;
+        height: 50px;
+        align-items: center;
         justify-content: space-between;
         padding: 6px 18px;
         color: #fff;

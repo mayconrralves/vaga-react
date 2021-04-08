@@ -53,9 +53,6 @@ export default function Orders(){
                         </tr>
                     </tfoot>    
                 </table>
-
-                
-               
             </li>
         )); 
     }
@@ -65,6 +62,7 @@ export default function Orders(){
     },[success]);
     return orders ? (
         <Container>
+             <h2> Meus Pedidos </h2>
             <ul>
                 { printOrders() }
             </ul>
