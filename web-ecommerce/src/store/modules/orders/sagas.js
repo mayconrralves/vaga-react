@@ -2,7 +2,8 @@ import { all, takeLatest, put, call} from 'redux-saga/effects';
 import { updateProducts, createOrder } from '../../../api';
 import { getProducts, getOrders } from '../../../api';
 import { failedRequest, successRequest, getOrders as getOrdersAction } from './actions';
-import { cleanCart } from '../cart/actions'
+import { cleanCart } from '../cart/actions';
+import history from '../../../services/history';
 
 export function* getOrdersSaga( { payload } ){
     const { email } = payload;
@@ -40,6 +41,7 @@ export function* closeCart( { payload } ){
     yield call(createOrder, email, products);
     yield put(getOrdersAction(email));
     yield put(cleanCart());
+    history.replace('/orders')
     return;
 }
 

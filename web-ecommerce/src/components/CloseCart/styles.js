@@ -81,7 +81,7 @@ export const Container = styled.main`
             background-color: green;
 
             &:focus{
-                border: 0;
+                outline: 0;
             }
         }
     }
