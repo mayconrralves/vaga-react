@@ -42,11 +42,10 @@ export const Container = styled.main`
 		justify-content: center;
 		padding: 0;
 		li {
-			width: 25%;
+			width: auto;
 			display: flex;
 			flex-direction: column;
 			margin: 10px 35px 25px 35px;
-			
 			border-radius: 6px;
 			justify-content: space-between;
 			align-items: center;
