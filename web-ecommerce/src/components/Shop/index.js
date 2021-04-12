@@ -44,7 +44,7 @@ export default function Store(){
 							<div className='input'>
 								<input 
 								type='search' 
-								autoComplete={false} 
+								autoComplete='false'
 								onChange={searchProduct} 
 								placeholder='Procure...'
 							/>

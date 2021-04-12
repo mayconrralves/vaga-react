@@ -32,6 +32,9 @@ export function* getCurrentUser(){
 	const response = yield call(getUser);
 	
 	if(response.error){
+		if(response.error.message === 'INVALID_ID_TOKEN'){
+			yield put(signOut());
+		}
 		return yield put(failedRequestUser(response.error));
 	}
 	return yield put(successRequestUser(response));
