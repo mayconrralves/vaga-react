@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 const media = () => (
 	`
+		width: 600px;
+		height: 55px;
+		font-size: 1.2em;
 		@media(max-width: 800px){
 			width: 450px;
 		}
@@ -12,7 +15,7 @@ const media = () => (
 )
 export const Container = styled.main`
 	width: 100%;
-	height: 500px;
+	height: auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -41,11 +44,9 @@ export const Container = styled.main`
 		justify-content: center;
 		input {
 			${media()}
+
 			border-radius: 8px;
-			width: 600px;
-			height: 50px;
 			margin-bottom: 10px;
-			font-size: 1.2em;
 			padding: 0 8px;
 			border: none;
 			color: #000;
@@ -63,7 +64,6 @@ export const Container = styled.main`
 	}
 		.sign-register {
 			${media()}
-			width: 600px;
 			display: flex;
 			text-decoration: none;
 			background-color: green;
@@ -72,7 +72,6 @@ export const Container = styled.main`
 			align-items: center;
 			font-weight: bold;
 			color: #fff;
-			font-size: 1.2em;
-			height: 50px;
+			
 		}
 `;
