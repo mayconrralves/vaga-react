@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+const media = () => (
+	`
+		@media(max-width: 800px){
+			width: 450px;
+		}
+		@media(max-width: 520px){
+			width: 300px;
+	}
+	`
+)
 export const Container = styled.main`
 	width: 100%;
 	height: 500px;
@@ -14,6 +24,9 @@ export const Container = styled.main`
 		align-items: center;
 		justify-content: center;
 		h2 {
+			@media(max-width: 800px){
+				font-size: 1.4em;
+			}
 			font-size: 1.8em;
 			margin-bottom: 22px;
 			margin-top: 15px;
@@ -27,8 +40,9 @@ export const Container = styled.main`
 		align-items: center;
 		justify-content: center;
 		input {
+			${media()}
 			border-radius: 8px;
-			width: 45%;
+			width: 600px;
 			height: 50px;
 			margin-bottom: 10px;
 			font-size: 1.2em;
@@ -48,11 +62,12 @@ export const Container = styled.main`
 		}
 	}
 		.sign-register {
+			${media()}
+			width: 600px;
 			display: flex;
 			text-decoration: none;
 			background-color: green;
 			border-radius: 8px;
-			width: 45%;
 			justify-content: center;
 			align-items: center;
 			font-weight: bold;
