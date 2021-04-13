@@ -1,5 +1,20 @@
 import styled from 'styled-components';
 
+const mediaScreen820 = styles => (
+	`
+		@media screen and (max-width: 820px){
+
+			${styles}
+		}
+	`
+)
+const mediaScreen420 = styles => (
+	`
+		@media screen and (max-width: 420px){
+			${styles}
+		}
+	`
+)
 export const Container = styled.header`
 	height: 90px;
 	display: flex;
@@ -7,12 +22,12 @@ export const Container = styled.header`
 	background-color: rgba(129, 182, 34, .5);
 	align-items: center;
 	h1 {
-		@media screen and (max-width: 820px){
+		${mediaScreen820(`
 			width: 80%;
-		}
-		@media screen and (max-width: 490px){
+		`)}
+		${mediaScreen420(`
 			padding-left: 20px;
-		}
+		`)}
 		padding-left: 70px;
 		width: 50%;
 	}
@@ -31,25 +46,31 @@ export const Container = styled.header`
 			border: 0;
 			color: #fff;
 			background-color: #FF7077;
+			${mediaScreen420(`
+				display: none;
+			`)}
 			&:focus {
 				outline: none;
 			}
 		}
 		.menu {
-			@media screen and (max-width: 820px){
-				display: none;
-			}
+			${mediaScreen820(
+				`
+					display: none;
+				`
+			)}	
 		}
 		a {
 			color: #fff;
 			text-decoration: none;
 			font-weight: bold;
 			font-size: 1.2em;
-			margin-left: 12px;
+			margin-left: 36px;
 			svg {
 				padding-top: 3px;
 				font-size: 1em;
 			}
+		}
 
 	}
 
