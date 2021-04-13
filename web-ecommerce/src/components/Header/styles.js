@@ -7,10 +7,10 @@ export const Container = styled.header`
 	background-color: rgba(129, 182, 34, .5);
 	align-items: center;
 	h1 {
-		@media(max-width: 820px){
+		@media screen and (max-width: 820px){
 			width: 80%;
 		}
-		@media(max-width: 490px){
+		@media screen and (max-width: 490px){
 			padding-left: 20px;
 		}
 		padding-left: 70px;
@@ -36,7 +36,7 @@ export const Container = styled.header`
 			}
 		}
 		.menu {
-			@media (max-width: 820px){
+			@media screen and (max-width: 820px){
 				display: none;
 			}
 		}

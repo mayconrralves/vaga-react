@@ -5,17 +5,24 @@ const media = () => (
 		width: 600px;
 		height: 55px;
 		font-size: 1.2em;
-		@media(max-width: 800px){
+		@media screen and (max-width: 800px){
 			width: 450px;
 		}
-		@media(max-width: 520px){
+		@media screen and (max-width: 520px){
 			width: 300px;
 	}
 	`
 )
 export const Container = styled.main`
 	width: 100%;
-	height: auto;
+	height: 550px;
+
+	@media screen and (min-height: 1000px) and (max-height: 1400px){
+		height: 950px;
+	}
+	@media screen and (min-height: 320px) and (max-height: 550px){
+		height: 300px;
+	}
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
