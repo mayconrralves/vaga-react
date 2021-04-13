@@ -1,5 +1,21 @@
 import styled from 'styled-components';
 
+const mediaScreen920 = styles => (
+	`
+	@media screen and (max-width: 920px){
+		${styles}
+	}
+	`
+)
+
+const mediaScreen321 = styles => (
+	`
+	@media screen and (max-width: 331px){
+		${styles}
+	}
+	`
+)
+
 export const Container = styled.main`
 	width: 100%;
 	display: flex;
@@ -9,11 +25,27 @@ export const Container = styled.main`
 		margin: 30px 0;
 		font-size: 2.5em;
 		color: #fff;
+		${mediaScreen920(`
+			font-size: 1.7em;
+		`)}
 	}
+		
 	section {
 		display: flex;
 		align-items: flex-start;
+		${mediaScreen321(
+			`
+				width: 300px;
+			`
+		)}
+		${mediaScreen920(
+			`
+			flex-direction: column; 
+			align-items: center;
+			`
+		)}
 		width: 80%;
+		
 		div {
 			display: flex;
 			flex-direction: column;
@@ -27,6 +59,9 @@ export const Container = styled.main`
 				color: #fff;
 				font-size: 4em;
 				height: 250px;
+				${mediaScreen920(`
+					height: 220px;
+				`)}
 				span {
 					display: ${props=>props.image ? 'none' : 'inline'};
 					font-weight: bold;
@@ -42,6 +77,11 @@ export const Container = styled.main`
 				}
 			}
 			button {
+				${mediaScreen920(`
+					 margin-bottom: 20px;
+					 width: 98%;
+					 align-self: center;
+			   `)}
 				width: 100%;
 				border-radius: 10px;
 				border: 0;
@@ -49,8 +89,8 @@ export const Container = styled.main`
 				font-size: 1.2em;
 				font-weight: bold;
 				background-color: green;
-				height: 30px;
-				margin-top: 4px;
+				height: 40px;
+				margin-top: 8px;
 				&:focus {
 					outline: none;
 				}
@@ -65,21 +105,26 @@ export const Container = styled.main`
 				outline: none;
 			}
 		}
+
 		form {
-			width: 80%;
+			width: 100%;
 			height: 500px;
 			display: flex;
 			flex-direction: column;
-			align-items: center;
+			margin-left: 12px;
+			${mediaScreen321(
+				`
+					margin-left: 0;
+				`
+			)}
 			input {
-				width: 90%;
+				width: 100%;
 				height: 55px;
 				border-radius: 8px;
 				border: 0;
 				margin-bottom: 12px;
 				font-size: 1.4em;
 				padding-left: 12px;
-				
 				&:last-child {
 				 	background-color: green;
 				 	margin-top: 20px;
