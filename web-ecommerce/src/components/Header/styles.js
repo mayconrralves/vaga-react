@@ -26,7 +26,7 @@ export const Container = styled.header`
 			width: 80%;
 		`)}
 		${mediaScreen420(`
-			padding-left: 20px;
+			padding-left: 16px;
 		`)}
 		padding-left: 70px;
 		width: 50%;
@@ -37,6 +37,7 @@ export const Container = styled.header`
 		align-items: baseline;
 		justify-content: flex-end;
 		margin-right: 25px;
+		
 		button {
 			width: 80px;
 			height: 28px;
@@ -71,7 +72,14 @@ export const Container = styled.header`
 				font-size: 1em;
 			}
 		}
+		#menu-mobile{
+			
+			svg {
+				padding-top: 12px;
+				font-size: 2em;
+				vertical-align: bottom;
+			}
+		}
 
 	}
-
 `;
