@@ -12,6 +12,7 @@ import Details from '../pages/ProductDetails';
 import Cart from '../pages/Cart';
 import Orders from '../pages/Orders';
 import CloseCart from '../pages/CloseCart';
+import Menu from '../components/Menu';
 
 export default function Navigation(props){
 
@@ -19,6 +20,7 @@ export default function Navigation(props){
 	return (
 		<Switch>
 				<CustomRoute path='/' exact component={ Shop } />
+				<CustomRoute path='/menu' exact component={ Menu } />
 				<CustomRoute path='/shop' exact component={ Shop } />
 				<CustomRoute path='/login' exact component={ SignIn } /> 
 				<CustomRoute path='/signup' exact component={ SignUp } />
