@@ -32,7 +32,7 @@ export default function Header(){
 					)
 				}
 				<Link to='/shop' className='menu'>Shop</Link>
-				{ isMobile && (<Link to="#" id='menu-mobile'><FiMenu/></Link>)}
+				{ isMobile && (<Link to="/menu" id='menu-mobile'><FiMenu/></Link>)}
 				<Link to='/cart'><FaShoppingCart /></Link>
 			</nav>
 		</Container>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const mediaScreen820 = styles => (
+const mediaScreenTablet = styles => (
 	`
 		@media screen and (max-width: 820px){
 
@@ -8,9 +8,9 @@ const mediaScreen820 = styles => (
 		}
 	`
 )
-const mediaScreen420 = styles => (
+const mediaScreenMobile = styles => (
 	`
-		@media screen and (max-width: 420px){
+		@media screen and (max-width: 550px){
 			${styles}
 		}
 	`
@@ -21,18 +21,22 @@ export const Container = styled.header`
 	flex-direction: row;
 	background-color: rgba(129, 182, 34, .5);
 	align-items: center;
+	justify-content: space-between;
 	h1 {
-		${mediaScreen820(`
-			width: 80%;
+		${mediaScreenTablet(`
+			width: 70%;
 		`)}
-		${mediaScreen420(`
+		${mediaScreenMobile(`
 			padding-left: 16px;
 		`)}
 		padding-left: 70px;
-		width: 50%;
+		width: 420px;
 	}
 	nav {
-		width: 50%;
+		${mediaScreenMobile(`
+			width: 200px;
+		`)}
+		width: 450px;
 		display: flex;
 		align-items: baseline;
 		justify-content: flex-end;
@@ -46,16 +50,15 @@ export const Container = styled.header`
 			font-size: 1.2em;
 			border: 0;
 			color: #fff;
+			outline: none;
 			background-color: #FF7077;
-			${mediaScreen420(`
+			${mediaScreenMobile(`
 				display: none;
-			`)}
-			&:focus {
-				outline: none;
-			}
+			`)}	
+		
 		}
 		.menu {
-			${mediaScreen820(
+			${mediaScreenTablet(
 				`
 					display: none;
 				`
