@@ -11,7 +11,6 @@ export default function Store(){
 	const dispatch = useDispatch();
 	const { msgError, products} = useSelector(state=>state.products);
 	const isMobile = useMediaQuery({ query: `(max-width: 712px)` });
-	console.log(isMobile)
 	const listProducts = ( products ) => {
 		return products.map(product=>(
 			
