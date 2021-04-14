@@ -76,6 +76,9 @@ export const Container = styled.main`
 				width: 90%;
 			}
 		button {
+			@media screen and (max-width: 712px ){
+				display: none;
+			}
 			border: 0;
 			background-color: inherit;
 			outline: 0;
@@ -85,6 +88,9 @@ export const Container = styled.main`
 			}
 		}
 		.input-search {
+			@media screen and (max-width: 711px){
+				width: 100%;
+			}
 			display: flex;
 			height: auto;
 			align-items: center;

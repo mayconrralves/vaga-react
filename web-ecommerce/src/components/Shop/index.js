@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +10,8 @@ export default function Store(){
 	const [list, setList] = useState(false);
 	const dispatch = useDispatch();
 	const { msgError, products} = useSelector(state=>state.products);
+	const isMobile = useMediaQuery({ query: `(max-width: 712px)` });
+	console.log(isMobile)
 	const listProducts = ( products ) => {
 		return products.map(product=>(
 			
@@ -42,6 +45,10 @@ export default function Store(){
 	useEffect(()=>{
 		dispatch(getProducts());
 	}, []);
+
+	useEffect(()=> {
+		if(isMobile && list) setList(false); 
+	}, [isMobile]);
 	return (
 		<Container ifList={list}>
 			{
