@@ -4,7 +4,7 @@ const configList = () => (
 	`
 		width: 600px;
 		display: flex;
-		border: 3px solid #fff;
+		border: 2px solid rgba(129, 182, 34, 0.2);
 		border-radius: 10px;
 	`
 )
@@ -12,7 +12,7 @@ const configDetailsList = () => (
 	`
 		margin-left: 10px;
 		align-items: flex-start;
-		color: #000;
+		color: rgba(0,0,0,0.8);
 		margin: 12px 0 0 12px;
 		height: auto;
 		h3 {
