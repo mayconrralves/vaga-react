@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../store/modules/products/actions';
-import { FiSearch } from "react-icons/fi";
+import { FiSearch, FiList, FiColumns } from "react-icons/fi";
 export default function Store(){	
 	const [product, setProduct] = useState('');
+	const [list, setList] = useState(false);
 	const dispatch = useDispatch();
 	const { msgError, products} = useSelector(state=>state.products);
 	const listProducts = ( products ) => {
@@ -16,6 +17,13 @@ export default function Store(){
 					<img src={product.img} alt={"imagem de"+ product.description}/>
 					<div className="details">
 						<h3>{product.name}</h3>
+						{list && (
+							<>
+								<p><b>Marca:</b> {product.brand}</p>
+								<p><b>Descrição:</b>  {product.description}</p>
+								<p><b>Quantidade: </b> {product.quantity}  unidades</p>
+							</>
+						)}
 						<p> R$ {product.price}</p>
 					</div>
 				</Link>
@@ -35,21 +43,26 @@ export default function Store(){
 		dispatch(getProducts());
 	}, []);
 	return (
-		<Container>
+		<Container ifList={list}>
 			{
 				msgError ? (
 					<div className='errorMessage'>{msgError}</div>
 					):(
 						<>
-							<div className='input'>
-								<input 
-								type='search' 
-								autoComplete='false'
-								onChange={searchProduct} 
-								placeholder='Procure...'
-							/>
-							<FiSearch />
-							</div>
+							<section>
+								<div className='input-search'>
+									<input 
+										type='search' 
+										autoComplete='false'
+										onChange={searchProduct} 
+										placeholder='Procure...'
+									/>
+									<FiSearch />
+								</div>
+								<button onClick={()=> setList(!list)}>
+									{  !list ? <FiList /> : <FiColumns/> }
+								</button>
+							</section>
 							<ul>
 								{product ? filterProducts () : listProducts(products)}
 							</ul>
