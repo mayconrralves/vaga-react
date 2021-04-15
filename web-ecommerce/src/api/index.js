@@ -264,7 +264,6 @@ export const getOrders =  async email => {
 		return  data ;
 	}
 	catch(error){
-		console.log(error)
 		return errorMsg(error);
 	}
 }
