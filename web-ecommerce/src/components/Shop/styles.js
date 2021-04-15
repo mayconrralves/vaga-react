@@ -4,21 +4,22 @@ const configList = () => (
 	`
 		width: 600px;
 		display: flex;
-		border: 2px solid rgba(129, 182, 34, 0.2);
+		background-color: rgba(129, 182, 34, 0.4);
 		border-radius: 10px;
+		
 	`
 )
 const configDetailsList = () => (
 	`
-		margin-left: 10px;
+		margin: 20px 30px;
 		align-items: flex-start;
-		color: rgba(0,0,0,0.8);
-		margin: 12px 0 0 12px;
+		color: #fff;
 		height: auto;
 		h3 {
 			font-size: 1.6em;
 			margin-bottom: 18px;
 			align-self: center;
+			text-align: center;
 		}
 		p {
 			margin-bottom: 12px;
@@ -128,7 +129,7 @@ export const Container = styled.main`
 			width: auto;
 			display: flex;
 			flex-direction: column;
-			margin: 10px 35px 25px 35px;
+			margin: 10px 20px 25px 20px;
 			border-radius: 6px;
 			justify-content: space-between;
 			align-items: center;
@@ -136,7 +137,7 @@ export const Container = styled.main`
 				text-decoration: none;
 				${props=> props.ifList ? configList() : '' }
 				img {
-					width: 280px;
+					max-width: 100%;
 					border-radius: 8px;
 					${props=> !props.ifList ? configImgColumn() : '' }
 				}
