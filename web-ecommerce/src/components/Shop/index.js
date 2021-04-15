@@ -16,7 +16,7 @@ export default function Store(){
 			
 			<li key={product.id} >
 				<Link to={'/details/'+ product.id}>
-					<img src={product.img} alt={"imagem de"+ product.description}/>
+					<img src={product.img.large} alt={"imagem de"+ product.description}/>
 					<div className="details">
 						<h3>{product.name}</h3>
 						{list && (

@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../store/modules/products/actions';
 import { addProductInCart } from '../../store/modules/cart/actions';
 import {Container } from './styles';
 
-export default function ProductDetails(props) {
+export default function ProductDetails() {
 	const dispatch = useDispatch();
 	const { products, success } = useSelector(state => state.products);
 	const cart = useSelector(state=> state.cart);
-	const {id} = useParams();
+	const { id } = useParams();
 	const [ product, setProduct]  = useState(products.filter(product=> product.id === id)[0]);
 	const [quantityPurchase, setQuantityPurchase] = useState(1);
-
+	const isTablet = useMediaQuery({query: "(max-width: 865px)"});
+	const isMobile = useMediaQuery({query: "(max-width: 650px)"});
 	const saveProduct = quantityProduct => {
 		if(quantityPurchase <=  quantityProduct ) {
 			dispatch(addProductInCart({
@@ -40,21 +42,24 @@ export default function ProductDetails(props) {
 		}
 	}, [success]);
 	return product ? ( 
-		<Container>
-			<img src={product.img} alt={product.description}/>
+		<Container isMobile={isMobile}>
+			<img 
+				src={ isTablet ? product.img.middle : product.img.large} 
+				alt={product.description}
+			/>
 			<section>
 				<div className='details-product'>
 					<h3>{product.name}</h3>
-					<p><b>Marca:</b> {product.brand}</p>
-					<p><b>Descrição:</b>  {product.description}</p>
-					<p><b>Quantidade: </b> {product.quantity}  unidades</p>
-					<p><b>Preço:</b>  {product.price}</p>
+					<p><strong>Marca:</strong> {product.brand}</p>
+					<p><strong>Descrição:</strong>  {product.description}</p>
+					<p><strong>Quantidade: </strong> {product.quantity}  unidades</p>
+					<p><strong>Preço:</strong>  {product.price}</p>
 				</div>
 				{
 					product.quantity ? (
 						<div className='buy-function'>
 							<input 
-								defaultValue={quantityPurchase}
+								defaultValue={1}
 								onChange={ e=>setQuantityPurchase(parseFloat(e.target.value)) } 
 								name='quantity'
 							/>
