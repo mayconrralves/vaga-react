@@ -20,7 +20,7 @@ const configMiddle = () =>  (
 export const Container = styled.main`
 	display: flex;
 	${props=> props.isMobile ? configMiddle() : configLarge()}
-	margin-top: 10px;
+	margin-top: 50px;
 
 	max-width: 100%;
 	img {
@@ -49,9 +49,9 @@ export const Container = styled.main`
 		}
 		.buy-function {
 			display: flex;
-			width: 100%;
+			width: 90%;
 			margin-top: 25px;
-			justify-content: center;
+			justify-content: flex-end;
 			strong {
 				font-size: 1.3em;
 				color: red;
