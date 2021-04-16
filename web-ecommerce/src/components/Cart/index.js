@@ -42,7 +42,7 @@ export default function Cart(){
 							<h3><span>{product.name}</span><span onClick={()=>deleteProduct(index)}><MdDelete /></span></h3>
 						</section>
 						<section>
-							<img src={product.img}/>
+							<img src={product.img.middle}/>
 							<div>
 								<p><strong>Marca:</strong> {product.brand}</p>
 								<p><strong>Descrição:</strong>  {product.description}</p>
