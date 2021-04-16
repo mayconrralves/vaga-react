@@ -12,7 +12,7 @@ export default function Header(){
 
 	const token = useSelector(state => state.auth.token);
 	const dispatch = useDispatch();
-	const isMobile = useMediaQuery({ query: `(max-width: 820px)` });
+	const isMobile = useMediaQuery({ query: `(max-width: 910px)` });
 	return (
 		<Container>
 			<Title />

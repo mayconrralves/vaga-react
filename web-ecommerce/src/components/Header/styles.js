@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const mediaScreenTablet = styles => (
 	`
-		@media screen and (max-width: 820px){
+		@media screen and (max-width: 910px){
 
 			${styles}
 		}
@@ -24,7 +24,7 @@ export const Container = styled.header`
 	justify-content: space-between;
 	h1 {
 		${mediaScreenTablet(`
-			width: 70%;
+			width: 75%;
 		`)}
 		${mediaScreenMobile(`
 			padding-left: 16px;
