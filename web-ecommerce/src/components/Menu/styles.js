@@ -36,6 +36,10 @@ export const Container = styled.nav`
         align-items: center;
         justify-content: center;
         border-radius: 10px;
+        &:hover{
+            background-color: rgba(129, 182, 34, .7);
+            width: 30%;
+        }
     }
     a {
         text-decoration: none;
