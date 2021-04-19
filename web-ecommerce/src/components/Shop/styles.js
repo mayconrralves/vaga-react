@@ -67,7 +67,7 @@ export const Container = styled.main`
 		justify-content: space-between;
 		align-items: center;
 		margin: 35px 0;
-		@media screen and (max-width: 1070px){
+		@media screen and (max-width: 1034px){
 				width: 640px;
 			}
 		@media screen and (max-width: 705px){
