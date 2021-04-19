@@ -25,7 +25,7 @@ export default function ProductDetails() {
 		}
 		return false;
 	}
-	const purchaseProduct = event => {
+	const purchaseProduct = () => {
 		const productCurrent = cart.products.filter(product=>product.id===id);
 		if( productCurrent.length){
 			saveProduct(parseFloat(product.quantity) - productCurrent[0].quantityPurchase);

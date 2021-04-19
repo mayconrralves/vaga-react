@@ -5,6 +5,8 @@ import { Container } from './styles';
 import history from '../../services/history';
 import { closeCartRequest } from '../../store/modules/orders/actions';
 import { getUser } from '../../store/modules/user/actions';
+import PrintCart from './PrintCart';
+
 export default function CloseCart(){
     const { products } = useSelector(state => state.cart);
     const { user } = useSelector(state => state.user);
@@ -22,22 +24,7 @@ export default function CloseCart(){
             total + parseFloat(product.price) * parseInt(product.quantityPurchase)
         ),0);
     }
-    const printCart = () => (
-        products.map((product, index)=>(
-            <li key={index}>
-                <h4>{product.name}</h4>
-                <section>
-                    <img src={product.img}/>
-                    <div>
-                        <p><strong>Nome: </strong>{product.description}</p>
-                        <p><strong>Preço: </strong> R$ {product.price}</p>
-                        <p><strong>Quantidade: </strong>{product.quantityPurchase}</p>
-                        <p><strong>Total: </strong> R$ {parseFloat(product.price) * parseInt(product.quantityPurchase)}</p>
-                    </div>
-                </section>
-            </li>
-        ))
-    )
+    
     useEffect(()=>{
         dispatch(getUser());
     },[]);
@@ -45,7 +32,7 @@ export default function CloseCart(){
         <Container>
             <h3>Fechar Pedido?</h3>
             <ul>
-                { products && printCart() }
+                { products && <PrintCart products={products}/> }
             </ul>
             <div className='total'>
                 <strong>Total: </strong>
