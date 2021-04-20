@@ -18,7 +18,7 @@ export default function Store(){
 			
 			<li key={product.id} >
 				<Link to={'/details/'+ product.id}>
-					{!loadImage && <Loading />}
+					{!loadImage && <Loading isImage />}
 					<img onLoad={() => setLoadImage(true)}src={product.img.middle} alt={"imagem de"+ product.description}/>
 					<div className="details">
 						<h3>{product.name}</h3>
@@ -51,13 +51,12 @@ export default function Store(){
 	useEffect(()=> {
 		if(isMobile && list) setList(false); 
 	}, [isMobile]);
-	return (
-		<Container ifList={list}>
-			{
-				loading ? (
-					<Loading />
+	return loading ? (
+						<Loading />	
 				) : (
-					<>
+		<Container ifList={list}>
+			
+					
 						{
 							msgError ? (
 								<div className='errorMessage'>{msgError}</div>
@@ -83,9 +82,7 @@ export default function Store(){
 									</>
 								)
 						} 			
-					</>
-				)
-			}
+					
 		</Container>
 	)
 }

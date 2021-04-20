@@ -20,14 +20,18 @@ const main = () => (
 		height: auto;
 		@media screen and (min-height: 1000px) and (max-height: 1400px){
 			height: 950px;
+			
 		}
 		@media screen and (min-height: 320px) and (max-height: 550px){
 			height: 300px;
+			
 		}
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		padding-top: 50px;
 		align-items: center;
+		
 		div{
 			width: 100%;
 			display: flex;
@@ -84,10 +88,24 @@ const main = () => (
 			}
 	`
 )
-
+const loading = () => (
+	`
+		div {
+			
+			svg {
+				@media all and (orientation: landscape) {
+					padding-top: 0%;
+				}
+				@media all and (orientation: portrait) {
+					padding-top: 100%;
+				}
+			}
+		}
+	`
+)
 export const Container = styled.main`
 	
 
-	${props => !props.loading &&  main()}
+	${props => props.loading  ? loading() : main()}
 	
 `;

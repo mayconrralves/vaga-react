@@ -15,7 +15,7 @@ export default function SignUp(){
 		<Container>
 			{
 				loading ? (
-					<Loading />
+					<Loading width='60%' height='60%' />
 				) : (
 					<>
 							<div>

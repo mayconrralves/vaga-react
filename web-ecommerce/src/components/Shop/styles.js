@@ -63,6 +63,17 @@ export const Container = styled.main`
 	align-items: center;
 	flex-direction: column;
 	
+	div {
+			
+			svg {
+				@media all and (orientation: landscape) {
+					padding-top: 0%;
+				}
+				@media all and (orientation: portrait) {
+					padding-top: 70%;
+				}
+			}
+		}
 	section{
 		width: 984px;
 		display: flex;
