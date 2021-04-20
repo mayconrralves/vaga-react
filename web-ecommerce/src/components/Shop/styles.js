@@ -57,17 +57,19 @@ const configImgColumn = () => (
 )
 export const Container = styled.main`
 	width: 100%;
+	min-height: 1360px;
 	display: flex;
-	justify-content: center;
+	
 	align-items: center;
 	flex-direction: column;
+	
 	section{
 		width: 984px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		margin: 35px 0;
-		@media screen and (max-width: 1034px){
+		@media screen and (max-width: 1050px){
 				width: 640px;
 			}
 		@media screen and (max-width: 705px){
@@ -129,7 +131,7 @@ export const Container = styled.main`
 			width: auto;
 			display: flex;
 			flex-direction: column;
-			margin: 10px 20px 25px 20px;
+			margin: 10px 25px 25px 20px;
 			border-radius: 6px;
 			justify-content: space-between;
 			align-items: center;
@@ -143,6 +145,8 @@ export const Container = styled.main`
 				}
 				.details {
 					display: flex;
+					width: auto;
+					height: auto;
 					flex-direction: column;
 					${props=>props.ifList ? configDetailsList() : configDetailsColumn()}
 

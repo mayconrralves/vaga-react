@@ -11,35 +11,41 @@ import Loading from '../Loading';
 export default function SignUp(){
 	const dispatch = useDispatch();
 	const { loading } = useSelector(state=> state.user);
-	return loading ? (
-		<Loading />
-	) : (
+	return (
 		<Container>
-				<div>
-					<Title />
-					<h2>Cadastre-se</h2>
-				</div>
-				<Formik
-					initialValues={{
-						displayName: '',
-						email: '',
-						password:'',
-						confirmPassword: ''
-					}}
-					onSubmit={ ( values ) => {
-						const {displayName, email, password } = values;
-						dispatch(createUser({displayName, email, password}));
-						}}
-				>
-					<Form>
-						<Field name='displayName' type='text' placeholder='Seu Nome...' />				
-						<Field name='email' type='email' placeholder='Seu email...' />				
-						<Field name='password' type='password' placeholder='Sua senha...' />				
-						<Field name='confirmPassword' type='password' placeholder='Confirme sua senha...' />				
-						<Field name='signup' type='submit' value='Enviar' />				
-					</Form>
-				</Formik>
-				<Link className='sign-register' to='/login'>Já sou Cadastrado</Link>
-			</Container>
+			{
+				loading ? (
+					<Loading />
+				) : (
+					<>
+							<div>
+								<Title />
+								<h2>Cadastre-se</h2>
+							</div>
+							<Formik
+								initialValues={{
+									displayName: '',
+									email: '',
+									password:'',
+									confirmPassword: ''
+								}}
+								onSubmit={ ( values ) => {
+									const {displayName, email, password } = values;
+									dispatch(createUser({displayName, email, password}));
+									}}
+							>
+								<Form>
+									<Field name='displayName' type='text' placeholder='Seu Nome...' />				
+									<Field name='email' type='email' placeholder='Seu email...' />				
+									<Field name='password' type='password' placeholder='Sua senha...' />				
+									<Field name='confirmPassword' type='password' placeholder='Confirme sua senha...' />				
+									<Field name='signup' type='submit' value='Enviar' />				
+								</Form>
+							</Formik>
+							<Link className='sign-register' to='/login'>Já sou Cadastrado</Link>
+					</>
+				)
+			}
+		</Container>
 		)
 }

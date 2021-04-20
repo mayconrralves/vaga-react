@@ -24,9 +24,9 @@ export default function Store(){
 						<h3>{product.name}</h3>
 						{list && (
 							<>
-								<p><b>Marca:</b> {product.brand}</p>
-								<p><b>Descrição:</b>  {product.description}</p>
-								<p><b>Quantidade: </b> {product.quantity}  unidades</p>
+								<p><strong>Marca:</strong> {product.brand}</p>
+								<p><strong>Descrição:</strong>  {product.description}</p>
+								<p><strong>Quantidade: </strong> {product.quantity}  unidades</p>
 							</>
 						)}
 						<p> R$ {product.price}</p>
@@ -51,35 +51,41 @@ export default function Store(){
 	useEffect(()=> {
 		if(isMobile && list) setList(false); 
 	}, [isMobile]);
-	return loading ? (
-		<Loading />
-	)  : (
+	return (
 		<Container ifList={list}>
 			{
-				msgError ? (
-					<div className='errorMessage'>{msgError}</div>
-					):(
-						<>
-							<section>
-								<div className='input-search'>
-									<input 
-										type='search' 
-										autoComplete='false'
-										onChange={searchProduct} 
-										placeholder='Procure...'
-									/>
-									<FiSearch />
-								</div>
-								<button onClick={()=> setList(!list)}>
-									{  !list ? <FiList /> : <FiColumns/> }
-								</button>
-							</section>
-							<ul>
-								{product ? filterProducts () : listProducts(products)}
-							</ul>
-						</>
-					)
-			} 			
+				loading ? (
+					<Loading />
+				) : (
+					<>
+						{
+							msgError ? (
+								<div className='errorMessage'>{msgError}</div>
+								):(
+									<>
+										<section>
+											<div className='input-search'>
+												<input 
+													type='search' 
+													autoComplete='false'
+													onChange={searchProduct} 
+													placeholder='Procure...'
+												/>
+												<FiSearch />
+											</div>
+											<button onClick={()=> setList(!list)}>
+												{  !list ? <FiList /> : <FiColumns/> }
+											</button>
+										</section>
+										<ul>
+											{product ? filterProducts () : listProducts(products)}
+										</ul>
+									</>
+								)
+						} 			
+					</>
+				)
+			}
 		</Container>
 	)
 }

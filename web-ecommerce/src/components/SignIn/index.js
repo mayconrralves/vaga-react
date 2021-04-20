@@ -10,31 +10,38 @@ import Loading from '../Loading';
 export default function SignIn(){
 	const dispatch = useDispatch();
 	const { loading } = useSelector(state=> state.auth);
-	return loading ? (
-		<Loading />
-	) : (
+	return (
 			<Container>
-				<div>
-					<Title />
-					<h2>Entre</h2>
-				</div>
-				<Formik
-					initialValues={{
-						email: '',
-						password:'',
-					}}
-					onSubmit={ ( values ) => {
-						const {email, password } = values;
-						dispatch(signInRequest(email, password));
-						}}
-				>
-					<Form>
-						<Field name='email' type='email' placeholder='Seu email...' />				
-						<Field name='password' type='password' placeholder='Sua senha...' />				
-						<Field name='signin' type='submit' value='Enviar' />				
-					</Form>
-				</Formik>
-						<Link className='sign-register' to='/signup'>Cadastra-se</Link>
+				{
+					loading ? (
+						<Loading width='90%' height='90%'/>
+					) : (
+						<>
+							<div>
+								<Title />
+								<h2>Entre</h2>
+							</div>
+							<Formik
+								initialValues={{
+									email: '',
+									password:'',
+								}}
+								onSubmit={ ( values ) => {
+									const {email, password } = values;
+									dispatch(signInRequest(email, password));
+									}}
+							>
+								<Form>
+									<Field name='email' type='email' placeholder='Seu email...' />				
+									<Field name='password' type='password' placeholder='Sua senha...' />				
+									<Field name='signin' type='submit' value='Enviar' />				
+								</Form>
+							</Formik>
+							<Link className='sign-register' to='/signup'>Cadastra-se</Link>
+						</>
+					)
+
+				}
 			</Container>
 		)
 }

@@ -4,6 +4,7 @@ const media = () => (
 	`
 		width: 600px;
 		height: 55px;
+		padding: 20px 0;
 		font-size: 1.2em;
 		@media screen and (max-width: 800px){
 			width: 450px;
@@ -13,72 +14,80 @@ const media = () => (
 	}
 	`
 )
-export const Container = styled.main`
-	width: 100%;
-	height: 550px;
-
-	@media screen and (min-height: 1000px) and (max-height: 1400px){
-		height: 950px;
-	}
-	@media screen and (min-height: 320px) and (max-height: 550px){
-		height: 300px;
-	}
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	div{
+const main = () => (
+	`
 		width: 100%;
+		height: auto;
+		@media screen and (min-height: 1000px) and (max-height: 1400px){
+			height: 950px;
+		}
+		@media screen and (min-height: 320px) and (max-height: 550px){
+			height: 300px;
+		}
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 		justify-content: center;
-		h2 {
-			@media(max-width: 800px){
-				font-size: 1.4em;
-			}
-			font-size: 1.8em;
-			margin-bottom: 22px;
-			margin-top: 15px;
-			color: #fff;
-		}
-	}
-	form {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
 		align-items: center;
-		justify-content: center;
-		input {
-			${media()}
-
-			border-radius: 8px;
-			margin-bottom: 10px;
-			padding: 0 8px;
-			border: none;
-			color: #000;
-			&:focus {
-						outline: none;
-					}
-			&:last-child  {
-					margin-top: 8px;
-					background-color: green;
-					color: #fff;
-					font-weight: bold;
-
-				}
-		}
-	}
-		.sign-register {
-			${media()}
+		div{
+			width: 100%;
 			display: flex;
-			text-decoration: none;
-			background-color: green;
-			border-radius: 8px;
-			justify-content: center;
+			flex-direction: column;
 			align-items: center;
-			font-weight: bold;
-			color: #fff;
-			
+			justify-content: center;
+			h2 {
+				@media(max-width: 800px){
+					font-size: 1.4em;
+				}
+				font-size: 1.8em;
+				margin-bottom: 22px;
+				margin-top: 15px;
+				color: #fff;
+			}
 		}
+		form {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			input {
+				${media()}
+
+				border-radius: 8px;
+				margin-bottom: 10px;
+				padding: 0 8px;
+				border: none;
+				color: #000;
+				&:focus {
+							outline: none;
+						}
+				&:last-child  {
+						margin-top: 8px;
+						background-color: green;
+						color: #fff;
+						font-weight: bold;
+
+					}
+			}
+		}
+			.sign-register {
+				${media()}
+				display: flex;
+				text-decoration: none;
+				background-color: green;
+				border-radius: 8px;
+				justify-content: center;
+				align-items: center;
+				font-weight: bold;
+				color: #fff;
+				
+			}
+	`
+)
+
+export const Container = styled.main`
+	
+
+	${props => !props.loading &&  main()}
+	
 `;

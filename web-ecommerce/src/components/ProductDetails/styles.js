@@ -11,7 +11,7 @@ const configLarge = () => (
 
 const configMiddle = () =>  (
 	`
-		justify-content: center;
+		justify-content: flex-start;
 		align-items: center;
 		flex-direction: column;
 	`
@@ -21,10 +21,11 @@ export const Container = styled.main`
 	display: flex;
 	${props=> props.isMobile ? configMiddle() : configLarge()}
 	margin-top: 50px;
-
 	max-width: 100%;
+	min-height: 1000px;
+	
 	img {
-			margin-left: 18px;
+			margin: 0 18px;
 			max-width: 100%;
 			border-radius: 8px;
 		}
@@ -49,9 +50,10 @@ export const Container = styled.main`
 		}
 		.buy-function {
 			display: flex;
-			width: 90%;
+			width: 100%;
 			margin-top: 25px;
-			justify-content: flex-end;
+			${props=>props.isMobile ? 'justify-content: center;' : 'justify-content: flex-end;'}
+			
 			strong {
 				font-size: 1.3em;
 				color: red;
@@ -67,15 +69,16 @@ export const Container = styled.main`
 				width: 50px;
 				height: 50px;
 				text-align: center;
-
 			}
 			button {
 				width: 180px;
+				
 				height: 50px;
 				background-color: green;
 				color: #fff;
 				font-weight: bold;
-
+				${props=>props.isTablet ? 'margin-right: 40px;' : 'margin-right: 140px;'}
+				${props=>props.isMobile && 'margin-right: 0px;'}
 			}
 		}
 	}

@@ -15,8 +15,8 @@ export default function ProductDetails() {
 	const [ product, setProduct]  = useState(products.filter(product=> product.id === id)[0]);
 	const [quantityPurchase, setQuantityPurchase] = useState(1);
 	const [loadingImage, setLoadingImage] = useState(false);
-	const isTablet = useMediaQuery({query: "(max-width: 865px)"});
-	const isMobile = useMediaQuery({query: "(max-width: 650px)"});
+	const isTablet = useMediaQuery({query: "(max-width: 1024px)"});
+	const isMobile = useMediaQuery({query: "(max-width: 826px)"});
 	const saveProduct = quantityProduct => {
 		if(quantityPurchase <=  quantityProduct ) {
 			dispatch(addProductInCart({
@@ -43,45 +43,51 @@ export default function ProductDetails() {
 			setProduct(products.filter(product=> product.id === id)[0]);
 		}
 	}, [success]);
-	return product ? ( 
+	return  ( 
 		<Container isMobile={isMobile}>
-			{!loadingImage && <Loading />}
-			<img 
-				src={ isTablet ? product.img.middle : product.img.large} 
-				alt={product.description}
-				onLoad={()=>setLoadingImage(true)}
-			/>
-			<section>
-				<div className='details-product'>
-					<h3>{product.name}</h3>
-					<p><strong>Marca:</strong> {product.brand}</p>
-					<p><strong>Descrição:</strong>  {product.description}</p>
-					<p><strong>Quantidade: </strong> {product.quantity}  unidades</p>
-					<p><strong>Preço:</strong>  {product.price}</p>
-				</div>
-				{
-					product.quantity ? (
-						<div className='buy-function'>
-							<input 
-								defaultValue={1}
-								onChange={ e=>setQuantityPurchase(parseFloat(e.target.value)) } 
-								name='quantity'
-							/>
-							<button 
-								onClick={purchaseProduct}
-							>
-								Comprar
-							</button>
-						</div>
-					) : (
-						<div className='buy-function'>
-							<strong>Produto indisponível</strong>
-						</div>
-					)
-				}
-			</section>
+			{
+				product ? (
+					<>
+						{!loadingImage && <Loading />}
+						<img 
+							src={ isTablet ? product.img.middle : product.img.large} 
+							alt={product.description}
+							onLoad={()=>setLoadingImage(true)}
+						/>
+						<section>
+							<div className='details-product'>
+								<h3>{product.name}</h3>
+								<p><strong>Marca:</strong> {product.brand}</p>
+								<p><strong>Descrição:</strong>  {product.description}</p>
+								<p><strong>Quantidade: </strong> {product.quantity}  unidades</p>
+								<p><strong>Preço:</strong>  {product.price}</p>
+							</div>
+							{
+								product.quantity ? (
+									<div className='buy-function'>
+										<input 
+											defaultValue={1}
+											onChange={ e=>setQuantityPurchase(parseFloat(e.target.value)) } 
+											name='quantity'
+										/>
+										<button 
+											onClick={purchaseProduct}
+										>
+											Comprar
+										</button>
+									</div>
+								) : (
+									<div className='buy-function'>
+										<strong>Produto indisponível</strong>
+									</div>
+								)
+							}
+						</section>
+					</>
+				) : (
+					<Loading />
+				)
+			}
 		</Container>
-		) : (
-			<Loading />
 		)
 }
