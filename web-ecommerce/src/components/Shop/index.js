@@ -5,18 +5,21 @@ import { Container } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../store/modules/products/actions';
 import { FiSearch, FiList, FiColumns } from "react-icons/fi";
+import Loading from '../Loading';
 export default function Store(){	
 	const [product, setProduct] = useState('');
 	const [list, setList] = useState(false);
+	const [loadImage, setLoadImage] = useState(false);
 	const dispatch = useDispatch();
-	const { msgError, products} = useSelector(state=>state.products);
+	const { msgError, products, loading } = useSelector(state=>state.products);
 	const isMobile = useMediaQuery({ query: `(max-width: 712px)` });
 	const listProducts = ( products ) => {
 		return products.map(product=>(
 			
 			<li key={product.id} >
 				<Link to={'/details/'+ product.id}>
-					<img src={product.img.middle} alt={"imagem de"+ product.description}/>
+					{!loadImage && <Loading />}
+					<img onLoad={() => setLoadImage(true)}src={product.img.middle} alt={"imagem de"+ product.description}/>
 					<div className="details">
 						<h3>{product.name}</h3>
 						{list && (
@@ -48,7 +51,9 @@ export default function Store(){
 	useEffect(()=> {
 		if(isMobile && list) setList(false); 
 	}, [isMobile]);
-	return (
+	return loading ? (
+		<Loading />
+	)  : (
 		<Container ifList={list}>
 			{
 				msgError ? (
@@ -74,8 +79,7 @@ export default function Store(){
 							</ul>
 						</>
 					)
-			} 
-					
+			} 			
 		</Container>
 	)
 }

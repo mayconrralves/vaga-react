@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { signInRequest } from '../../store/modules/auth/actions';
 import { Container } from '../_styles/auth';
 import Title from '../Title';
+import Loading from '../Loading';
 export default function SignIn(){
 	const dispatch = useDispatch();
-	return (
+	const { loading } = useSelector(state=> state.auth);
+	return loading ? (
+		<Loading />
+	) : (
 			<Container>
 				<div>
 					<Title />

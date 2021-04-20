@@ -5,6 +5,7 @@ const INITIAL_STATE = {
 	success: false,
 	user: null,
 	msgError: '',
+	loading: false,
 }
 
 export default function reducer(state=INITIAL_STATE, action){
@@ -14,26 +15,31 @@ export default function reducer(state=INITIAL_STATE, action){
 				draft.fail = false;
 				draft.success = false;
 			 	draft.msgError = '';
+				draft.loading = true;
 			});	
 		case '@user/UPDATE_USER_REQUEST':
 			return produce(state, draft=>{
 				draft.fail = false;
 				draft.success = false;
+				draft.loading = true;
 			});
 		case '@user/GET_USER_REQUEST':
 			return produce(state, draft=>{
 				draft.fail = false;
 				draft.success = false;
+				draft.loading = true;
 			});
 		case '@user/SUCCESS_REQUEST':
 			return produce(state, draft=>{
 				draft.success = true;
 				draft.user = action.payload.user;
+				draft.loading = false;
 			});
 		case '@user/FAILED_REQUEST':
 			return produce(state, draft=>{
 				draft.fail = true;
 				draft.msgError = action.payload.msg;
+				draft.loading = false;
 			});
 		case '@user/CLEAN_USER':
 			return produce(state, draft=>{

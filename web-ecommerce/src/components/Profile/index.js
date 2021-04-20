@@ -5,6 +5,7 @@ import { FaCamera } from 'react-icons/fa';
 
 import { updateUser, getUser, setAvatar } from '../../store/modules/user/actions';
 import { Container } from './styles';
+import Loading from '../Loading';
 
 
 export default function Profile(){
@@ -12,6 +13,7 @@ export default function Profile(){
 	const [imageView, setImageView] = useState(null);
 	const [image, setImage] = useState(null);
 	const [inputFile, setInputFile] = useState('');
+	const [loadingImage, setLoadingImage] = useState(false);
 	const dispatch = useDispatch();
 	useEffect(()=> {
 		 dispatch(getUser());
@@ -42,7 +44,7 @@ export default function Profile(){
 	}
 	return success ? (
 			<Container
-				image={  () => changeImage()}
+				image={ () => changeImage()}
 			>
 				<h2>
 					Atualizar cadastro
@@ -50,8 +52,13 @@ export default function Profile(){
 				<section>
 					<div>
 						<label htmlFor='file-selector'>
-							<span><FaCamera/></span>
-							{changeImage() && <img src={changeImage()} onClick={uploadClick} />}
+							<FaCamera/>
+							{!loadingImage && changeImage() && <Loading />}
+							{changeImage() && <img 
+												src={changeImage()} 
+												onClick={uploadClick}
+												onLoad={()=> setLoadingImage(true)}
+											/>}
 
 						</label>
 						<button onClick={saveFile}>Salvar</button>
@@ -91,6 +98,6 @@ export default function Profile(){
 				
 			</Container>
 		) : (
-			<h2>Loading</h2>
+			<Loading />
 		)
 }

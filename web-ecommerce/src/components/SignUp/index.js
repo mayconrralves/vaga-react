@@ -1,15 +1,19 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Title from '../Title';
 import { createUser } from '../../store/modules/user/actions';
 import { Container } from '../_styles/auth';
+import Loading from '../Loading';
 
 
 export default function SignUp(){
 	const dispatch = useDispatch();
-	return (
+	const { loading } = useSelector(state=> state.user);
+	return loading ? (
+		<Loading />
+	) : (
 		<Container>
 				<div>
 					<Title />

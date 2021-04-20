@@ -4,6 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../store/modules/products/actions';
 import { addProductInCart } from '../../store/modules/cart/actions';
+import Loading from '../Loading';
 import {Container } from './styles';
 
 export default function ProductDetails() {
@@ -13,6 +14,7 @@ export default function ProductDetails() {
 	const { id } = useParams();
 	const [ product, setProduct]  = useState(products.filter(product=> product.id === id)[0]);
 	const [quantityPurchase, setQuantityPurchase] = useState(1);
+	const [loadingImage, setLoadingImage] = useState(false);
 	const isTablet = useMediaQuery({query: "(max-width: 865px)"});
 	const isMobile = useMediaQuery({query: "(max-width: 650px)"});
 	const saveProduct = quantityProduct => {
@@ -43,9 +45,11 @@ export default function ProductDetails() {
 	}, [success]);
 	return product ? ( 
 		<Container isMobile={isMobile}>
+			{!loadingImage && <Loading />}
 			<img 
 				src={ isTablet ? product.img.middle : product.img.large} 
 				alt={product.description}
+				onLoad={()=>setLoadingImage(true)}
 			/>
 			<section>
 				<div className='details-product'>
@@ -78,6 +82,6 @@ export default function ProductDetails() {
 			</section>
 		</Container>
 		) : (
-			<h1>Loading</h1>
+			<Loading />
 		)
 }
