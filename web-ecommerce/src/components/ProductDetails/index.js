@@ -43,51 +43,45 @@ export default function ProductDetails() {
 			setProduct(products.filter(product=> product.id === id)[0]);
 		}
 	}, [success]);
-	return  ( 
-		<Container isMobile={isMobile}>
-			{
-				product ? (
-					<>
-						{!loadingImage && <Loading />}
-						<img 
-							src={ isTablet ? product.img.middle : product.img.large} 
-							alt={product.description}
-							onLoad={()=>setLoadingImage(true)}
-						/>
-						<section>
-							<div className='details-product'>
-								<h3>{product.name}</h3>
-								<p><strong>Marca:</strong> {product.brand}</p>
-								<p><strong>Descrição:</strong>  {product.description}</p>
-								<p><strong>Quantidade: </strong> {product.quantity}  unidades</p>
-								<p><strong>Preço:</strong>  {product.price}</p>
-							</div>
-							{
-								product.quantity ? (
-									<div className='buy-function'>
-										<input 
-											defaultValue={1}
-											onChange={ e=>setQuantityPurchase(parseFloat(e.target.value)) } 
-											name='quantity'
-										/>
-										<button 
-											onClick={purchaseProduct}
-										>
-											Comprar
-										</button>
-									</div>
-								) : (
-									<div className='buy-function'>
-										<strong>Produto indisponível</strong>
-									</div>
-								)
-							}
-						</section>
-					</>
-				) : (
-					<Loading />
-				)
-			}
-		</Container>
+	return product ? ( 
+		<Container isMobile={isMobile} productQuantity={product.quantity} >
+			{!loadingImage && <Loading isImage />}
+			<img 
+				src={ isTablet ? product.img.middle : product.img.large} 
+				alt={product.description}
+				onLoad={()=>setLoadingImage(true)}
+			/>
+			<section>
+				<div className='details-product'>
+					<h3>{product.name}</h3>
+					<p><strong>Marca:</strong> {product.brand}</p>
+					<p><strong>Descrição:</strong>  {product.description}</p>
+					<p><strong>Quantidade: </strong> {product.quantity}  unidades</p>
+					<p><strong>Preço:</strong>  {product.price}</p>
+				</div>
+				{
+					product.quantity ? (
+						<div className='buy-function'>
+							<input 
+								defaultValue={1}
+								onChange={ e=>setQuantityPurchase(parseFloat(e.target.value)) } 
+								name='quantity'
+							/>
+							<button 
+								onClick={purchaseProduct}
+							>
+								Comprar
+							</button>
+						</div>
+					) : (
+						<div className='buy-function'>
+							<strong>Produto indisponível</strong>
+						</div>
+					)
+				}
+			</section>
+		</Container >
+		) : (
+			<Loading />
 		)
 }

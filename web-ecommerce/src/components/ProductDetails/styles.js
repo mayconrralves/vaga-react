@@ -17,6 +17,40 @@ const configMiddle = () =>  (
 	`
 )
 
+const noProduct = () => `
+	strong {
+					
+		font-size: 1.3em;
+		color: red;
+	}
+`
+const avalaibleProduct = props => `
+	input, button {
+		height: 60px;
+		font-size: 1.4em;
+		border-radius: 8px;
+		border: none;
+		align-self: flex-end;
+		justify-self: flex-end;
+	}
+	input {
+		margin-right: 6px;
+		width: 50px;
+		height: 50px;
+		text-align: center;
+	}
+	button {
+		width: 180px;
+		outline: 0;
+		height: 50px;
+		background-color: green;
+		color: #fff;
+		font-weight: bold;
+		${props=>props.isTablet ? 'margin-right: 40px;' : 'margin-right: 140px;'}
+		${props=>props.isMobile && 'margin-right: 0px;'}
+	}
+`
+
 export const Container = styled.main`
 	display: flex;
 	${props=> props.isMobile ? configMiddle() : configLarge()}
@@ -24,6 +58,7 @@ export const Container = styled.main`
 	max-width: 100%;
 	min-height: 1000px;
 	
+
 	img {
 			margin: 0 18px;
 			max-width: 100%;
@@ -33,6 +68,8 @@ export const Container = styled.main`
 		width: 100%;
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		.details-product{
 			h3 {
 				${props=>props.isMobile ? 'margin-top: 18px;' : ''}
@@ -44,42 +81,12 @@ export const Container = styled.main`
 			p {
 				font-size: 1em;
 				margin-bottom: 12px;
-				margin-left: 40px;
-				margin-right: 10px;
 			}
 		}
 		.buy-function {
 			display: flex;
-			width: 100%;
 			margin-top: 25px;
-			${props=>props.isMobile ? 'justify-content: center;' : 'justify-content: flex-end;'}
-			
-			strong {
-				font-size: 1.3em;
-				color: red;
-			}
-			input, button {
-				height: 60px;
-				font-size: 1.4em;
-				border-radius: 8px;
-				border: none;
-			}
-			input {
-				margin-right: 6px;
-				width: 50px;
-				height: 50px;
-				text-align: center;
-			}
-			button {
-				width: 180px;
-				
-				height: 50px;
-				background-color: green;
-				color: #fff;
-				font-weight: bold;
-				${props=>props.isTablet ? 'margin-right: 40px;' : 'margin-right: 140px;'}
-				${props=>props.isMobile && 'margin-right: 0px;'}
-			}
+			${props => props.productQuantity ? avalaibleProduct(props) : noProduct()}			
 		}
 	}
 `;
