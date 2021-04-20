@@ -7,7 +7,7 @@ import { getProducts } from '../../store/modules/products/actions';
 import { FiSearch, FiList, FiColumns } from "react-icons/fi";
 import Loading from '../Loading';
 export default function Store(){	
-	const [product, setProduct] = useState('');
+	const [productSearch, setProductSearch] = useState('');
 	const [list, setList] = useState(false);
 	const [loadImage, setLoadImage] = useState(false);
 	const dispatch = useDispatch();
@@ -37,17 +37,25 @@ export default function Store(){
 		}
 		
 		const filterProducts = () => {
-			const re = new RegExp(product);
-			const filter = products.filter(product=> !!product.name.match(re));
+			const re = new RegExp(productSearch);
+			const filter = products.filter(product=> !!product.name.toLowerCase().match(re));
 			return listProducts(filter)
 		}
 		const searchProduct = event => {
-			setProduct(event.target.value);
+			setProductSearch(event.target.value.toLowerCase());
 		}
 	useEffect(()=>{
 		dispatch(getProducts());
 	}, []);
-
+	/** 
+	 * Source: https://stackoverflow.com/questions/48961342/how-to-blur-the-input-provided-in-semantic-ui-react
+	 * Hide mobile keyboard after clicking search
+	 */
+	const shouldBlur = (e) => {
+		if (e.keyCode === 0) {
+		  e.target.blur();
+		}
+	  }
 	useEffect(()=> {
 		if(isMobile && list) setList(false); 
 	}, [isMobile]);
@@ -67,6 +75,7 @@ export default function Store(){
 													autoComplete='false'
 													onChange={searchProduct} 
 													placeholder='Procure...'
+													onKeyPress={ isMobile && shouldBlur }
 												/>
 												<FiSearch />
 											</div>
@@ -75,12 +84,11 @@ export default function Store(){
 											</button>
 										</section>
 										<ul>
-											{product ? filterProducts () : listProducts(products)}
+											{productSearch ? filterProducts () : listProducts(products)}
 										</ul>
 									</>
 								)
-						} 			
-					
+						} 				
 		</Container>
 	)
 }
