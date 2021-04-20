@@ -16,7 +16,13 @@ const media = () => (
 )
 const main = () => (
 	`
-		width: 100%;
+		
+	`
+)
+export const Container = styled.main`
+	
+
+	width: 100%;
 		height: auto;
 		@media screen and (min-height: 1000px) and (max-height: 1400px){
 			height: 950px;
@@ -86,26 +92,6 @@ const main = () => (
 				color: #fff;
 				
 			}
-	`
-)
-const loading = () => (
-	`
-		div {
-			
-			svg {
-				@media all and (orientation: landscape) {
-					padding-top: 0%;
-				}
-				@media all and (orientation: portrait) {
-					padding-top: 100%;
-				}
-			}
-		}
-	`
-)
-export const Container = styled.main`
-	
 
-	${props => props.loading  ? loading() : main()}
 	
 `;

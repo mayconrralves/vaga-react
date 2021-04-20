@@ -22,6 +22,6 @@ export default function Orders(){
             </ul>
         </Container>
     ) : (
-        <Loading />
+        <Loading width='100%' height='100%'/>
     )
 }

@@ -3,7 +3,6 @@ import Lottie from 'lottie-react-web'
 import animationData from '../../assets/58003-loading.json'
 import { Container } from './styles';
 export default function  Loading ( { width, height, isImage }) {
-    console.log(isImage)
       const LootieAnimation = () => (
           <Lottie
             options={{

@@ -52,11 +52,9 @@ export default function Store(){
 		if(isMobile && list) setList(false); 
 	}, [isMobile]);
 	return loading ? (
-						<Loading />	
+						<Loading width='100%' height='100%'/>	
 				) : (
 		<Container ifList={list}>
-			
-					
 						{
 							msgError ? (
 								<div className='errorMessage'>{msgError}</div>

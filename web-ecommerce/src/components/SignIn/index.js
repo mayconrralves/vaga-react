@@ -9,13 +9,13 @@ import Title from '../Title';
 import Loading from '../Loading';
 export default function SignIn(){
 	const dispatch = useDispatch();
-	
+
 	const { loading } = useSelector(state=> state.auth);
 	return (
 			<Container>
 				{
 					loading ? (
-						<Loading width='50%' height='50%'/>
+						<Loading width='100%' height='100%'/>
 					) : (
 						<>
 							<div>
