@@ -8,6 +8,10 @@ import history from '../../../services/history';
 export function* getOrdersSaga( { payload } ){
     const { email } = payload;
     const response = yield call(getOrders, email);
+    if(!response){
+        yield put(successRequest({}));
+        return;
+    }
     if(response.error){
         yield put(failedRequest(response.error));
         return;

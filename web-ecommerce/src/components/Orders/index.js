@@ -4,17 +4,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getOrders } from '../../store/modules/orders/actions';
 import { getUser } from '../../store/modules/user/actions';
 import PrintOrders from './PrintOrders';
+import Loading from '../Loading';
 
 export default function Orders(){
     const dispatch = useDispatch();
-    const { orders } = useSelector(state => state.orders);
-    const { user, success } = useSelector(state => state.user);
-   
+    const { orders, success : successOrder } = useSelector(state => state.orders);
+    const { user, success: successUser } = useSelector(state => state.user);
     useEffect(()=>{
-        if(!success) dispatch(getUser());
-        if(success) dispatch(getOrders(user.email));
-    },[success]);
-    return orders ? (
+        if(!successUser) dispatch(getUser());
+        if(successUser) dispatch(getOrders(user.email));
+    },[successUser]);
+    return successOrder ? (
         <Container>
              <h2> Meus Pedidos </h2>
             <ul>
@@ -22,8 +22,6 @@ export default function Orders(){
             </ul>
         </Container>
     ) : (
-        <h2>
-            Loading...
-        </h2>
+        <Loading />
     )
 }

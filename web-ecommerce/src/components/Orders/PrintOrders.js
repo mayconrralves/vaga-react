@@ -24,7 +24,7 @@ export default function  printOrders({ orders }){
        )});
     }
 
-    return orderKeys.map((key, index)=> (
+    return orderKeys.length ? orderKeys.map((key, index)=> (
         <li key={index}>
                 <h3>Pedido: {key}</h3>
                 <table>
@@ -50,5 +50,7 @@ export default function  printOrders({ orders }){
                 </tfoot>    
             </table>
         </li>
-    )); 
+    )) : (
+        <p>Você não fez nenhum pedido.</p>
+    )
 }
