@@ -52,7 +52,7 @@ export default function Profile(){
 				<section>
 					<div>
 						<label htmlFor='file-selector'>
-							<FaCamera/>
+							{ !changeImage() && <FaCamera/> }
 							{!loadingImage && changeImage() && <Loading />}
 							{changeImage() && <img 
 												src={changeImage()} 
