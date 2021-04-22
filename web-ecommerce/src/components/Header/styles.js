@@ -71,8 +71,8 @@ export const Container = styled.header`
 			font-size: 1.3em;
 			margin-left: 36px;
 			svg {
-				padding-top: 3px;
-				font-size: 1em;
+				padding-top: 6px;
+				font-size: 1.5em;
 			}
 		&.menu-item:hover {
 			font-size: 1.8em;
@@ -83,9 +83,10 @@ export const Container = styled.header`
 		#menu-mobile{
 			
 			svg {
-				padding-top: 12px;
+				padding: 5px 0;
+				
 				font-size: 2em;
-				vertical-align: bottom;
+				vertical-align: text-bottom;
 			}
 		}
 
