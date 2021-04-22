@@ -12,11 +12,10 @@ import Details from '../pages/ProductDetails';
 import Cart from '../pages/Cart';
 import Orders from '../pages/Orders';
 import CloseCart from '../pages/CloseCart';
-import Menu from '../components/Menu';
+import Menu from '../pages/Menu';
 
-export default function Navigation(props){
+export default function Navigation( ){
 
-	
 	return (
 		<Switch>
 				<CustomRoute path='/' exact component={ Shop } />

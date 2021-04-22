@@ -13,33 +13,42 @@ export default function Menu(){
     const dispatch = useDispatch();
     const isMobile = useMediaQuery({ query: `(max-width: 550px)`});
     return  (
-        <Container>
-             <Title />
-             <h2>Menu</h2>
-             <hr />
-             {
-                 token ? (
-                     <>
-                        <Link className="menu" to='/shop'>Shop</Link>
-                        <Link className="menu" to='/orders'>Pedidos</Link>
-                        <Link className="menu" to='/profile'>Perfil</Link>
+        <>
+            <Container>
+                <h2>Menu</h2>
+                <hr />
+                <nav>
+                    <ul>
                         {
-                            isMobile && <button 
-                                            onClick={()=> dispatch(signOut())}
-                                        >
-                                            Sair
-                                        </button>
+                        token ? (
+                            <>
+                                <li><Link className="menu" to='/shop'>Shop</Link></li>
+                                <li><Link className="menu" to='/orders'>Pedidos</Link></li>
+                                <li><Link className="menu" to='/profile'>Perfil</Link></li>
+                                <li>
+                                    {
+                                        isMobile && <button 
+                                                        onClick={()=> dispatch(signOut())}
+                                                    >
+                                                        Sair
+                                                    </button>
+                                    }
+                                </li>
+                            </>
+                            ): (
+                                <>
+                                    <li><Link className="menu" to='/login'>Entrar</Link></li> 
+                                    <li><Link className="menu" to='/signup'>Cadastrar</Link></li>
+                                    <li><Link className="menu"to='/shop'>Shop</Link></li>
+                                </>
+                            )
                         }
-                     </>
-                 ): (
-                     <>
-                        <Link className="menu" to='/login'>Entrar</Link>
-                        <Link className="menu" to='/signup'>Cadastrar</Link>
-                        <Link className="menu"to='/shop'>Shop</Link>
-                     </>
-                 )
-             }
-             <Link to="#" className="menu" onClick={()=>history.goBack()}> Voltar</Link>
-        </Container>
+                        <li>
+                            <Link to="#" className="menu" onClick={()=>history.goBack()}> Voltar</Link>
+                        </li>
+                    </ul>
+                </nav>
+            </Container>
+        </>
     ) 
 }

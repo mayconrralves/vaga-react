@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaShoppingCart } from "react-icons/fa";
@@ -8,8 +8,7 @@ import { signOut} from '../../store/modules/auth/actions';
 import { Container } from './styles';
 import Title from '../Title';
 
-export default function Header(){
-
+export default function Header({ isMenu }){
 	const token = useSelector(state => state.auth.token);
 	const dispatch = useDispatch();
 	const isMobile = useMediaQuery({ query: `(max-width: 910px)` });
@@ -32,7 +31,10 @@ export default function Header(){
 					)
 				}
 				<Link to='/shop' className='menu menu-item'>Shop</Link>
-				{ isMobile && <Link to="/menu" id='menu-mobile'><FiMenu/></Link> }
+				{ isMobile && !isMenu && 
+					<Link to="/menu" id='menu-mobile'>
+						<FiMenu/>
+					</Link> }
 				<Link to='/cart'><FaShoppingCart /></Link>
 			</nav>
 		</Container>
