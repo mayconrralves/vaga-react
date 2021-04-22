@@ -21,18 +21,18 @@ export default function Header(){
 					token ? (
 						<>
 							<button onClick= { () => dispatch(signOut()) }>Sair</button>
-							<Link to='/profile' className='menu' >Perfil</Link>
-							<Link to='/orders' className='menu' >Pedidos</Link>
+							<Link to='/profile' className='menu menu-item' >Perfil</Link>
+							<Link to='/orders' className='menu menu-item' >Pedidos</Link>
 						</>		
 					) : (
 						<>
-							<Link to='/signup' className='menu'>Cadastrar</Link>
-							<Link to='/login' className='menu'>Entrar</Link>
+							<Link to='/signup' className='menu menu-item'>Cadastrar</Link>
+							<Link to='/login' className='menu menu-item'>Entrar</Link>
 						</>
 					)
 				}
-				<Link to='/shop' className='menu'>Shop</Link>
-				{ isMobile && (<Link to="/menu" id='menu-mobile'><FiMenu/></Link>)}
+				<Link to='/shop' className='menu menu-item'>Shop</Link>
+				{ isMobile && <Link to="/menu" id='menu-mobile'><FiMenu/></Link> }
 				<Link to='/cart'><FaShoppingCart /></Link>
 			</nav>
 		</Container>

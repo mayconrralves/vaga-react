@@ -47,7 +47,7 @@ export const Container = styled.header`
 			height: 28px;
 			border-radius: 6px;
 			font-weight: bold;
-			font-size: 1.2em;
+			font-size: 1.3em;
 			border: 0;
 			color: #fff;
 			outline: none;
@@ -68,12 +68,17 @@ export const Container = styled.header`
 			color: #fff;
 			text-decoration: none;
 			font-weight: bold;
-			font-size: 1.2em;
+			font-size: 1.3em;
 			margin-left: 36px;
 			svg {
 				padding-top: 3px;
 				font-size: 1em;
 			}
+		&.menu-item:hover {
+			font-size: 1.8em;
+			transition-duration: 0.8s;
+			transition-property: font-size;
+		}
 		}
 		#menu-mobile{
 			
