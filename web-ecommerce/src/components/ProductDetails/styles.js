@@ -57,7 +57,7 @@ export const Container = styled.main`
 	${props=> props.isMobile ? configMiddle() : configLarge()}
 	margin-top: 50px;
 	max-width: 100%;
-	min-height: 1000px;
+	min-height: 50vh;
 
 	img {
 			margin: 0 18px;

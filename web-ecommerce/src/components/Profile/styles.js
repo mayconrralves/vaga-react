@@ -18,6 +18,7 @@ const mediaScreen321 = styles => (
 
 export const Container = styled.main`
 	width: 100%;
+	min-height: 60vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

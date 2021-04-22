@@ -16,7 +16,7 @@ const mediaScreenMobile = styles => (
 	`
 )
 export const Container = styled.header`
-	height: 90px;
+	height: 15vh;
 	display: flex;
 	flex-direction: row;
 	background-color: rgba(129, 182, 34, .5);

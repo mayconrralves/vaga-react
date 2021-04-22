@@ -14,7 +14,6 @@ const configDetailsList = () => (
 		margin: 20px 30px;
 		align-items: flex-start;
 		color: #fff;
-		height: auto;
 		h3 {
 			font-size: 1.6em;
 			margin-bottom: 18px;
@@ -57,9 +56,8 @@ const configImgColumn = () => (
 )
 export const Container = styled.main`
 	width: 100%;
-	min-height: 1360px;
 	display: flex;
-	
+	min-height: 60vh;
 	align-items: center;
 	flex-direction: column;
 	
