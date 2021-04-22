@@ -10,6 +10,7 @@ import {
 	deleteProductInCart,
 	cleanCart,
 } from '../../store/modules/cart/actions';
+import CartEmpty from '../EmptyCart';
 
 export default function Cart(){
 	const { products } = useSelector(state=>state.cart);
@@ -55,6 +56,6 @@ export default function Cart(){
 			 }
  		</Container>
  		) : (
- 			<h2>Carrinho vazio</h2>
+ 			<CartEmpty />
  		)
 }
