@@ -5,6 +5,8 @@ import { Container } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../store/modules/products/actions';
 import { FiSearch, FiList, FiColumns } from "react-icons/fi";
+import {isMobile} from 'react-device-detect';
+
 import Loading from '../Loading';
 export default function Store(){	
 	const [productSearch, setProductSearch] = useState('');
@@ -12,7 +14,7 @@ export default function Store(){
 	const [loadImage, setLoadImage] = useState(false);
 	const dispatch = useDispatch();
 	const { msgError, products, loading } = useSelector(state=>state.products);
-	const isMobile = useMediaQuery({ query: `(max-width: 650px)` });
+	const mediaMobile = useMediaQuery({ query: `(max-width: 650px)` });
 	const listProducts = ( products ) => {
 		return products.map(product=>(
 			
@@ -57,8 +59,8 @@ export default function Store(){
 		}
 	  }
 	useEffect(()=> {
-		if(isMobile && list) setList(false); 
-	}, [isMobile]);
+		if(mediaMobile && list) setList(false); 
+	}, [mediaMobile]);
 	return loading ? (
 						<Loading width='100%' height='100%'/>	
 				) : (
