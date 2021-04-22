@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 const styledMobile500 = styles => (
     `
-        @media screen and (max-width: 500px){
-            
+        @media screen and (max-width: 500px){   
             ${styles}
         }
     `
@@ -60,7 +59,6 @@ export const Container = styled.main`
                     ${styledMobile500(`
                         font-size: 0.7em;
                         padding: 2px;
-                         font-family: 'Kalam', cursive, sans-serif;
                     `)}
                     border: solid 2px #fff;
                     padding: 4px;
@@ -78,5 +76,19 @@ export const Container = styled.main`
                 }
             }
         }
+    }
+    a {
+        margin-top: 20px;
+        height: 35px;
+        width: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background-color: rgba(129, 182, 34, .7);
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 1.2em;
+
     }
 `;

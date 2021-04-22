@@ -16,10 +16,11 @@ export default function Orders(){
     },[successUser]);
     return successOrder ? (
         <Container>
-             <h2> Meus Pedidos </h2>
+             <h2 id="my-orders"> Meus Pedidos </h2>
             <ul>
                 <PrintOrders orders={orders}/>
             </ul>
+            <a href="#my-orders">Voltar ao início</a>
         </Container>
     ) : (
         <Loading width='100%' height='100%'/>
