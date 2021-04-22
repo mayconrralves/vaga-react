@@ -86,7 +86,7 @@ export const Container = styled.main`
 				border-radius: 10px;
 				border: 0;
 				color: #fff;
-				font-size: 1.2em;
+				font-size: 1.3em;
 				font-weight: bold;
 				background-color: green;
 				height: 40px;
@@ -123,13 +123,13 @@ export const Container = styled.main`
 				border-radius: 8px;
 				border: 0;
 				margin-bottom: 12px;
-				font-size: 1.4em;
+				font-size: 1.5em;
 				padding-left: 12px;
 				&:last-child {
 				 	background-color: green;
 				 	margin-top: 20px;
 				 	color: #fff;
-				 	font-size: 1.4em;
+				 	font-size: 1.5em;
 				 	font-weight: bold;
 				 }
 			}

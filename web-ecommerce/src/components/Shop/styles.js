@@ -125,7 +125,7 @@ export const Container = styled.main`
 				border: 0;
 				border-radius: 10px;
 				padding: 0 45px;
-				font-size: 1.3em;
+				font-size: 1.4em;
 				box-shadow: inset -2px -3px 2px #CCC;
 				outline: 0;
 				opacity: 0.5;
@@ -160,6 +160,13 @@ export const Container = styled.main`
 					height: auto;
 					flex-direction: column;
 					${props=>props.ifList ? configDetailsList() : configDetailsColumn()}
+					h3 {
+						font-size: 1.8em;
+					}
+					p {
+						font-size: 1.2em;
+						color: rgba(0,0,0,0.8);
+					}
 
 				}	
 			}

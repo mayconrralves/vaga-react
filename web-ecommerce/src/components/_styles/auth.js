@@ -5,7 +5,7 @@ const media = () => (
 		width: 600px;
 		height: 55px;
 		padding: 20px 0;
-		font-size: 1.2em;
+		font-size: 1.4em;
 		@media screen and (max-width: 800px){
 			width: 450px;
 		}
@@ -14,11 +14,7 @@ const media = () => (
 	}
 	`
 )
-const main = () => (
-	`
-		
-	`
-)
+
 export const Container = styled.main`
 	
 
@@ -29,7 +25,7 @@ export const Container = styled.main`
 			
 		}
 		@media screen and (min-height: 320px) and (max-height: 550px){
-			height: 300px;
+			height: 600px;
 			
 		}
 		display: flex;

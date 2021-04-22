@@ -27,7 +27,7 @@ const noProduct = () => `
 const avalaibleProduct = props => `
 	input, button {
 		height: 60px;
-		font-size: 1.4em;
+		font-size: 1.5em;
 		border-radius: 8px;
 		border: none;
 		align-self: flex-end;
@@ -38,6 +38,7 @@ const avalaibleProduct = props => `
 		width: 50px;
 		height: 50px;
 		text-align: center;
+		font-size: 1.5em;
 	}
 	button {
 		width: 180px;
@@ -57,7 +58,6 @@ export const Container = styled.main`
 	margin-top: 50px;
 	max-width: 100%;
 	min-height: 1000px;
-	
 
 	img {
 			margin: 0 18px;
@@ -79,8 +79,10 @@ export const Container = styled.main`
 				text-transform: capitalize;
 			}
 			p {
-				font-size: 1em;
+				font-size: 1.2em;
+				padding-left: 16px;
 				margin-bottom: 12px;
+				color: rgba(0,0,0,0.9);
 			}
 		}
 		.buy-function {

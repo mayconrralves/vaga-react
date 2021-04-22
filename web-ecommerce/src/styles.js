@@ -16,7 +16,7 @@ const globalStyle = createGlobalStyle`
 		background-image: linear-gradient(90deg,  #B6CB9E 0%, #D1F0B1 100%);
 		margin: 0;
 		a, h2, h3, p, input, button {
-			font-family:  cursive, sans-serif;
+			font-family: 'Kalam', cursive, sans-serif;
 		}
 	}
 

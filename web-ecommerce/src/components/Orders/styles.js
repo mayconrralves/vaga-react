@@ -60,11 +60,13 @@ export const Container = styled.main`
                     ${styledMobile500(`
                         font-size: 0.7em;
                         padding: 2px;
+                         font-family: 'Kalam', cursive, sans-serif;
                     `)}
                     border: solid 2px #fff;
                     padding: 4px;
                     text-align: center;
                     font-size: 1.1em;
+                    font-family: 'Kalam', cursive, sans-serif;
                     border-radius: 3px;
                 }
                 th, tfoot {

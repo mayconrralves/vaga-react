@@ -47,7 +47,7 @@ export const Container = styled.main`
 							display: flex;
 							justify-content: space-between;
 							color: #fff;
-							font-size: 1.5em;
+							font-size: 1.6em;
 							margin-left: 30px;
 							${styledMobile(`
 								margin-left: 0px;
@@ -70,7 +70,7 @@ export const Container = styled.main`
 							margin-bottom: 5px;
 							margin-left: 15px;
 							vertical-align: middle;
-							font-size: 1em;
+							font-size: 1.2em;
 							color: #fff;
 							span {
 								text-align: center;
