@@ -20,9 +20,9 @@ export default function Menu(){
              {
                  token ? (
                      <>
-                        <Link to='/shop'>Shop</Link>
-                        <Link to='/orders'>Pedidos</Link>
-                        <Link to='/profile'>Perfil</Link>
+                        <Link className="menu" to='/shop'>Shop</Link>
+                        <Link className="menu" to='/orders'>Pedidos</Link>
+                        <Link className="menu" to='/profile'>Perfil</Link>
                         {
                             isMobile && <button 
                                             onClick={()=> dispatch(signOut())}
@@ -33,13 +33,13 @@ export default function Menu(){
                      </>
                  ): (
                      <>
-                        <Link to='/login'>Entrar</Link>
-                        <Link to='/signup'>Cadastrar</Link>
-                        <Link to='/shop'>Shop</Link>
+                        <Link className="menu" to='/login'>Entrar</Link>
+                        <Link className="menu" to='/signup'>Cadastrar</Link>
+                        <Link className="menu"to='/shop'>Shop</Link>
                      </>
                  )
              }
-             <Link to="#" onClick={()=>history.goBack()}> Voltar</Link>
+             <Link to="#" className="menu" onClick={()=>history.goBack()}> Voltar</Link>
         </Container>
     ) 
 }

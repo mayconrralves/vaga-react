@@ -8,14 +8,19 @@ export const Container = styled.nav`
     align-items: center;
     h1 {
         width: 100%;
-        display: flex;
-        justify-content: center;
-        background-color: rgba(129, 182, 34, 0.5);
         margin-bottom: 25px;
+        display: flex;
+        a {
+            width: 100%;
+            text-align: center;
+            background-color: rgba(129, 182, 34, 0.5);
+        }
     }
     h2 {
+        width: 100%;
+        text-align: center;
         color: #fff;
-        font-size: 2em;
+        font-size: 2.2em;
         margin-bottom: 10px;
     }
     hr {
@@ -25,22 +30,27 @@ export const Container = styled.nav`
         border: 0;
     }
   
-    a, button {
+    .menu, button {
         display: flex;
-        width: 80%;
+      
         height: 40px;
-        font-size: 1.5em;
+        font-size: 1.6em;
         font-weight: bold;
         color: #fff;
         margin: 15px;
         align-items: center;
         justify-content: center;
         border-radius: 10px;
-        &:hover{
-            background-color: rgba(129, 182, 34, .7);
-            width: 30%;
-        }
     }
+    .menu {
+        width: 40%;
+    }
+    .menu:hover{
+        width: 80%;
+        background-color: rgba(129, 182, 34, .7);
+        transition-duration: 0.8s;
+        transition-property: background-color width;
+        }
     a {
         text-decoration: none;
     }
