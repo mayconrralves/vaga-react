@@ -12,7 +12,7 @@ export default function Store(){
 	const [loadImage, setLoadImage] = useState(false);
 	const dispatch = useDispatch();
 	const { msgError, products, loading } = useSelector(state=>state.products);
-	const isMobile = useMediaQuery({ query: `(max-width: 712px)` });
+	const isMobile = useMediaQuery({ query: `(max-width: 650px)` });
 	const listProducts = ( products ) => {
 		return products.map(product=>(
 			
@@ -75,7 +75,7 @@ export default function Store(){
 													autoComplete='false'
 													onChange={searchProduct} 
 													placeholder='Procure...'
-													onKeyPress={ isMobile && shouldBlur }
+													onKeyPress={ isMobile ? shouldBlur : undefined }
 												/>
 												<FiSearch />
 											</div>
