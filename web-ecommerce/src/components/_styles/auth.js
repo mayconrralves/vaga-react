@@ -17,8 +17,6 @@ const media = () => (
 
 export const Container = styled.main`
 	
-	width: 100%;
-	height: auto;
 	@media screen and (min-height: 1000px) and (max-height: 1400px){
 		height: 950px;
 		
@@ -27,10 +25,12 @@ export const Container = styled.main`
 		height: 600px;
 		
 	}
+	width: 100%;
+	height: auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding-top: 50px;
+	padding-top: 20px;
 	align-items: center;
 	
 	div{

@@ -19,7 +19,7 @@ export default function SignUp(){
 				) : (
 					<>
 						<div>
-							<Title />
+							<Title isAuth />
 							<h2>Cadastre-se</h2>
 						</div>
 						<Formik

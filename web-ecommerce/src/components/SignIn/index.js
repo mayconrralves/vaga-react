@@ -19,7 +19,7 @@ export default function SignIn(){
 					) : (
 						<>
 							<div>
-								<Title />
+								<Title isAuth />
 								<h2>Entre</h2>
 							</div>
 							<Formik
