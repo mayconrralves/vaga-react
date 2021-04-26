@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 /**  Print each order's table*/
 export default function  printOrders({ orders }){
     const orderKeys = Object.keys(orders);

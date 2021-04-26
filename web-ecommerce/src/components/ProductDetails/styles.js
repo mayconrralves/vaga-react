@@ -58,13 +58,14 @@ export const Container = styled.main`
 	margin-top: 50px;
 	max-width: 100%;
 	min-height: 50vh;
-
-	img {
-			margin: 0 18px;
-			max-width: 100%;
-			border-radius: 8px;
-		}
 	section {
+		img {
+				margin: 0 18px;
+				max-width: 100%;
+				border-radius: 8px;
+			}
+	}
+	aside {
 		width: 100%;
 		display: flex;
 		flex-direction: column;

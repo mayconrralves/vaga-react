@@ -46,12 +46,14 @@ export default function ProductDetails() {
 	return product ? ( 
 		<Container isMobile={isMobile} productQuantity={product.quantity} >
 			{!loadingImage && <Loading isImage />}
-			<img 
-				src={ isTablet ? product.img.middle : product.img.large} 
-				alt={product.description}
-				onLoad={()=>setLoadingImage(true)}
-			/>
 			<section>
+				<img 
+					src={ isTablet ? product.img.middle : product.img.large} 
+					alt={product.description}
+					onLoad={()=>setLoadingImage(true)}
+				/>
+			</section>
+			<aside>
 				<div className='details-product'>
 					<h3>{product.name}</h3>
 					<p><strong>Marca:</strong> {product.brand}</p>
@@ -79,7 +81,7 @@ export default function ProductDetails() {
 						</div>
 					)
 				}
-			</section>
+			</aside>
 		</Container >
 		) : (
 			<Loading />
