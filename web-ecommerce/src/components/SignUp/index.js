@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -6,11 +6,15 @@ import Title from '../Title';
 import { createUser } from '../../store/modules/user/actions';
 import { Container } from '../_styles/auth';
 import Loading from '../Loading';
+import { toastMessageError } from '../../functions/toastError';
 
 
 export default function SignUp(){
 	const dispatch = useDispatch();
-	const { loading } = useSelector(state=> state.user);
+	const { loading, fail, msgError } = useSelector(state=> state.user);
+	useEffect(()=>{
+		if(fail) toastMessageError(msgError);
+	}, [fail]);
 	return (
 		<Container>
 			{

@@ -1,16 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { signInRequest } from '../../store/modules/auth/actions';
+import {  signInRequest } from '../../store/modules/auth/actions';
 import { Container } from '../_styles/auth';
 import Title from '../Title';
 import Loading from '../Loading';
-export default function SignIn(){
-	const dispatch = useDispatch();
+import { toastMessageError } from '../../functions/toastError';
 
-	const { loading } = useSelector(state=> state.auth);
+
+export default function SignIn(){
+	const { loading, fail, msgError } = useSelector(state=> state.auth);
+	const dispatch = useDispatch();
+	
+	useEffect(()=> {
+		if(fail){
+			toastMessageError(msgError)
+		}
+	}, [fail]);
+	console.log(fail, loading)
 	return (
 			<Container>
 				{
@@ -30,7 +39,7 @@ export default function SignIn(){
 								onSubmit={ ( values ) => {
 									const {email, password } = values;
 									dispatch(signInRequest(email, password));
-									}}
+								}}
 							>
 								<Form>
 									<Field name='email' type='email' placeholder='Seu email...' />				
@@ -41,7 +50,6 @@ export default function SignIn(){
 							<Link className='sign-register' to='/signup'>Cadastra-se</Link>
 						</>
 					)
-
 				}
 			</Container>
 		)
