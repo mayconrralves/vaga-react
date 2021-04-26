@@ -8,7 +8,6 @@ import {
 } from './actions';
 import { 
 	successRequest as successRequestAuth,
-	failedRequest as failedRequestAuth
  } from '../auth/actions';
 import history from  '../../../services/history';
 

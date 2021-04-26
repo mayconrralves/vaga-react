@@ -35,6 +35,11 @@ export default function auth(state=INITIAL_STATE, action){
 				draft.success = false;
 				draft.fail = false;
 			});
+		case '@auth/CLEAR_AUTH':
+			return produce(state, draft=> {
+					draft.fail = false;
+					draft.msgError = '';
+			});
 		default:
 			return state;
 	}

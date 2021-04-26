@@ -32,3 +32,9 @@ export const signOut = () => {
 		type: '@auth/SIGN_OUT'
 	}
 }
+
+export const clearAuth = () => {
+	return {
+		type: '@auth/CLEAR_AUTH'
+	}
+}

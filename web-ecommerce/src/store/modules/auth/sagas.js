@@ -1,7 +1,7 @@
 import { takeLatest, all, call, put} from 'redux-saga/effects';
 import { signin, configToken } from '../../../api';
 import history from  '../../../services/history';
-import { successRequest, failedRequest } from './actions';
+import { successRequest, failedRequest, clearAuth } from './actions';
 import { cleanUser } from '../user/actions';
 import { signOut } from '../../../api/storage';
 
@@ -10,7 +10,8 @@ export function* login ({ payload }){
 	const {email, password} = payload;
 	const response = yield call(signin, email, password);
 	if(response.error){
-		return yield put(failedRequest(response.error));
+		yield put(failedRequest(response.error));
+		return yield put(clearAuth());
 	}
 	const { idToken } = response;
 	yield put(successRequest(idToken));
