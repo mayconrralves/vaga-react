@@ -27,45 +27,50 @@ export const Container = styled.main`
 		li {
 			width: 100%;
 			${styledMobile(`
-						width: auto;
+						width: 320px;
 					`)}
 			background-color: rgba(129, 182, 34, .7);
 			margin: 12px 0;
-			padding: 6px;
+			padding-left: 10px;
 			border-radius: 6px;
 			list-style: none;
-			section {
-					max-width: 100%;
+			padding-bottom: 12px;
+			div {
+					width: 100%;
+					padding-left: 20px;
+					padding-right: 10px;
 					display: flex;
 					${styledMobile(`
 						flex-direction: column;
-						width: 280px;
+						width: 300px;
+						padding-left: 0;
+						padding-right: 0px;
 					`)}
-					justify-content: space-around;
-					margin: 12px 10px;
-					&.title {
+					
+					h3 {
+						width: 100%;
+						display: flex;
+						justify-content:flex-end;
+						padding-bottom: 20px;
+						color: #fff;
+						font-size: 1.6em;
 						justify-content: space-between;
-						margin-bottom: 12px;
-						h3 {
-							width: 100%;
-							display: flex;
-							justify-content: space-between;
-							color: #fff;
-							font-size: 1.6em;
-							margin-left: 30px;
-							${styledMobile(`
-								margin-left: 0px;
-							`)}
-							margin-right: 10px;
-						}
-
-					}
-					img {
-						max-width: 300px;
-						border-radius: 10px;
+						${styledMobile(`
+							margin-left: 0px;
+						`)}
 						
 					}
-					div {
+
+					
+					section {
+						width: auto;
+						img {
+							max-width: 300px;
+							border-radius: 10px;
+						}
+					}
+					
+					aside {
 						width: 300px;
 						${styledMobile(`
 								margin-top: 12px;
@@ -79,8 +84,7 @@ export const Container = styled.main`
 							span {
 								text-align: center;
 								vertical-align: middle;
-								margin: 0 2px;
-								width: auto;
+								margin-right: 4px;
 							}
 						}
 					}

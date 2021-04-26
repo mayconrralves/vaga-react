@@ -6,12 +6,19 @@ export default function  PrintProductsInCart ({ products, updateSub, updateSum, 
     return products.map((product,index)=>{
         return (
                 <li key={index}>
-                    <section className='title'>
-                        <h3><span>{product.name}</span><span onClick={()=>deleteProduct(index)}><MdDelete /></span></h3>
-                    </section>
-                    <section>
-                        <img src={product.img.middle}/>
-                        <div>
+                    <div>
+                        <h3>
+                            <span>{product.name}</span>
+                            <span onClick={()=>deleteProduct(index)}>
+                                <MdDelete />
+                            </span>
+                        </h3>
+                    </div>
+                    <div>
+                        <section>
+                            <img src={product.img.middle}/>
+                        </section>
+                        <aside>
                             <p><strong>Marca:</strong> {product.brand}</p>
                             <p><strong>Descrição:</strong>  {product.description}</p>
                             <p><strong>Preço:</strong>  {product.price}</p>
@@ -21,7 +28,7 @@ export default function  PrintProductsInCart ({ products, updateSub, updateSum, 
                                 <span onClick={()=> updateSub(index)}>
                                     <FiMinusSquare />
                                 </span>
-                                {product.quantityPurchase} 
+                                <span>{product.quantityPurchase} </span>
                                 <span onClick={()=> updateSum(index)}>
                                     <FiPlusSquare />
                                 </span>
@@ -31,8 +38,8 @@ export default function  PrintProductsInCart ({ products, updateSub, updateSum, 
                                     Total: R$ {parseFloat(product.price) * product.quantityPurchase}
                                 </strong>
                             </p>
-                        </div>
-                    </section>
+                        </aside>
+                    </div>
                 </li>
             )
     });
