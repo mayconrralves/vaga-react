@@ -1,5 +1,17 @@
 import styled from 'styled-components';
 
+const WIDTH_STANDARD = '70%';
+
+const styledMobile =  styles => `
+    @media screen and (max-width: 750px){
+        ${styles}
+    }
+`
+const widthMobile = () => `
+    @media screen and (max-width: 480px){
+        width: 95%;
+    }
+`
 export const Container = styled.main`
     display: flex;
     align-items: center;
@@ -7,7 +19,8 @@ export const Container = styled.main`
     width: 100%;
     min-height: 60vh;
     h2 {
-        width: 70%;
+        width: ${WIDTH_STANDARD};
+        ${widthMobile()}
         text-align: center;
         color: #fff;
         font-size: 1.8em;
@@ -20,7 +33,8 @@ export const Container = styled.main`
         align-items: center;
     }
     ul {
-        width: 70%;
+        width: ${WIDTH_STANDARD};
+        ${widthMobile()}
         flex-direction: row;
         align-items: center;
         padding: 0;
@@ -32,30 +46,49 @@ export const Container = styled.main`
             padding-bottom: 20px;
             margin: 15px 0;
             list-style: none;
-            h3{
-                text-align: center;
-                font-size: 1.5em;
-                margin: 15px 0;
-                color: #fff;
+            div {
+                h3{
+                    text-align: center;
+                    font-size: 1.5em;
+                    margin: 15px 0;
+                    color: #fff;
+                }
             }
 
-            section {
+            div {
                 display: flex;
                 flex-direction: row;
                 width: 100%;
-                font-size: 1em;
+                font-size: 1.2em;
                 justify-content: space-around;
-                align-items: center;
-                img {
-                    width: 15%;
-                }
-                div {
-                    width: 70%;
+                align-items: flex-start;
+                ${styledMobile(`
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                `)}
+                section {
+                    width: auto;
+                    padding: 12px;
+                    img {
+                        width: auto;
+                        ${widthMobile()};
+                    }
+                } 
+                aside {
+                    @media screen and (max-width: 350px){
+                        width: calc(300 * 95%);
+                    }
+                    width: 300px;
                     display: flex;
                     flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
                     p {
                         margin-bottom: 5px;
                         color: #fff;
+                        
+                       
                     }
                 }
             }
@@ -63,7 +96,8 @@ export const Container = styled.main`
     }
     
     .total{
-        width: 70%;
+        width: ${WIDTH_STANDARD};
+        ${widthMobile()}
         font-size: 1.8em;
         display: flex;
         height: 50px;
@@ -77,10 +111,21 @@ export const Container = styled.main`
     }
     .buttons {
         display: flex;
-        width: 70%;
+        width: ${WIDTH_STANDARD};
+        ${styledMobile(`
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+        `)}
+        ${widthMobile()}
         justify-content: space-between;
         button{
             width: 40%;
+            ${styledMobile(`
+                   width: 100%;
+                   margin-top: 10px;
+                   margin-bottom: 20px;
+                `)}
             color: #fff;
             font-size: 1.2em;
             font-weight: bold;
