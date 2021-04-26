@@ -71,8 +71,13 @@ export const Container = styled.main`
 					background-color: green;
 					color: #fff;
 					font-weight: bold;
-
 				}
+		}
+		p {
+			color: rgba(255,0,0, 0.9);
+			font-weight: bold;
+			font-size: 1em;
+			margin-bottom: 6px;
 		}
 	}
 		.sign-register {
