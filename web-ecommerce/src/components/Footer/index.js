@@ -14,7 +14,7 @@ export default function Footer(){
                 <FaFacebookSquare />
             </a>
             <a href='https://twitter.com/' target="_blank">
-                <FaTwitterSquare/>
+                <FaTwitterSquare />
             </a>
             <a href='https://www.instagram.com' target="_blank">
                 <FaInstagramSquare />

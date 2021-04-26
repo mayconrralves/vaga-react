@@ -30,7 +30,7 @@ export default function CloseCart(){
     },[]);
     return products.length ? (
         <Container>
-            <h3>Fechar Pedido?</h3>
+            <h2>Fechar Pedido?</h2>
             <ul>
                 { products && <PrintCart products={products}/> }
             </ul>

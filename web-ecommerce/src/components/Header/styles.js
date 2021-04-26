@@ -84,7 +84,6 @@ export const Container = styled.header`
 			
 			svg {
 				padding: 5px 0;
-				
 				font-size: 2em;
 				vertical-align: text-bottom;
 			}

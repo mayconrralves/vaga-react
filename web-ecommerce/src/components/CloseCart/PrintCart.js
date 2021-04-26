@@ -3,7 +3,7 @@ import React from 'react';
 export default function printCart({ products }){
     return products.map((product, index)=>(
         <li key={index}>
-            <h4>{product.name}</h4>
+            <h3>{product.name}</h3>
             <section>
                 <img src={product.img.middle}/>
                 <div>

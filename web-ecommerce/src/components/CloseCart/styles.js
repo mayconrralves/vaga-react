@@ -6,7 +6,7 @@ export const Container = styled.main`
     flex-direction: column;
     width: 100%;
     min-height: 60vh;
-    h3 {
+    h2 {
         width: 70%;
         text-align: center;
         color: #fff;
@@ -32,7 +32,7 @@ export const Container = styled.main`
             padding-bottom: 20px;
             margin: 15px 0;
             list-style: none;
-            h4{
+            h3{
                 text-align: center;
                 font-size: 1.5em;
                 margin: 15px 0;
