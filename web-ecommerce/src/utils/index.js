@@ -8,5 +8,7 @@ export const messageError = msg => {
             return 'Confira sua senha';
         case 'EMAIL_NOT_FOUND':
             return 'Email não encontrado';
+        case 'EMAIL_EXISTS':
+            return 'Email já existe';
     }
 }
