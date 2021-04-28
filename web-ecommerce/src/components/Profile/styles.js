@@ -12,7 +12,6 @@ const mediaScreenMobile = styles => `
 		}
 	`
 
-
 export const Container = styled.main`
 	width: 100%;
 	min-height: 60vh;
@@ -43,7 +42,7 @@ export const Container = styled.main`
 				align-items: center;
 			`
 		)}
-		width: 100%;
+		width: 95%;
 		
 		div {
 			display: flex;
@@ -77,7 +76,7 @@ export const Container = styled.main`
 			button {
 				${mediaScreenMiddle(`
 					 margin-bottom: 20px;
-					 width: 98%;
+					 width: 100%;
 					 align-self: center;
 			   `)}
 				width: 100%;
