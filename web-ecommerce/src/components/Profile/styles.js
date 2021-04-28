@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const mediaScreen920 = styles => (
+const mediaScreenMiddle = styles => (
 	`
 	@media screen and (max-width: 920px){
 		${styles}
@@ -8,9 +8,9 @@ const mediaScreen920 = styles => (
 	`
 )
 
-const mediaScreen321 = styles => (
+const mediaScreenMobile = styles => (
 	`
-	@media screen and (max-width: 331px){
+	@media screen and (max-width: 450px){
 		${styles}
 	}
 	`
@@ -26,7 +26,7 @@ export const Container = styled.main`
 		margin: 30px 0;
 		font-size: 2.5em;
 		color: #fff;
-		${mediaScreen920(`
+		${mediaScreenMiddle(`
 			font-size: 1.7em;
 		`)}
 	}
@@ -34,18 +34,19 @@ export const Container = styled.main`
 	section {
 		display: flex;
 		align-items: flex-start;
-		${mediaScreen321(
+		justify-content: center;
+		${mediaScreenMobile(
 			`
 				width: 300px;
 			`
 		)}
-		${mediaScreen920(
+		${mediaScreenMiddle(
 			`
-			flex-direction: column; 
-			align-items: center;
+				flex-direction: column; 
+				align-items: center;
 			`
 		)}
-		width: 80%;
+		width: 100%;
 		
 		div {
 			display: flex;
@@ -60,7 +61,7 @@ export const Container = styled.main`
 				color: #fff;
 				font-size: 4em;
 				height: 250px;
-				${mediaScreen920(`
+				${mediaScreenMiddle(`
 					height: 220px;
 				`)}
 				span {
@@ -78,7 +79,7 @@ export const Container = styled.main`
 				}
 			}
 			button {
-				${mediaScreen920(`
+				${mediaScreenMiddle(`
 					 margin-bottom: 20px;
 					 width: 98%;
 					 align-self: center;
@@ -109,17 +110,20 @@ export const Container = styled.main`
 
 		form {
 			width: 100%;
-			height: 500px;
 			display: flex;
 			flex-direction: column;
 			margin-left: 12px;
-			${mediaScreen321(
+			align-items: center;
+			${mediaScreenMobile(
 				`
 					margin-left: 0;
 				`
 			)}
 			input {
-				width: 100%;
+				${mediaScreenMobile(`
+					width: 300px;
+				`)}
+				width: 70%;
 				height: 55px;
 				border-radius: 8px;
 				border: 0;

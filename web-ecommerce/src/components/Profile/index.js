@@ -15,10 +15,7 @@ export default function Profile(){
 	const [inputFile, setInputFile] = useState('');
 	const [loadingImage, setLoadingImage] = useState(false);
 	const dispatch = useDispatch();
-	useEffect(()=> {
-		 dispatch(getUser());
-	},[]);
-	
+
 	const saveFile = e => {
 		dispatch(setAvatar(image));
 	}
@@ -42,9 +39,14 @@ export default function Profile(){
 		inputFile.click();
 		event.preventDefault();
 	}
+
+	useEffect(()=> {
+		 dispatch(getUser());
+	},[]);
+
 	return success ? (
 			<Container
-				image={ () => changeImage()}
+				image={changeImage()}
 			>
 				<h2>
 					Atualizar cadastro
