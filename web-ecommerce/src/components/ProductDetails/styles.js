@@ -61,7 +61,6 @@ export const Container = styled.main`
 	section {
 		img {
 				margin: 0 18px;
-				max-width: 100%;
 				border-radius: 8px;
 			}
 	}
