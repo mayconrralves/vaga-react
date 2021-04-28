@@ -86,8 +86,6 @@ export const Container = styled.main`
         align-items: center;
         justify-content: center;
         color: #fff;
-        background-color: rgba(129, 182, 34, .7);
-        border-radius: 10px;
         text-decoration: none;
         font-size: 1.2em;
 
