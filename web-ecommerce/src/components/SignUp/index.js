@@ -35,7 +35,6 @@ export default function SignUp(){
 
 	});
 	useEffect(()=>{
-		console.log(msgError)
 		if(fail) toastMessageError(msgError);
 	}, [fail]);
 	return (
