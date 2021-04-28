@@ -1,20 +1,17 @@
 import styled from 'styled-components';
 
-const mediaScreenMiddle = styles => (
+const mediaScreenMiddle = styles => `
+		@media screen and (max-width: 920px){
+			${styles}
+		}
 	`
-	@media screen and (max-width: 920px){
-		${styles}
-	}
-	`
-)
 
-const mediaScreenMobile = styles => (
+const mediaScreenMobile = styles => `
+		@media screen and (max-width: 450px){
+			${styles}
+		}
 	`
-	@media screen and (max-width: 450px){
-		${styles}
-	}
-	`
-)
+
 
 export const Container = styled.main`
 	width: 100%;
@@ -65,12 +62,11 @@ export const Container = styled.main`
 					height: 220px;
 				`)}
 				span {
-					display: ${props=>props.image ? 'none' : 'inline'};
-					font-weight: bold;
-					color: #FFF;
-					opacity: 0.3;
-					font-size: 2em;
-					
+						display: ${props=>props.image ? 'none' : 'inline'};
+						font-weight: bold;
+						color: #FFF;
+						opacity: 0.3;
+						font-size: 2em;
 					}
 				img {
 					display: ${props=>props.image ? 'inline' : 'none'};
@@ -140,6 +136,4 @@ export const Container = styled.main`
 			}
 		}
 	}
-
-
 `;

@@ -55,7 +55,7 @@ export default function Profile(){
 					<div>
 						<label htmlFor='file-selector'>
 							{ !changeImage() && <FaCamera/> }
-							{!loadingImage && changeImage() && <Loading />}
+							{ !loadingImage && changeImage() && <Loading isImage /> }
 							{changeImage() && <img 
 												src={changeImage()} 
 												onClick={uploadClick}
