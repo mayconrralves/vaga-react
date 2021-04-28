@@ -63,7 +63,7 @@ export default function Profile(){
 											/>}
 
 						</label>
-						<button onClick={saveFile}>Salvar</button>
+						<button onClick={saveFile}>Salvar Foto</button>
 					</div>
 					<input 
 						name="image"
