@@ -10,5 +10,7 @@ export const messageError = msg => {
             return 'Email não encontrado';
         case 'EMAIL_EXISTS':
             return 'Email já existe';
+        case 'INVALID_ARGUMENT':
+            return 'Erro na requisição. Campo inválido'
     }
 }

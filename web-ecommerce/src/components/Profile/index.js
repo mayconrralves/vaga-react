@@ -7,9 +7,11 @@ import { Container } from './styles';
 import Loading from '../Loading';
 import FormUser from '../FormUser';
 
+import { toastMessageError, toastMessageSuccess } from '../../functions/toastError';
+
 
 export default function Profile(){
-	const { user, success } = useSelector(state=> state.user);
+	const { user, success, fail, update } = useSelector(state=> state.user);
 	const [imageView, setImageView] = useState(null);
 	const [image, setImage] = useState(null);
 	const [inputFile, setInputFile] = useState('');
@@ -44,6 +46,11 @@ export default function Profile(){
 		 dispatch(getUser());
 	},[]);
 
+	useEffect(() => {
+		if(fail) toastMessageError('Erro no Cadastro');
+		if(update) toastMessageSuccess('Perfil atualizado com sucesso!');
+	}, [fail, update]);
+
 	return success ? (
 			<Container
 				image={changeImage()}
@@ -60,8 +67,8 @@ export default function Profile(){
 												src={changeImage()} 
 												onClick={uploadClick}
 												onLoad={()=> setLoadingImage(true)}
-											/>}
-
+											  />
+							}
 						</label>
 						<button onClick={saveFile}>Salvar Foto</button>
 					</div>
@@ -72,10 +79,8 @@ export default function Profile(){
 						onChange={imageSubmit} 
 						ref={ input => setInputFile(input)}
 					/>
-
 					<FormUser  update user={user} />
-				</section>
-				
+				</section>	
 			</Container>
 		) : (
 			<Loading />

@@ -6,6 +6,7 @@ const INITIAL_STATE = {
 	user: null,
 	msgError: '',
 	loading: false,
+	update: false,
 }
 
 export default function reducer(state=INITIAL_STATE, action){
@@ -22,6 +23,7 @@ export default function reducer(state=INITIAL_STATE, action){
 				draft.fail = false;
 				draft.success = false;
 				draft.loading = true;
+				draft.update = false;
 			});
 		case '@user/GET_USER_REQUEST':
 			return produce(state, draft=>{
@@ -33,6 +35,11 @@ export default function reducer(state=INITIAL_STATE, action){
 			return produce(state, draft=>{
 				draft.success = true;
 				draft.user = action.payload.user;
+				draft.loading = false;
+			});
+		case '@user/SUCCESS_UPDATE_REQUEST':
+			return produce(state, draft=>{
+				draft.update = true;
 				draft.loading = false;
 			});
 		case '@user/FAILED_REQUEST':
@@ -47,6 +54,7 @@ export default function reducer(state=INITIAL_STATE, action){
 				draft.fail= false;
 				draft.success = false;
 				draft.msgError = '';
+				draft.update = false;
 			});
 		default:
 			return state;

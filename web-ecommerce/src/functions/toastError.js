@@ -8,10 +8,23 @@ const styleOptions =  {
     fontWeight: 'bold',
     width: '270px',
 }
-export const toastMessageError = (msgError) => {
+export const toastMessageError = msgError => {
+    return toast.error(
+                        msgError.message 
+                        ? 
+                        messageError(msgError.message)
+                        :
+                        msgError, {
+                            autoClose: 3000,
+                            style: styleOptions,
+                          }
+                )
+}
 
-    return toast.error(messageError(msgError.message), {
+export const toastMessageSuccess = msg => {
+
+    return toast.success(msg, {
         autoClose: 3000,
         style: styleOptions,
-    })
+    });
 }

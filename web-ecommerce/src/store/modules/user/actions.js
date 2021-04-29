@@ -36,7 +36,11 @@ export const successRequest = (user) => {
 		}
 	}
 }
-
+export const successUpdateRequest = () => {
+	return {
+		type: '@user/SUCCESS_UPDATE_REQUEST',
+	}
+}
 export const failedRequest = (msg) => {
 	return {
 		type: '@user/FAILED_REQUEST',

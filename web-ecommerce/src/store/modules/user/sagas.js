@@ -4,7 +4,8 @@ import { register,  getUser,updateUser, addPhoto } from '../../../api';
 import { signOut } from '../auth/actions';
 import { 
 	successRequest as successRequestUser, 
-	failedRequest as failedRequestUser, 
+	failedRequest as failedRequestUser,
+	successUpdateRequest, 
 } from './actions';
 import { 
 	successRequest as successRequestAuth,
@@ -44,10 +45,10 @@ export function* updateUserSaga({ payload }){
 	if(response.error){
 		return yield put(failedRequestUser(response.error));
 	}
+	yield put(successUpdateRequest());
 	if(response.idToken) {
 		yield put(successRequestAuth(response.idToken));
 	}
-
 	return yield getCurrentUser();
 }
 
@@ -58,8 +59,8 @@ export function* setAvatar({ payload }){
 	if(response.error){
 		return yield put(failedRequestUser(response.error));
 	}
+	yield put(successUpdateRequest());
 	yield getCurrentUser();
-	
 	
 }
 export default all([

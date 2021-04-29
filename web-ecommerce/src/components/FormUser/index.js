@@ -54,7 +54,8 @@ export default function FormUser ({ update, user }){
                     setConfirmPassword(confirmPassword);
                     update && setAddress(address);
                     update ? 
-                        dispatch(updateUser({displayName, email, password, address})) : 
+                        dispatch(updateUser({displayName, email, password, address})) 
+                        : 
                         dispatch(createUser({displayName, email, password}));
                     }}
             >
@@ -75,7 +76,11 @@ export default function FormUser ({ update, user }){
                             <p className="msg-error"><ErrorMessage name="password" /></p>
                             <Field name='confirmPassword' type='password' placeholder='Confirme sua senha...' />
                             <p className="msg-error"><ErrorMessage name="confirmPassword" /></p>
-                            <Field name='signup' type='submit' value='Enviar' />				
+                            <Field 
+                                name={ update ? 'profile' : 'signup' } 
+                                type='submit' 
+                                value={ update ? 'Atualizar' : 'Enviar' }
+                            />				
                         </Form>
             </Formik>
     )
