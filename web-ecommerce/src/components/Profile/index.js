@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaCamera } from 'react-icons/fa';
 
-import { updateUser, getUser, setAvatar } from '../../store/modules/user/actions';
+import {  getUser, setAvatar } from '../../store/modules/user/actions';
 import { Container } from './styles';
 import Loading from '../Loading';
 import FormUser from '../FormUser';
