@@ -6,6 +6,7 @@ import { FaCamera } from 'react-icons/fa';
 import { updateUser, getUser, setAvatar } from '../../store/modules/user/actions';
 import { Container } from './styles';
 import Loading from '../Loading';
+import FormUser from '../FormUser';
 
 
 export default function Profile(){
@@ -73,29 +74,7 @@ export default function Profile(){
 						ref={ input => setInputFile(input)}
 					/>
 
-					<Formik
-						initialValues={{
-								displayName: user.displayName,
-								email: user.email,
-								address: user.address,
-								oldPassword: '',
-								password: '',
-							}}
-						onSubmit={ ( values ) => {
-							const {email, password, displayName, address } = values;
-							dispatch(updateUser({displayName, email, password, address}));
-							}}
-					>
-						<Form>
-							<Field name='displayName' type='text'  placeholder="Seu Nome ..."/>
-							<Field name='email' type='email' placeholder="Seu Email ..."  />				
-							<Field name='address' type='text' placeholder='Seu endereço ...' />
-							<Field name='oldPassword' type='password' placeholder='Sua senha antiga ...' />				
-							<Field name='password' type='password' placeholder='Sua senha ...' />
-							<Field name='confirmPassword' type='password' placeholder='Confirme sua senha ...' />				
-							<Field name='update' type='submit' value='Atualizar' />				
-						</Form>
-					</Formik>
+					<FormUser  update user={user} />
 				</section>
 				
 			</Container>

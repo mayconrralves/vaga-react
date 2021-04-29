@@ -133,6 +133,12 @@ export const Container = styled.main`
 				 	font-weight: bold;
 				 }
 			}
+			p {
+				color: rgba(255,0,0, 0.9);
+				font-weight: bold;
+				font-size: 1em;
+				margin-bottom: 6px;
+			}
 		}
 	}
 `;
