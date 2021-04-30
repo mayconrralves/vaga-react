@@ -15,8 +15,6 @@ export default function ProductDetails() {
 	const [ product, setProduct]  = useState(products.filter(product=> product.id === id)[0]);
 	const [quantityPurchase, setQuantityPurchase] = useState(1);
 	const [loadingImage, setLoadingImage] = useState(false);
-	const isTablet = useMediaQuery({query: "(max-width: 1024px)"});
-	const isMobile = useMediaQuery({query: "(max-width: 826px)"});
 	const saveProduct = quantityProduct => {
 		if(quantityPurchase <=  quantityProduct ) {
 			dispatch(addProductInCart({
@@ -36,6 +34,7 @@ export default function ProductDetails() {
 			saveProduct(parseFloat(product.quantity));
 		}
 	}
+
 	useEffect(()=>{
 		if(!success) {
 			dispatch(getProducts());
@@ -44,23 +43,24 @@ export default function ProductDetails() {
 		}
 	}, [success]);
 	return product ? ( 
-		<Container isMobile={isMobile} productQuantity={product.quantity} >
+		<Container  productQuantity={product.quantity} >
 			{!loadingImage && <Loading isImage />}
 			<section>
 				<img 
-					src={ isTablet ? product.img.middle : product.img.large} 
+					src={product.img.large} srcSet={`${product.img.middle} 900w,  ${product.img.large} 1280w`}
 					alt={product.description}
 					onLoad={()=>setLoadingImage(true)}
 				/>
 			</section>
 			<aside>
-				<div className='details-product'>
 					<h3>{product.name}</h3>
-					<p><strong>Marca:</strong> {product.brand}</p>
-					<p><strong>Descrição:</strong>  {product.description}</p>
-					<p><strong>Quantidade: </strong> {product.quantity}  unidades</p>
-					<p><strong>Preço:</strong>  {product.price}</p>
-				</div>
+					<div className='details'>
+						<p><strong>Marca:</strong> {product.brand}</p>
+						<p><strong>Descrição:</strong>  {product.description}</p>
+						<p><strong>Quantidade: </strong> {product.quantity}  unidades</p>
+						<p><strong>Preço:</strong>  {product.price}</p>
+					</div>
+				
 				{
 					product.quantity ? (
 						<div className='buy-function'>
