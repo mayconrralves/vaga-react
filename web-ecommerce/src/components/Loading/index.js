@@ -12,11 +12,10 @@ export default function  Loading ( { width, height, isImage }) {
             height={ height ? height : '50%'}
         />  
       )
-    return !isImage ? (
-      <Container>
-          <LootieAnimation />
-      </Container>
-    ) : (
-      <LootieAnimation />
-    )
+    return isImage 
+              ? <LootieAnimation />
+              : <Container>
+                  <LootieAnimation />
+                </Container>
+   
 }
