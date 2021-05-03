@@ -1,20 +1,29 @@
 import styled from 'styled-components';
 
+const mobileMedia = styles => `
+	@media screen and (max-width: 728px) {
+		${styles}
+	}
+` 
 
 
 export const Container = styled.main`
 	display: flex;
 	width: 100%;
-	height: 80vh;
+	min-height: 55vh;
 	justify-content: center;
 	margin-top: 30px;
 	align-items: center;
+	${mobileMedia(`
+		flex-direction: column;
+	`)}
 	section {
 		width: auto;
 		height: inherit;
 		padding-top: 10px;
 		img{
-			width: 100%;
+			min-width: 300px;
+			max-width: 500px;
 		}
 	}
 	aside {
