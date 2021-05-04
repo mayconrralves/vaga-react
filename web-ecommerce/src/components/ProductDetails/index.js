@@ -46,7 +46,8 @@ export default function ProductDetails() {
 			<section>
 				{!loadingImage && <Loading isImage />}
 				<img 
-					src={product.img.large} srcSet={`${product.img.middle} 900w,  ${product.img.large} 1280w`}
+					src={product.img.large} 
+					srcSet={`${product.img.middle} 900w,  ${product.img.large} 1280w`}
 					alt={product.description}
 					onLoad={()=>setLoadingImage(true)}
 				/>
