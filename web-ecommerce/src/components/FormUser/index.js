@@ -27,7 +27,7 @@ export default function FormUser ({ update, user }){
                               .min(6,"Senha muito curta. Deve ter seis ou mais caracteres") : 
                               Yup.string()
                                  .min(6,"Senha muito curta. Deve ter seis ou mais caracteres")
-                                 .required(),
+                                 .required("Senha obrigatória"),
 		confirmPassword: Yup.string().test({
 			name: 'password-match',
 			test: function(value) { return this.parent.password === value },
