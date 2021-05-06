@@ -12,8 +12,8 @@ export default function CartEmpty (){
                 options={{
                     animationData
                 }}
-                width={ '50%' }
-                height={ '50%' }
+                width='30%'
+                height='30%'
             />
             <h2> Carrinho Vazio</h2>
         </Container>
