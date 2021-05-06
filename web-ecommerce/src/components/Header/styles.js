@@ -40,7 +40,7 @@ export const Container = styled.header`
 		display: flex;
 		align-items: baseline;
 		justify-content: flex-end;
-		margin-right: 25px;
+		margin-right: 50px;
 		
 		button {
 			width: 80px;
