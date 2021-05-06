@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /**  Print each order's table*/
-export default function  printOrders({ orders }){
+export default function  PrintOrders({ orders }){
     const orderKeys = Object.keys(orders);
     let total = 0;
     /** Print each table's item */
@@ -22,8 +23,8 @@ export default function  printOrders({ orders }){
        )});
     }
 
-    return orderKeys.length ? orderKeys.map((key, index)=> (
-        <li key={index}>
+    return orderKeys.length ? orderKeys.map((key)=> (
+        <li key={key}>
                 <h3>Pedido: {key}</h3>
                 <table>
                 <thead>
@@ -51,4 +52,8 @@ export default function  printOrders({ orders }){
     )) : (
         <p>Você não fez nenhum pedido.</p>
     )
+}
+
+PrintOrders.propTypes = {
+    orders: PropTypes.object,
 }

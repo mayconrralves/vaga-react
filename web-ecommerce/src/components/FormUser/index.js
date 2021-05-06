@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-
+import PropTypes from 'prop-types'; 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -84,4 +84,9 @@ export default function FormUser ({ update, user }){
                         </Form>
             </Formik>
     )
+}
+
+FormUser.propTypes = {
+    update: PropTypes.bool,
+    user: PropTypes.object,
 }
