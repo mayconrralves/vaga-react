@@ -60,8 +60,6 @@ export const Container = styled.main`
 						`)}
 						
 					}
-
-					
 					section {
 						width: auto;
 						img {
@@ -119,6 +117,6 @@ export const Container = styled.main`
 			text-decoration: none;
 			align-items: center;
 			justify-content: center;
-	}
+		}
 	}
 `;
