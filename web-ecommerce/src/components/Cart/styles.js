@@ -12,21 +12,32 @@ export const Container = styled.main`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	h2 {
+		margin-top: 20px;
+		font-size: 2.5em;
+		color: #fff;
+		width: 100%;
+		height: auto;
+		text-align: center;
+	}
 	.cart-empty {
 		font-size: 2em;
 	}
 	ul {
-		
-		width: 100%;
+		@media screen and (max-width: 380px){
+			width: 100%;
+		}
+		width: 70%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
 		margin-top: 12px;
 		padding: 0;
 		li {
-			width: 70%;
-			
+			width: 100%;
+			${styledMobile(`
+						width: 315px;
+					`)}
 			background-color: rgba(129, 182, 34, .7);
 			margin: 12px 0;
 			padding-left: 10px;
@@ -34,13 +45,15 @@ export const Container = styled.main`
 			list-style: none;
 			padding-bottom: 12px;
 			div {
-					width: 70%;
+					width: 100%;
 					padding-left: 20px;
 					padding-right: 10px;
 					display: flex;
 					${styledMobile(`
 						flex-direction: column;
-						
+						width: 300px;
+						padding-left: 0;
+						padding-right: 0px;
 					`)}
 					
 					h3 {
@@ -54,15 +67,11 @@ export const Container = styled.main`
 						${styledMobile(`
 							margin-left: 0px;
 						`)}
-						
 					}
 					section {
 						width: auto;
 						img {
 							max-width: 300px;
-							${styledMobile(`
-								width: 280px;
-							`)}
 							border-radius: 10px;
 						}
 					}
@@ -74,14 +83,15 @@ export const Container = styled.main`
 							`)}
 						p {
 							margin-bottom: 5px;
-							margin-left: 15px;
 							vertical-align: middle;
 							font-size: 1.2em;
 							color: #fff;
 							span {
 								text-align: center;
-								vertical-align: middle;
-								margin-right: 4px;
+								svg:first-child {
+									margin-right: 6px;
+									vertical-align: middle;
+								}
 							}
 						}
 					}

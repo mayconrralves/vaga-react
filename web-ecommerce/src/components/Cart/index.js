@@ -36,6 +36,7 @@ export default function Cart(){
 
  	return products && products.length ? (
  		<Container>
+			 <h2> Carrinho </h2>
  			<ul>
  				<PrintProductsInCart 
 				 	products={products}

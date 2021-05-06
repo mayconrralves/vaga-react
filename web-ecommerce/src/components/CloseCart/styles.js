@@ -13,10 +13,10 @@ const widthMobile = () => `
     }
 `
 export const Container = styled.main`
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     h2 {
         width: ${WIDTH_STANDARD};
         ${widthMobile()}
@@ -76,7 +76,7 @@ export const Container = styled.main`
                 } 
                 aside {
                     @media screen and (max-width: 350px){
-                        width: calc(300 * 95%);
+                        width: calc(300px * 95%);
                     }
                     width: 300px;
                     display: flex;
@@ -86,8 +86,6 @@ export const Container = styled.main`
                     p {
                         margin-bottom: 5px;
                         color: #fff;
-                        
-                       
                     }
                 }
             }
