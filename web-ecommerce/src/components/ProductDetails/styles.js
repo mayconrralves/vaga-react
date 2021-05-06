@@ -10,12 +10,12 @@ const mobileMedia = styles => `
 export const Container = styled.main`
 	display: flex;
 	width: 100%;
-	min-height: 55vh;
 	justify-content: center;
-	margin-top: 30px;
-	align-items: center;
+	padding-top: 3%;
+	
 	${mobileMedia(`
 		flex-direction: column;
+		align-items: center;
 	`)}
 	section {
 		width: auto;
@@ -37,9 +37,13 @@ export const Container = styled.main`
 			height: 50px;
 			text-align: center;
 			font-size: 2.3em;
+			${mobileMedia(`
+				margin-top: 15px;
+			`)}
 		}
 		.details {
 			width: 70%;
+			padding-top: 6%;
 			p{
 				margin-bottom: 6px;
 				font-size: 1.2em;

@@ -17,7 +17,6 @@ export const Container = styled.main`
     align-items: center;
     flex-direction: column;
     width: 100%;
-    min-height: 60vh;
     h2 {
         width: ${WIDTH_STANDARD};
         ${widthMobile()}

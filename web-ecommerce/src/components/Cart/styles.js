@@ -9,26 +9,24 @@ const styledMobile = styles => (
 )
 export const Container = styled.main`
 	width: 100%;
-	min-height: 60vh;
 	display: flex;
-	
 	flex-direction: column;
 	align-items: center;
 	.cart-empty {
 		font-size: 2em;
 	}
 	ul {
-		width: 70%;
+		
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: center;
 		margin-top: 12px;
 		padding: 0;
 		li {
-			width: 100%;
-			${styledMobile(`
-						width: 320px;
-					`)}
+			width: 70%;
+			
 			background-color: rgba(129, 182, 34, .7);
 			margin: 12px 0;
 			padding-left: 10px;
@@ -36,15 +34,13 @@ export const Container = styled.main`
 			list-style: none;
 			padding-bottom: 12px;
 			div {
-					width: 100%;
+					width: 70%;
 					padding-left: 20px;
 					padding-right: 10px;
 					display: flex;
 					${styledMobile(`
 						flex-direction: column;
-						width: 300px;
-						padding-left: 0;
-						padding-right: 0px;
+						
 					`)}
 					
 					h3 {
@@ -64,6 +60,9 @@ export const Container = styled.main`
 						width: auto;
 						img {
 							max-width: 300px;
+							${styledMobile(`
+								width: 280px;
+							`)}
 							border-radius: 10px;
 						}
 					}

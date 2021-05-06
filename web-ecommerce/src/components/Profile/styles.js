@@ -14,20 +14,22 @@ const mediaScreenMobile = styles => `
 
 export const Container = styled.main`
 	width: 100%;
-	min-height: 60vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	h2{
+		width: 95%;
 		margin: 30px 0;
 		font-size: 2.5em;
 		color: #fff;
+		text-align: center;
 		${mediaScreenMiddle(`
-			font-size: 1.7em;
+			font-size: 2em;
 		`)}
 	}
 		
 	section {
+		width: 95%;
 		display: flex;
 		align-items: flex-start;
 		justify-content: center;
