@@ -25,7 +25,7 @@ export default function SignIn(){
 			<Container>
 				{
 					loading ? (
-						<Loading width='100%' height='100%'/>
+						<Loading width='40%' height='40%'/>
 					) : (
 						<>
 							<div>

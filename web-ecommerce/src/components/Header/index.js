@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaShoppingCart } from "react-icons/fa";
@@ -40,3 +41,7 @@ export default function Header({ isMenu }){
 		</Container>
 		);
 }	
+
+Header.propTypes = {
+	isMenu: PropTypes.bool,
+}

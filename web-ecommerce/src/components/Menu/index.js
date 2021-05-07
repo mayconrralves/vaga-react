@@ -5,7 +5,6 @@ import { useMediaQuery } from 'react-responsive';
 
 import history from '../../services/history';
 import { Container } from './styles';
-import Title from '../Title';
 import { signOut } from '../../store/modules/auth/actions';
 
 export default function Menu(){

@@ -16,7 +16,10 @@ export default function  PrintProductsInCart ({ products, updateSub, updateSum, 
                     </div>
                     <div>
                         <section>
-                            <img src={product.img.middle}/>
+                            <img 
+                                src={product.img.middle}
+                                alt={`Imagem: ${ product.description } `}
+                            />
                         </section>
                         <aside>
                             <p><strong>Marca:</strong> {product.brand}</p>

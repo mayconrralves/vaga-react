@@ -84,6 +84,6 @@ export default function ProductDetails() {
 			</aside>
 		</Container >
 		) : (
-			<Loading width='100%' height='100%' />
+			<Loading width='40%' height='40%' />
 		)
 }

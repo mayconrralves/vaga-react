@@ -11,6 +11,8 @@ export const messageError = msg => {
         case 'EMAIL_EXISTS':
             return 'Email já existe';
         case 'INVALID_ARGUMENT':
-            return 'Erro na requisição. Campo inválido'
+            return 'Erro na requisição. Campo inválido';
+        default:
+            return 'Erro desconhecido';
     }
 }

@@ -23,6 +23,6 @@ export default function Orders(){
             <a href="#my-orders">Voltar ao início</a>
         </Container>
     ) : (
-        <Loading width='100%' height='100%'/>
+        <Loading width='40%' height='40%'/>
     )
 }

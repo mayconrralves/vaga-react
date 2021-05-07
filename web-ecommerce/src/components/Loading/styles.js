@@ -3,6 +3,6 @@ import styled from 'styled-components';
 
 export const  Container = styled.main`
 	width: 100%;
-	height:60vh;
+	min-height:60vh;
 	margin-top: 30px;
 `

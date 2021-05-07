@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Loading from '../Loading';
+import PropTypes from 'prop-types';
 
-export default function printCart({ products }){
+export default function PrintCart({ products }){
+    const [ loadImage, setLoadImage ] = useState(false);
+
     return products.map((product, index)=>(
         <li key={index}>
             <div>
@@ -8,7 +12,12 @@ export default function printCart({ products }){
             </div>
             <div>
                 <section>
-                    <img src={product.img.middle}/>
+                    { !loadImage && <Loading isImage />}
+                    <img 
+                        src={product.img.middle} 
+                        onLoad={()=>setLoadImage(!loadImage)}
+                        alt={`Imagem: ${ product.description }`}
+                    />
                 </section>
                 <aside>
                     <p><strong>Nome: </strong>{product.description}</p>
@@ -22,4 +31,8 @@ export default function printCart({ products }){
             </div>
         </li>
     ))
+}
+
+PrintCart.propTypes = {
+    products: PropTypes.bool
 }

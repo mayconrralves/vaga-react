@@ -78,6 +78,7 @@ export const Container = styled.main`
 					
 					aside {
 						width: 300px;
+						padding-left: 2%;
 						${styledMobile(`
 								margin-top: 12px;
 							`)}
@@ -90,7 +91,7 @@ export const Container = styled.main`
 								text-align: center;
 								svg:first-child {
 									margin-right: 6px;
-									vertical-align: middle;
+									
 								}
 							}
 						}

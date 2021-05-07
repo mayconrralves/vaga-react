@@ -7,7 +7,6 @@ export default function  PrintOrders({ orders }){
     let total = 0;
     /** Print each table's item */
     const listItemOrders = items => {
-       const keys = Object.keys(items);
        total = 0;
        return items.map((item, index)=>{
            total += parseFloat(item.price) * parseFloat(item.quantityPurchase);

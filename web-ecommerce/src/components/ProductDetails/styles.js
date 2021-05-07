@@ -62,6 +62,7 @@ export const Container = styled.main`
 				text-align: center;
 			}
 			button {
+			  	outline: none;
 				width: 180px;
 				height: 50px;
 				color: #fff;

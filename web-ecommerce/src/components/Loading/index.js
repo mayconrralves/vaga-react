@@ -1,13 +1,22 @@
 import React from 'react';
-import Lottie from 'lottie-react-web'
-import animationData from '../../assets/58003-loading.json'
+import Lottie from 'react-lottie';
+import animationData from '../../assets/58003-loading.json';
+import PropTypes from 'prop-types';
+
 import { Container } from './styles';
+
 export default function  Loading ( { width, height, isImage }) {
+      const defaultOptions = {
+        loop: true,
+        autoplay: true, 
+        animationData: animationData,
+        rendererSettings: {
+          preserveAspectRatio: 'xMidYMid slice'
+        }
+      };
       const LootieAnimation = () => (
           <Lottie
-            options={{
-            animationData
-            }}
+            options={defaultOptions}
             width={ width ? width : '50%'}
             height={ height ? height : '50%'}
         />  
@@ -18,4 +27,10 @@ export default function  Loading ( { width, height, isImage }) {
                   <LootieAnimation />
                 </Container>
    
+}
+
+Loading.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+  isImage: PropTypes.bool,
 }
