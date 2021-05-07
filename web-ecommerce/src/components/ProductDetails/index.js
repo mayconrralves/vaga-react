@@ -44,7 +44,7 @@ export default function ProductDetails() {
 	return product ? ( 
 		<Container  productQuantity={product.quantity} >
 			<section>
-				{!loadingImage && <Loading isImage />}
+				{ !loadingImage && <Loading isImage height='70%' /> }
 				<img 
 					src={product.img.large} 
 					srcSet={`${product.img.middle} 900w,  ${product.img.large} 1280w`}

@@ -20,8 +20,12 @@ export default function Store(){
 			
 			<li key={product.id} >
 				<Link to={'/details/'+ product.id}>
-					{!loadImage && <Loading isImage />}
-					<img onLoad={() => setLoadImage(true)}src={product.img.middle} alt={"imagem de"+ product.description}/>
+					{!loadImage && <Loading height='70%' isImage />}
+					<img 
+						onLoad={() => setLoadImage(true)}
+						src={product.img.middle} 
+						alt={"imagem de"+ product.description}
+					/>
 					<div className="details">
 						<h3>{product.name}</h3>
 						{list && (
@@ -62,7 +66,7 @@ export default function Store(){
 		if(mediaMobile && list) setList(false); 
 	}, [mediaMobile]);
 	return loading ? (
-						<Loading width='40%' height='40%'/>	
+						<Loading width='50%'/>	
 				) : (
 		<Container ifList={list}>
 						{

@@ -17,8 +17,8 @@ export default function  Loading ( { width, height, isImage }) {
       const LootieAnimation = () => (
           <Lottie
             options={defaultOptions}
-            width={ width ? width : '50%'}
-            height={ height ? height : '50%'}
+            width={ width ? width : '100%'}
+            height={ height ? height : '100%'}
         />  
       )
     return isImage 

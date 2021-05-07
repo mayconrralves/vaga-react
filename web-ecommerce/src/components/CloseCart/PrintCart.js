@@ -12,7 +12,7 @@ export default function PrintCart({ products }){
             </div>
             <div>
                 <section>
-                    { !loadImage && <Loading isImage />}
+                    { !loadImage && <Loading isImage height='70%' />}
                     <img 
                         src={product.img.middle} 
                         onLoad={()=>setLoadImage(!loadImage)}

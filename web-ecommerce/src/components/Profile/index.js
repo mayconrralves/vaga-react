@@ -83,6 +83,6 @@ export default function Profile(){
 				</section>	
 			</Container>
 		) : (
-			<Loading />
+			<Loading width='50%'/>
 		)
 }
