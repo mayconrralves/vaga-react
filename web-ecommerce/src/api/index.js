@@ -120,12 +120,14 @@ export const getUser = async () => {
 				auth: token,
 			}
 		});
-		const { address } = otherData.data;
+		const { address, birthDate, phone } = otherData.data;
 		return {
 				displayName,
 				email,
 				address,
-				photoUrl
+				photoUrl,
+				birthDate,
+				phone,
 			}
 			;
 	}
@@ -141,7 +143,7 @@ export const getUser = async () => {
 	address,
 	urlAvatar
 */
-export const updateUser = async ({ address, email, displayName, password}) => {
+export const updateUser = async ({ address, phone, birthDate, email, displayName, password}) => {
 	const user = {};
 	if(email) user.email = email;
 	if(displayName) user.displayName = displayName;
@@ -162,10 +164,12 @@ export const updateUser = async ({ address, email, displayName, password}) => {
 		};
 		await authStorage(email, password);
 
-		if(!address) return dataUser;
+		if(!(address || phone || birthDate )) return dataUser;
 		const otherData  = await api.patch(urlRealtimeDatabase + '/users/' +  transformKeyUser(email) +'.json', 
 			{
-				address,
+				address: address ? address : ' ',
+				birthDate: birthDate ? birthDate : ' ',
+				phone: phone ? phone : ' '
 			},
 			{
 				params: {

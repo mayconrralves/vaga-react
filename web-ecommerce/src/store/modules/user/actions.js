@@ -1,5 +1,5 @@
 
-export  const  updateUser = ({displayName, email, password, address}) =>{
+export  const  updateUser = ({displayName, email, password, address, phone, birthDate }) =>{
 	return {
 		type: '@user/UPDATE_USER_REQUEST',
 		payload: {
@@ -7,6 +7,8 @@ export  const  updateUser = ({displayName, email, password, address}) =>{
 			email,
 			password,
 			address,
+			phone,
+			birthDate,
 		}
 	}
 }

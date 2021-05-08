@@ -13,6 +13,6 @@ export const messageError = msg => {
         case 'INVALID_ARGUMENT':
             return 'Erro na requisição. Campo inválido';
         default:
-            return 'Erro desconhecido';
+            return msg;
     }
 }

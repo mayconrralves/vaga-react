@@ -5,7 +5,25 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import { createUser, updateUser } from '../../store/modules/user/actions';
+import MaskedInput from "react-text-mask";
 
+const phoneNumberMask = [
+  "(",
+  /[1-9]/,
+  /\d/,
+  ")",
+  " ",
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+  "-",
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/
+];
 
 
 export default function FormUser ({ update, user }){
@@ -14,6 +32,8 @@ export default function FormUser ({ update, user }){
 	const [ password, setPassword ] = useState(user ? user.password : '');
 	const [ confirmPassword, setConfirmPassword ] = useState('');
 	const [ address, setAddress ] = useState(user ? user.address : '');
+    const [birthDate, setBirthDate ] = useState(user ? user.birthDate : '');
+    const [phone, setPhone ] = useState(user ? user.phone : '');
 	const dispatch = useDispatch();
 
 	const schemaSignUp = Yup.object().shape({
@@ -23,6 +43,8 @@ export default function FormUser ({ update, user }){
 				  .email("Digite um email válido")
 				  .required("Email é obrigatório"),
         address: Yup.string(),
+        phone: Yup.string(),
+        birthDate: Yup.date(),
 		password: update ? Yup.string()
                               .min(6,"Senha muito curta. Deve ter seis ou mais caracteres") : 
                               Yup.string()
@@ -34,7 +56,7 @@ export default function FormUser ({ update, user }){
 			message: "Password não confere",
 		} ),
 	});
-   
+    console.log(phone, birthDate)
 	return (
             <Formik
                 initialValues={{
@@ -43,18 +65,22 @@ export default function FormUser ({ update, user }){
                     password,
                     confirmPassword,
                     address,
+                    phone,
+                    birthDate,
                 }}
                 validationSchema={schemaSignUp}
                 enableReinitialize={false}
                 onSubmit={ values  => {
-                    const {displayName, email, password, confirmPassword, address } = values;
+                    const {displayName, email, password, confirmPassword, address, birthDate, phone } = values;
                     setDisplayName(displayName);
                     setEmail(email);
                     setPassword(password);
                     setConfirmPassword(confirmPassword);
+                    update && setBirthDate(birthDate);
+                    update && setPhone(phone);
                     update && setAddress(address);
                     update ? 
-                        dispatch(updateUser({displayName, email, password, address})) 
+                        dispatch(updateUser({displayName, email, password, address, birthDate, phone})) 
                         : 
                         dispatch(createUser({displayName, email, password}));
                     }}
@@ -64,18 +90,30 @@ export default function FormUser ({ update, user }){
                             <p className="msg-error"><ErrorMessage name="displayName" /></p>
                             <Field name='email' type='email' placeholder='Seu email...' />
                             <p className="msg-error"><ErrorMessage name="email" /></p>
+                            <Field name='password' type='password' placeholder='Sua senha...' />
+                            <p className="msg-error"><ErrorMessage name="password" /></p>
+                            <Field name='confirmPassword' type='password' placeholder='Confirme sua senha...' />
+                            <p className="msg-error"><ErrorMessage name="confirmPassword" /></p>
                             {
                                 update && (
                                     <>
                                         <Field name='address' type='text' placeholder='Seu Endereço...' />
                                         <p className="msg-error"><ErrorMessage name="address" /></p>
+                                        <Field name='phone' type='tel' placeholder='Seu Telefone...' 
+                                            render={({ field }) => (
+                                                <MaskedInput
+                                                  {...field}
+                                                  mask={phoneNumberMask}
+                                                  id="phone"
+                                                />
+                                              )}
+                                        />
+                                        <p className="msg-error"><ErrorMessage name="phone" /></p>
+                                        <Field name='birthDate' type='date' placeholder='Sua Data de Aniversário...' />
+                                        <p className="msg-error"><ErrorMessage name="birthDate" /></p>
                                     </>
                                 )
                             }					
-                            <Field name='password' type='password' placeholder='Sua senha...' />
-                            <p className="msg-error"><ErrorMessage name="password" /></p>
-                            <Field name='confirmPassword' type='password' placeholder='Confirme sua senha...' />
-                            <p className="msg-error"><ErrorMessage name="confirmPassword" /></p>
                             <Field 
                                 name={ update ? 'profile' : 'signup' } 
                                 type='submit' 

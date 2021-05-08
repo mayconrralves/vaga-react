@@ -20,7 +20,7 @@ export default function Store(){
 			
 			<li key={product.id} >
 				<Link to={'/details/'+ product.id}>
-					{!loadImage && <Loading height='70%' isImage />}
+					{ !loadImage && <Loading height='70%' isImage /> }
 					<img 
 						onLoad={() => setLoadImage(true)}
 						src={product.img.middle} 
