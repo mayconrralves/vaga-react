@@ -9,20 +9,20 @@ import MaskedInput from "react-text-mask";
 
 const phoneNumberMask = [
   "(",
-  /[1-9]/,
-  /\d/,
-  ")",
-  " ",
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/,
-  "-",
-  /\d/,
-  /\d/,
-  /\d/,
-  /\d/
+    /[1-9]/,
+    /\d/,
+    ")",
+    " ",
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    "-",
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/
 ];
 
 
