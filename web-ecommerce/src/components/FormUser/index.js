@@ -43,7 +43,11 @@ export default function FormUser ({ update, user }){
 				  .email("Digite um email válido")
 				  .required("Email é obrigatório"),
         address: Yup.string(),
-        phone: Yup.string(),
+        phone: Yup.string()
+                  .matches(/^\(\d{2}\)\s\d{5}-\d{4}$/, 
+                            'Telefone Inválido', 
+                            { excludeEmptyString: true }
+                    ),
         birthDate: Yup.date(),
 		password: update ? Yup.string()
                               .min(6,"Senha muito curta. Deve ter seis ou mais caracteres") : 
@@ -56,7 +60,6 @@ export default function FormUser ({ update, user }){
 			message: "Password não confere",
 		} ),
 	});
-    console.log(phone, birthDate)
 	return (
             <Formik
                 initialValues={{
@@ -71,7 +74,15 @@ export default function FormUser ({ update, user }){
                 validationSchema={schemaSignUp}
                 enableReinitialize={false}
                 onSubmit={ values  => {
-                    const {displayName, email, password, confirmPassword, address, birthDate, phone } = values;
+                    const {
+                        displayName, 
+                        email, 
+                        password, 
+                        confirmPassword, 
+                        address, 
+                        birthDate, 
+                        phone 
+                    } = values;
                     setDisplayName(displayName);
                     setEmail(email);
                     setPassword(password);
@@ -99,15 +110,17 @@ export default function FormUser ({ update, user }){
                                     <>
                                         <Field name='address' type='text' placeholder='Seu Endereço...' />
                                         <p className="msg-error"><ErrorMessage name="address" /></p>
-                                        <Field name='phone' type='tel' placeholder='Seu Telefone...' 
-                                            render={({ field }) => (
+                                        <Field name='phone' type='tel' placeholder='Seu Telefone...'>
+
+                                            { ({ field }) => (
                                                 <MaskedInput
                                                   {...field}
                                                   mask={phoneNumberMask}
                                                   id="phone"
                                                 />
                                               )}
-                                        />
+                                        </Field>
+                                        
                                         <p className="msg-error"><ErrorMessage name="phone" /></p>
                                         <Field name='birthDate' type='date' placeholder='Sua Data de Aniversário...' />
                                         <p className="msg-error"><ErrorMessage name="birthDate" /></p>

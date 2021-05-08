@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Link } from 'react-router-dom';
+
 import { Container } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../store/modules/products/actions';
@@ -8,39 +8,15 @@ import { FiSearch, FiList, FiColumns } from "react-icons/fi";
 import {isMobile} from 'react-device-detect';
 
 import Loading from '../Loading';
+import ListProducts from './ListProducts';
 export default function Store(){	
 	const [productSearch, setProductSearch] = useState('');
-	const [list, setList] = useState(false);
-	const [loadImage, setLoadImage] = useState(false);
+	const [isList, setIsList] = useState(false);
+
 	const dispatch = useDispatch();
 	const { msgError, products, loading } = useSelector(state=>state.products);
 	const mediaMobile = useMediaQuery({ query: `(max-width: 650px)` });
-	const listProducts = ( products ) => {
-		return products.map(product=>(
-			
-			<li key={product.id} >
-				<Link to={'/details/'+ product.id}>
-					{ !loadImage && <Loading height='70%' isImage /> }
-					<img 
-						onLoad={() => setLoadImage(true)}
-						src={product.img.middle} 
-						alt={"imagem de"+ product.description}
-					/>
-					<div className="details">
-						<h3>{product.name}</h3>
-						{list && (
-							<>
-								<p><strong>Marca:</strong> {product.brand}</p>
-								<p><strong>Descrição:</strong>  {product.description}</p>
-								<p><strong>Quantidade: </strong> {product.quantity}  unidades</p>
-							</>
-						)}
-						<p> R$ {product.price}</p>
-					</div>
-				</Link>
-			</li>
-			));
-		}
+	
 		
 		const filterProducts = () => {
 			const re = new RegExp(productSearch);
@@ -68,7 +44,7 @@ export default function Store(){
 	return loading ? (
 						<Loading width='50%'/>	
 				) : (
-		<Container ifList={list}>
+		<Container ifList={isList}>
 						{
 							msgError ? (
 								<div className='errorMessage'>{msgError}</div>
@@ -85,12 +61,19 @@ export default function Store(){
 												/>
 												<FiSearch />
 											</div>
-											<button onClick={()=> setList(!list)}>
-												{  !list ? <FiList /> : <FiColumns/> }
+											<button onClick={()=> setIsList(!isList)}>
+												{  !isList ? <FiList /> : <FiColumns/> }
 											</button>
 										</section>
 										<ul>
-											{productSearch ? filterProducts () : listProducts(products)}
+											{
+											productSearch 
+												? filterProducts () 
+												: <ListProducts 
+														products={products} 
+														isList={isList}
+												/>
+											}
 										</ul>
 									</>
 								)
