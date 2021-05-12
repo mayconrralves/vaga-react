@@ -73,6 +73,11 @@ export const Container = styled.main`
 				font-weight: bold;
 				margin-left: 16px;
 			}
+			strong {
+				color: rgba(255,0,0,0.8);
+				font-size: 1.2em;
+				font-weight: bold;
+			}
 		}
 	}
 `;

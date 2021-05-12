@@ -39,7 +39,7 @@ export default function Store(){
 		}
 	  }
 	useEffect(()=> {
-		if(mediaMobile && list) setList(false); 
+		if(mediaMobile && isList) setList(false); 
 	}, [mediaMobile]);
 	return loading ? (
 						<Loading width='50%'/>	
