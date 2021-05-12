@@ -29,7 +29,7 @@ const phoneNumberMask = [
 export default function FormUser ({ update, user }){
 	const [ displayName, setDisplayName ] = useState(user ? user.displayName : '');
 	const [ email, setEmail ] = useState(user ? user.email : '');
-	const [ password, setPassword ] = useState(user ? user.password : '');
+	const [ password, setPassword ] = useState('');
 	const [ confirmPassword, setConfirmPassword ] = useState('');
 	const [ address, setAddress ] = useState(user ? user.address : '');
     const [birthDate, setBirthDate ] = useState(user ? user.birthDate : '');
@@ -48,7 +48,10 @@ export default function FormUser ({ update, user }){
                             'Telefone Inválido', 
                             { excludeEmptyString: true }
                     ),
-        birthDate: Yup.date(),
+        birthDate: Yup.date("Data inválida")
+                      .nullable()
+                      .min('1900-01-01', 'Data muito antiga')
+                      .max(new Date(), 'A data de hoje não pode ser usada'),
 		password: update ? Yup.string()
                               .min(6,"Senha muito curta. Deve ter seis ou mais caracteres") : 
                               Yup.string()
@@ -101,7 +104,7 @@ export default function FormUser ({ update, user }){
                             <p className="msg-error"><ErrorMessage name="displayName" /></p>
                             <Field name='email' type='email' placeholder='Seu email...' />
                             <p className="msg-error"><ErrorMessage name="email" /></p>
-                            <Field name='password' type='password' placeholder='Sua senha...' />
+                            <Field name='password' type='password' placeholder='Confirme sua senha...' />
                             <p className="msg-error"><ErrorMessage name="password" /></p>
                             <Field name='confirmPassword' type='password' placeholder='Confirme sua senha...' />
                             <p className="msg-error"><ErrorMessage name="confirmPassword" /></p>

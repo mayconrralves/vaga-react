@@ -41,6 +41,9 @@ export const Container = styled.header`
 		align-items: baseline;
 		justify-content: flex-end;
 		margin-right: 50px;
+		${mediaScreenMobile(`
+			margin-right: 15px;
+		`)}
 		
 		button {
 			width: 80px;

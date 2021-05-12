@@ -6,26 +6,25 @@ export const Container = styled.div`
     height: auto;
     span {
         display: flex;
-        width: 90px;
+        width: 100px;
         height: 22px;
         background-color: ${backgroundStyled};
         color: white;
         border-radius: 6px;
         font-size: 1em;
-        position: absolute;
+        position: relative;
         visibility: hidden;
         margin-left: -60px;
         align-items: center;
         justify-content: center;
         font-weight: bold;
         z-index: 1;
-        top: 10%;
-        right: -2px;
+        left: 30px;
         &::before {
             content: "";
-            position: absolute;
-            bottom: 100%;
-            right: 48%;
+            position: relative;
+            bottom: 16px;
+            left: 70px;
             margin-left: -5px;
             border-width: 5px;
             border-style: solid;
