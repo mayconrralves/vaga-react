@@ -8,6 +8,7 @@ import { FiMenu } from "react-icons/fi";
 import { signOut} from '../../store/modules/auth/actions';
 import { Container } from './styles';
 import Title from '../Title';
+import TipsTools from '../TipsTools';
 
 export default function Header({ isMenu }){
 	const token = useSelector(state => state.auth.token);
@@ -36,7 +37,9 @@ export default function Header({ isMenu }){
 					<Link to="/menu" id='menu-mobile'>
 						<FiMenu/>
 					</Link> }
-				<Link to='/cart'><FaShoppingCart /></Link>
+					<TipsTools message="Carrinho" >
+						<Link to='/cart'><FaShoppingCart /></Link>
+					</TipsTools>	
 			</nav>
 		</Container>
 		);
