@@ -43,7 +43,7 @@ export default function Profile(){
 	}
 
 	useEffect(()=> {
-		 dispatch(getUser());
+		dispatch(getUser());
 	},[]);
 
 	useEffect(() => {

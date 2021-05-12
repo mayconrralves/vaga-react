@@ -5,6 +5,7 @@ import { signOut } from '../auth/actions';
 import { 
 	successRequest as successRequestUser, 
 	failedRequest as failedRequestUser,
+	failedGetRequest,
 	successUpdateRequest, 
 } from './actions';
 import { 
@@ -35,7 +36,7 @@ export function* getCurrentUser(){
 		if(response.error.message === 'INVALID_ID_TOKEN'){
 			yield put(signOut());
 		}
-		return yield put(failedRequestUser(response.error));
+		return yield put(failedGetRequest(response.error));
 	}
 	return yield put(successRequestUser(response));
 }

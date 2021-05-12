@@ -7,6 +7,7 @@ const INITIAL_STATE = {
 	msgError: '',
 	loading: false,
 	update: false,
+	getFail: false,
 }
 
 export default function reducer(state=INITIAL_STATE, action){
@@ -27,7 +28,7 @@ export default function reducer(state=INITIAL_STATE, action){
 			});
 		case '@user/GET_USER_REQUEST':
 			return produce(state, draft=>{
-				draft.fail = false;
+				draft.getFail = false;
 				draft.success = false;
 				draft.loading = true;
 			});
@@ -45,6 +46,12 @@ export default function reducer(state=INITIAL_STATE, action){
 		case '@user/FAILED_REQUEST':
 			return produce(state, draft=>{
 				draft.fail = true;
+				draft.msgError = action.payload.msg;
+				draft.loading = false;
+			});
+		case '@user/FAILED_GET_REQUEST':
+			return produce(state, draft=>{
+				draft.getFail = true;
 				draft.msgError = action.payload.msg;
 				draft.loading = false;
 			});

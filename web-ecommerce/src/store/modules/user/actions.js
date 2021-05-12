@@ -30,7 +30,7 @@ export const createUser = ({displayName, email, password}) => {
 	}
 }
 
-export const successRequest = (user) => {
+export const successRequest = user => {
 	return {
 		type: '@user/SUCCESS_REQUEST',
 		payload: {
@@ -43,9 +43,18 @@ export const successUpdateRequest = () => {
 		type: '@user/SUCCESS_UPDATE_REQUEST',
 	}
 }
-export const failedRequest = (msg) => {
+export const failedRequest = msg => {
 	return {
 		type: '@user/FAILED_REQUEST',
+		payload : {
+			msg,
+		}
+	}
+}
+
+export const failedGetRequest = msg => {
+	return {
+		type: '@user/FAILED_GET_REQUEST',
 		payload : {
 			msg,
 		}
@@ -58,7 +67,7 @@ export const cleanUser = () => {
 	}
 }
 
-export const setAvatar = (file) => {
+export const setAvatar = file => {
 	return {
 		type: '@user/SET_AVATAR',
 		payload : {

@@ -19,7 +19,6 @@ export default function SignIn(){
 		password: Yup.string().required("Password é requerido"),
 	});
 	useEffect(()=> {
-		console.log(fail, msgError);
 		if(fail) toastMessageError(msgError);
 	}, [fail]);
 	return (
