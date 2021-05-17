@@ -17,9 +17,7 @@ export default function Orders(){
     return successOrder ? (
         <Container>
              <h2 id="my-orders"> Meus Pedidos </h2>
-            <ul>
-                <PrintOrders orders={orders}/>
-            </ul>
+             <PrintOrders orders={orders}/>
           {orders.length && <a href="#my-orders">Voltar ao início</a>}
         </Container>
     ) : (
