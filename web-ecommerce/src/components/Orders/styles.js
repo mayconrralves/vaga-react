@@ -47,6 +47,7 @@ export const Container = styled.main`
             border-radius: 10px;
             padding: 10px;
             color: #fff;
+           
             h3 {
                 margin: 6px 0 18px 0;
                 ${styledMobile500(`
@@ -76,6 +77,13 @@ export const Container = styled.main`
                 }
             }
         }
+    }
+    .no-orders{
+        font-size: 1.5em;
+        font-weight: bold;
+        text-align: center;
+        padding-top: 20px;
+        color: #fff;
     }
     a {
         margin-top: 20px;

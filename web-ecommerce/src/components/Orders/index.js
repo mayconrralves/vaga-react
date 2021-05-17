@@ -20,7 +20,7 @@ export default function Orders(){
             <ul>
                 <PrintOrders orders={orders}/>
             </ul>
-            <a href="#my-orders">Voltar ao início</a>
+          {orders.length && <a href="#my-orders">Voltar ao início</a>}
         </Container>
     ) : (
         <Loading width='40%' height='40%'/>

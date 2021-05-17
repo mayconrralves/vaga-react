@@ -22,34 +22,40 @@ export default function  PrintOrders({ orders }){
        )});
     }
 
-    return orderKeys.length ? orderKeys.map((key)=> (
-        <li key={key}>
-                <h3>Pedido: {key}</h3>
-                <table>
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Unidades</th>
-                        <th>Preço</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {   
-                    listItemOrders(orders[key])
-                }
-                </tbody> 
-                <tfoot>
-                    <tr>
-                        <td colSpan={2}> Valor Total: </td>
-                        <td colSpan={3}>R$ {total.toFixed(2).replace('.', ',')}</td>
-                    </tr>
-                </tfoot>    
-            </table>
-        </li>
-    )) : (
-        <p>Você não fez nenhum pedido.</p>
+    return   orderKeys.length ? (
+        <ul>
+            {
+               orderKeys.map((key)=> (
+                    <li key={key}>
+                            <h3>Pedido: {key}</h3>
+                            <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Descrição</th>
+                                    <th>Unidades</th>
+                                    <th>Preço</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {   
+                                listItemOrders(orders[key])
+                            }
+                            </tbody> 
+                            <tfoot>
+                                <tr>
+                                    <td colSpan={2}> Valor Total: </td>
+                                    <td colSpan={3}>R$ {total.toFixed(2).replace('.', ',')}</td>
+                                </tr>
+                            </tfoot>    
+                        </table>
+                    </li>
+                ))
+            }
+        </ul>
+    ) : (
+        <p className="no-orders">Você não fez nenhum pedido.</p>
     )
 }
 
