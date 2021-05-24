@@ -10,16 +10,34 @@ import { Container } from './styles';
 export default function Footer(){
     return (
         <Container>
-            <a href='https://www.facebook.com' target="_blank" rel="noopener noreferrer">
+            <a 
+                data-testid="facebook"
+                href='https://www.facebook.com' 
+                target="_blank" 
+                rel="noopener noreferrer"
+            >
                 <FaFacebookSquare />
             </a>
-            <a href='https://twitter.com/' target="_blank" rel="noopener noreferrer" >
+            <a 
+                data-testid="twitter" 
+                href='https://www.twitter.com'
+                target="_blank" 
+                rel="noopener noreferrer" 
+            >
                 <FaTwitterSquare />
             </a>
-            <a href='https://www.instagram.com' target="_blank" rel="noopener noreferrer">
+            <a 
+                data-testid="instagram"
+                href='https://www.instagram.com' 
+                target="_blank" 
+                rel="noopener noreferrer"
+            >
                 <FaInstagramSquare />
             </a>
-            <a href='#' rel="noopener noreferrer" >
+            <a 
+                data-testid="mailto"
+                href='mailto:teste@teste.com'
+                rel="noopener noreferrer" >
                 <AiOutlineMail />
             </a>
         </Container>
