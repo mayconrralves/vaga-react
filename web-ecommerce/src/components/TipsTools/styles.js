@@ -4,6 +4,8 @@ const backgroundStyled = `rgba(152,152,152, 0.8)`;
 export const Container = styled.div`
     width: auto;
     height: auto;
+    display: flex;
+    
     span {
         display: flex;
         width: 100px;
@@ -14,12 +16,13 @@ export const Container = styled.div`
         font-size: 1em;
         position: relative;
         visibility: hidden;
-        margin-left: -60px;
+        margin-left: -90px;
         align-items: center;
         justify-content: center;
         font-weight: bold;
         z-index: 1;
-        left: 30px;
+        right: 8px;
+        top: 36px;
         &::before {
             content: "";
             position: relative;

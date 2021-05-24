@@ -38,7 +38,7 @@ export const Container = styled.header`
 		`)}
 		width: 450px;
 		display: flex;
-		align-items: baseline;
+		align-items: center;
 		justify-content: flex-end;
 		margin-right: 50px;
 		${mediaScreenMobile(`
