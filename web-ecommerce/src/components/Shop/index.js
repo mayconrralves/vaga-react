@@ -21,7 +21,7 @@ export default function Store(){
 		const filterProducts = () => {
 			const re = new RegExp(productSearch);
 			const filter = products.filter(product=> !!product.name.toLowerCase().match(re));
-			return listProducts(filter)
+			return <ListProducts products={ filter } isList={isList} />
 		}
 		const searchProduct = event => {
 			setProductSearch(event.target.value.toLowerCase());
