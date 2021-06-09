@@ -21,11 +21,20 @@ describe('Footer', () => {
     test('Existe um link para o twitter', () =>{
         expect(screen.getByTestId('twitter').getAttribute('href')).toEqual('https://www.twitter.com');
     })
+    test('Link para o twitter tem um ícone', () => {
+        expect(screen.getByTestId('twitter').getElementsByTagName('svg').length).toEqual(1);
+    });
     test('Existe um link para o instagram', ()=>{
          expect(screen.getByTestId('instagram').getAttribute('href')).toEqual('https://www.instagram.com');
     });
+    test('Link para o instagram tem um ícone', () => {
+        expect(screen.getByTestId('instagram').getElementsByTagName('svg').length).toEqual(1);
+    });
     test('Existe um link para o email', ()=>{
         expect(screen.getByTestId('mailto').getAttribute('href')).toEqual('mailto:teste@teste.com');
+    });
+    test('Link para o mailto tem um ícone', () => {
+        expect(screen.getByTestId('mailto').getElementsByTagName('svg').length).toEqual(1);
     });
   });
 

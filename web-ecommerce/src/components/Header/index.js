@@ -34,11 +34,13 @@ export default function Header({ isMenu }){
 				}
 				<Link to='/shop' className='menu menu-item'>Shop</Link>
 				{ isMobile && !isMenu && 
-					<Link to="/menu" id='menu-mobile'>
+					<Link data-testid='menu-mobile' to="/menu" id='menu-mobile'>
 						<FiMenu/>
 					</Link> }
 					<TipsTools message="Carrinho" >
-						<Link to='/cart'><FaShoppingCart /></Link>
+						<Link data-testid='carrinho' to='/cart'>
+							<FaShoppingCart />
+						</Link>
 					</TipsTools>	
 			</nav>
 		</Container>
