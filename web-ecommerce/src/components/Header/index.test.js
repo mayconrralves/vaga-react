@@ -30,6 +30,7 @@ jest.mock('react-redux');
 jest.mock('react-responsive');
 
 describe('Header: required tags', ()=>{
+
     test('if token exits', ()=>{
         mockStateToken('token');
         expect(screen.getByText('Sair')).toBeTruthy();
@@ -38,6 +39,7 @@ describe('Header: required tags', ()=>{
         expect(screen.getByText('Shop')).toBeTruthy();
         expect(screen.getByTestId('carrinho').getElementsByTagName('svg').length).toEqual(1);
     });
+    
     test("When the button 'Sair' is clicked", ()=>{
         const dispatch = jest.fn();
         useDispatch.mockReturnValue(dispatch);
@@ -60,6 +62,6 @@ describe('Header: required tags', ()=>{
         useMediaQuery.mockReturnValue(true);
         renderPage();
         expect(screen.getByTestId('menu-mobile').getElementsByTagName('svg').length).toEqual(1);
-    })
+    });
 });
 

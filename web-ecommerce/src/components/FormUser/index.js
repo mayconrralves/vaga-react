@@ -35,7 +35,6 @@ export default function FormUser ({ update, user }){
     const [birthDate, setBirthDate ] = useState(user ? user.birthDate : '');
     const [phone, setPhone ] = useState(user ? user.phone : '');
 	const dispatch = useDispatch();
-
 	const schemaSignUp = Yup.object().shape({
 		displayName: Yup.string()
 						.required("Nome é obrigatório"),
@@ -56,7 +55,7 @@ export default function FormUser ({ update, user }){
                               .min(6,"Senha muito curta. Deve ter seis ou mais caracteres") : 
                               Yup.string()
                                  .min(6,"Senha muito curta. Deve ter seis ou mais caracteres")
-                                 .required("Senha obrigatória"),
+                                 .required("Senha é obrigatória"),
 		confirmPassword: Yup.string().test({
 			name: 'password-match',
 			test: function(value) { return this.parent.password === value },
@@ -76,7 +75,7 @@ export default function FormUser ({ update, user }){
                 }}
                 validationSchema={schemaSignUp}
                 enableReinitialize={false}
-                onSubmit={ values  => {
+                onSubmit={ async (values)  => {
                     const {
                         displayName, 
                         email, 
@@ -99,38 +98,40 @@ export default function FormUser ({ update, user }){
                         dispatch(createUser({displayName, email, password}));
                     }}
             >
-                        <Form>
-                            <Field name='displayName' type='text' placeholder='Seu Nome...' />
+                        <Form data-testid='form'>
+                            <Field name='displayName' type='text' placeholder='Seu Nome...' data-testid='display-name'/>
                             <p className="msg-error"><ErrorMessage name="displayName" /></p>
-                            <Field name='email' type='email' placeholder='Seu email...' />
+                            <Field name='email' type='email' placeholder='Seu email...' data-testid='email'/>
                             <p className="msg-error"><ErrorMessage name="email" /></p>
-                            <Field name='password' type='password' placeholder='Confirme sua senha...' />
+                            <Field name='password' type='password' placeholder='Sua senha...' data-testid='password'/>
                             <p className="msg-error"><ErrorMessage name="password" /></p>
-                            <Field name='confirmPassword' type='password' placeholder='Confirme sua senha...' />
+                            <Field name='confirmPassword' type='password' placeholder='Confirme sua senha...' data-testid='confirm-password'/>
                             <p className="msg-error"><ErrorMessage name="confirmPassword" /></p>
                             {
                                 update && (
                                     <>
-                                        <Field name='address' type='text' placeholder='Seu Endereço...' />
+                                        <Field name='address' data-testid='address' type='text' placeholder='Seu Endereço...' />
                                         <p className="msg-error"><ErrorMessage name="address" /></p>
-                                        <Field name='phone' type='tel' placeholder='Seu Telefone...'>
-
+                                        <Field name='phone' >
                                             { ({ field }) => (
-                                                <MaskedInput
-                                                  {...field}
-                                                  mask={phoneNumberMask}
-                                                  id="phone"
+                                                 <MaskedInput
+                                                    { ...field }
+                                                    mask={phoneNumberMask}
+                                                    id="phone"
+                                                    type='tel'
+                                                    data-testid='phone'
+                                                    placeholder='Seu Telefone...'
                                                 />
-                                              )}
+                                            )}
                                         </Field>
-                                        
                                         <p className="msg-error"><ErrorMessage name="phone" /></p>
-                                        <Field name='birthDate' type='date' placeholder='Sua Data de Aniversário...' />
+                                        <Field name='birthDate' data-testid='birth-date' type='date' placeholder='Sua Data de Aniversário...' />
                                         <p className="msg-error"><ErrorMessage name="birthDate" /></p>
                                     </>
                                 )
                             }					
-                            <Field 
+                            <Field
+                                data-testid='signup'
                                 name={ update ? 'profile' : 'signup' } 
                                 type='submit' 
                                 value={ update ? 'Atualizar' : 'Enviar' }
