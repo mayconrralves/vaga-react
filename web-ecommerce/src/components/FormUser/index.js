@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types'; 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { subDays } from 'date-fns';
 import * as Yup from 'yup';
 
 import { createUser, updateUser } from '../../store/modules/user/actions';
@@ -50,7 +51,7 @@ export default function FormUser ({ update, user }){
         birthDate: Yup.date("Data inválida")
                       .nullable()
                       .min('1900-01-01', 'Data muito antiga')
-                      .max(new Date(), 'A data de hoje não pode ser usada'),
+                      .max(subDays(new Date(),1), 'Essa data não pode ser usada'),
 		password: update ? Yup.string()
                               .min(6,"Senha muito curta. Deve ter seis ou mais caracteres") : 
                               Yup.string()

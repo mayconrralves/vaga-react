@@ -1,22 +1,28 @@
 import React from 'react';
 import { fireEvent, render, screen,  waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import  { useDispatch, useSelector } from 'react-redux';
+import  { useDispatch } from 'react-redux';
 
 import FormUser from '.';
 
 jest.mock('react-redux');
 
-const renderPage = ( update ) => {
+const renderPage = ( update, user=null ) => {
     const { container } = render(
         <MemoryRouter>
            {
-               update ?  <FormUser update/> : <FormUser />
+               update ?  <FormUser update user={user}/> : <FormUser />
            }
         </MemoryRouter>
  )
  return container;
+}
+
+async function  submitForm (){
+    await waitFor(()=>{
+        fireEvent.submit(screen.getByTestId('form'));
+    });
+
 }
 describe('Form User', () =>{
     
@@ -32,7 +38,7 @@ describe('Form User', () =>{
         const container = renderPage();
         expect(container.getElementsByTagName('form').length).toEqual(1);
     });
-    test('input tags no update props', () => {
+    test('if there is no update props', () => {
         renderPage();
         expect(screen.getByTestId('display-name').getAttribute('name')).toBe('displayName');
         expect(screen.getByTestId('display-name').getAttribute('type')).toBe('text');
@@ -49,6 +55,33 @@ describe('Form User', () =>{
         expect(screen.getByTestId('signup').getAttribute('name')).toBe('signup');
         expect(screen.getByTestId('signup').getAttribute('type')).toBe('submit');
         expect(screen.getByTestId('signup').getAttribute('value')).toBe('Enviar'); 
+    });
+    test('there is update props', () => {
+        renderPage(true);
+        expect(screen.getByTestId('display-name').getAttribute('name')).toBe('displayName');
+        expect(screen.getByTestId('display-name').getAttribute('type')).toBe('text');
+        expect(screen.getByTestId('display-name').getAttribute('placeholder')).toBe('Seu Nome...');
+        expect(screen.getByTestId('email').getAttribute('name')).toBe('email');
+        expect(screen.getByTestId('email').getAttribute('type')).toBe('email');
+        expect(screen.getByTestId('email').getAttribute('placeholder')).toBe('Seu email...');
+        expect(screen.getByTestId('address').getAttribute('name')).toBe('address');
+        expect(screen.getByTestId('address').getAttribute('type')).toBe('text');
+        expect(screen.getByTestId('address').getAttribute('placeholder')).toBe('Seu Endereço...'); 
+        expect(screen.getByTestId('phone').getAttribute('name')).toBe('phone');
+        expect(screen.getByTestId('phone').getAttribute('type')).toBe('tel');
+        expect(screen.getByTestId('phone').getAttribute('placeholder')).toBe('Seu Telefone...'); 
+        expect(screen.getByTestId('birth-date').getAttribute('name')).toBe('birthDate');
+        expect(screen.getByTestId('birth-date').getAttribute('type')).toBe('date');
+        expect(screen.getByTestId('birth-date').getAttribute('placeholder')).toBe('Sua Data de Aniversário...'); 
+        expect(screen.getByTestId('password').getAttribute('name')).toBe('password');
+        expect(screen.getByTestId('password').getAttribute('type')).toBe('password');
+        expect(screen.getByTestId('password').getAttribute('placeholder')).toBe('Sua senha...');
+        expect(screen.getByTestId('confirm-password').getAttribute('name')).toBe('confirmPassword');
+        expect(screen.getByTestId('confirm-password').getAttribute('type')).toBe('password');
+        expect(screen.getByTestId('confirm-password').getAttribute('placeholder')).toBe('Confirme sua senha...');
+        expect(screen.getByTestId('signup').getAttribute('name')).toBe('profile');
+        expect(screen.getByTestId('signup').getAttribute('type')).toBe('submit');
+        expect(screen.getByTestId('signup').getAttribute('value')).toBe('Atualizar'); 
     });
     test ('input tags with update props', () =>{
         renderPage(true);
@@ -95,9 +128,8 @@ describe('Form User', () =>{
                 }
             } );
         });
-        await waitFor(()=>{
-            fireEvent.submit(screen.getByTestId('form'));
-        });
+
+        await submitForm();
 
         expect(screen.getByTestId('email').value).toBe(testEmail);
         expect(screen.getByTestId('display-name').value).toBe(testName);
@@ -139,12 +171,28 @@ describe('Form User', () =>{
                 }
             });
         });
-        await waitFor(()=>{
-            fireEvent.submit(screen.getByTestId('form') );
-        });
+        await submitForm();
         expect(screen.getByText("Password não confere")).toBeTruthy();
     });
-
+    test('if password is smaller than allowed', async ()=>{
+        renderPage();
+        await waitFor(()=>{
+            fireEvent.change(screen.getByTestId('password'), {
+                target: {
+                    value: '1234',
+                }
+            });
+        });
+        await waitFor(()=>{
+            fireEvent.change(screen.getByTestId('confirm-password'), {
+                target: {
+                    value: '1234',
+                }
+            });
+        });
+        await submitForm();
+        expect(screen.getByText('Senha muito curta. Deve ter seis ou mais caracteres')).toBeTruthy();
+    });
     test('if email is not valid', async ()=>{
         renderPage();
         await waitFor(()=>{
@@ -186,9 +234,7 @@ describe('Form User', () =>{
                 },
             });
         });
-        await waitFor(()=>{
-            fireEvent.submit(screen.getByTestId('form'));
-        });
+        await submitForm();
 
         expect(screen.getByTestId('phone').value).toBe(testPhone);
         expect(screen.getByTestId('birth-date').value).toBe(testBirthDate);
@@ -204,15 +250,12 @@ describe('Form User', () =>{
                 }
             })
         });
-        await waitFor(()=>{
-            fireEvent.submit(screen.getByTestId('form'));
-        });
+        await submitForm();
         expect(screen.getByText('Data muito antiga')).toBeTruthy();
     });
     test('if date is futute or today', async ()=>{
         renderPage(true);
         const date = new Date().toISOString().match(/\d{4}-\d{2}-\d{2}/g)[0];
-        console.log(date)
         await waitFor(()=>{
             fireEvent.change(screen.getByTestId('birth-date'),{
                 target: {
@@ -220,8 +263,28 @@ describe('Form User', () =>{
                 }
             });
         });
+        await submitForm();
+        expect(screen.getByText('Essa data não pode ser usada')).toBeTruthy();
+    });
+    test('if phone is not valid', async ()=>{
+        renderPage(true);
         await waitFor(()=>{
-            fireEvent.submit(screen.getByTestId('form'));
+            fireEvent.change(screen.getByTestId('phone'), {
+                target: {
+                    value: '3333'
+                }
+            });
+        });
+        await submitForm();
+        expect(screen.getByText('Telefone Inválido')).toBeTruthy();
+    });
+    test('if user is already registered', ()=> {
+        renderPage(true, {
+            name: testName,
+            email: testEmail,
+            address: testAddress,
+            birthDate: testBirthDate,
+            phone: testPhone,
         });
         screen.debug();
     });
