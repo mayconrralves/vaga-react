@@ -6,12 +6,12 @@ import { useMediaQuery } from 'react-responsive';
 import Header from './index';
 
 
+
 const stateSimulation = {
     auth:{
         token: '',
     }
 };
-//configure useSelector
 const renderPage = () => {
     render(
         <MemoryRouter>
@@ -19,6 +19,7 @@ const renderPage = () => {
         </MemoryRouter>
  )
 }
+//configure useSelector
 const mockStateToken = token => {
     stateSimulation.auth.token = token;
     useSelector.mockImplementation( selector => selector( stateSimulation ));

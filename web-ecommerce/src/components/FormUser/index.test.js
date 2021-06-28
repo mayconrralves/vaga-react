@@ -175,7 +175,7 @@ describe('Form User', () =>{
 
     describe('if user is already registered', ()=>{
         
-        test ("form with exclusive fields for update a user's profile", () =>{
+        test ("exclusive fields for update a user's profile", () =>{
             renderPage(true);
             expect(screen.getByTestId('phone').getAttribute('name')).toBe('phone');
             expect(screen.getByTestId('phone').getAttribute('type')).toBe('tel');
@@ -211,7 +211,7 @@ describe('Form User', () =>{
                     target: {
                         value: '1899-01-01',
                     }
-                })
+                });
             });
             await submitForm();
             expect(screen.getByText('Data muito antiga')).toBeTruthy();
@@ -241,7 +241,7 @@ describe('Form User', () =>{
             await submitForm();
             expect(screen.getByText('Telefone Inválido')).toBeTruthy();
         });
-        test('if phone, birthDate, address  are valid  when update user data', async ()=>{
+        test('if phone, birthDate, address  are valid  when update the user data the first  time', async ()=>{
             const dispatch = jest.fn();
             useDispatch.mockReturnValue(dispatch);
             renderPage(true);
@@ -274,6 +274,69 @@ describe('Form User', () =>{
             expect(screen.getByTestId('address').value).toBe(testAddress);
     
         });
-
+        test('if fields changed and are valid  when update the user data', async ()=>{
+            const dispatch = jest.fn();
+            useDispatch.mockReturnValue(dispatch);
+            renderPage(true, {
+                displayName: testName,
+                email: testEmail,
+                address: testAddress,
+                birthDate: testBirthDate,
+                phone: testPhone,
+            });
+            const newPhone =  '(33) 22222-2222';
+            const newAddress = 'Test Adrress 02';
+            const newBirthDate = '2008-10-18';
+            const newName = 'Test 02';
+            const newEmail = 'test02@test.com';
+            await waitFor(()=>{
+                fireEvent.change(screen.getByTestId('phone'), {
+                    target: {
+                        value: newPhone,
+                    },
+                }
+            )});
+            await waitFor(()=>{
+                fireEvent.change(screen.getByTestId ('address'), {
+                    target: {
+                        value: newAddress,
+                    },
+                }
+            )});
+            await waitFor(()=>{
+                fireEvent.change(screen.getByTestId('birth-date'), {
+                    target: {
+                        value: newBirthDate,
+                    },
+                });
+            });
+            await waitFor(()=>{
+                fireEvent.change(screen.getByTestId('display-name'), {
+                    target: {
+                        value: newName
+                    },
+                });
+            });
+            await waitFor(()=>{
+                fireEvent.change(screen.getByTestId('email'), {
+                    target: {
+                        value: newEmail,
+                    },
+                });
+            });
+            await submitForm();
+            expect(screen.getByTestId('phone').value).not.toBe(testPhone);
+            expect(screen.getByTestId('phone').value).toBe(newPhone);
+            expect(screen.getByTestId('display-name').value).not.toBe(testName);
+            expect(screen.getByTestId('display-name').value).toBe(newName);
+            expect(screen.getByTestId('email').value).not.toBe(testEmail);
+            expect(screen.getByTestId('email').value).toBe(newEmail);
+            expect(screen.getByTestId('birth-date').value).not.toBe(testBirthDate);
+            expect(screen.getByTestId('birth-date').value).toBe(newBirthDate);
+            expect(screen.getByTestId('phone').value).not.toBe(testPhone);
+            expect(screen.getByTestId('phone').value).toBe(newPhone);
+            expect(screen.getByTestId('email').value).not.toBe(testEmail);
+            expect(screen.getByTestId('email').value).toBe(newEmail);
+        });
     });
 });
