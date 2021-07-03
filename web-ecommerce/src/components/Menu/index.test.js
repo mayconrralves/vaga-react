@@ -67,7 +67,7 @@ describe('Menu', ()=>{
             expect(dispatch).toHaveBeenCalledTimes(1);
         });
     });
-    test("when is clicked the button 'voltar'",()=>{
+    test("when is clicked the button 'Voltar'",()=>{
         const goBack = jest.fn();
         history.goBack.mockImplementation(goBack);
         mockStateToken();

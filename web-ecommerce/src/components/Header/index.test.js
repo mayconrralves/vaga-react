@@ -2,6 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import  { useDispatch, useSelector } from 'react-redux';
+
 import { useMediaQuery } from 'react-responsive';
 import Header from './index';
 
@@ -29,6 +30,7 @@ const mockStateToken = token => {
 
 jest.mock('react-redux');
 jest.mock('react-responsive');
+
 
 describe('Header: required tags', ()=>{
 

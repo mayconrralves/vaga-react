@@ -18,22 +18,22 @@ export default function  PrintProductsInCart ({ products, updateSub, updateSum, 
                         <section>
                             <img 
                                 src={product.img.middle}
-                                alt={`Imagem: ${ product.description } `}
+                                alt={`Imagem: ${ product.description }`}
                             />
                         </section>
                         <aside>
-                            <p><strong>Marca:</strong> {product.brand}</p>
-                            <p><strong>Descrição:</strong>  {product.description}</p>
-                            <p><strong>Preço:</strong>  {product.price}</p>
-                            <p><strong>Estoque: </strong> {product.quantity} </p>
-                            <p>
+                            <p data-testid='brand'><strong>Marca:</strong> {product.brand}</p>
+                            <p data-testid='description'><strong>Descrição:</strong>  {product.description}</p>
+                            <p data-testid='price'><strong>Preço:</strong>  {product.price}</p>
+                            <p data-testid='stock'><strong>Estoque: </strong> {product.quantity} </p>
+                            <p data-testid='quantity-purchase'>
                                 <strong>Quantidade: </strong> 
                                 <span onClick={()=> updateSub(index)}>
-                                    <FiMinusSquare />
+                                    <FiMinusSquare data-testid='minus' />
                                 </span>
                                 <span>{product.quantityPurchase} </span>
                                 <span onClick={()=> updateSum(index)}>
-                                    <FiPlusSquare />
+                                    <FiPlusSquare data-testid='sum'/>
                                 </span>
                             </p>
                             <p>
