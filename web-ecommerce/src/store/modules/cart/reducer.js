@@ -1,6 +1,6 @@
 import { produce } from 'immer';
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
 	products: [],
 }
 
@@ -23,10 +23,6 @@ export default function Cart(state=INITIAL_STATE, action){
 		case "@cart/UPDATE_CART_SUB":
 			return produce(state, draft => {
 				draft.products[action.payload.index].quantityPurchase--;
-			});
-		case  "@cart/DELETE_CART":
-			return produce(state, draft=>{
-				draft.products = [];
 			});
 		case "@cart/DELETE_PRODUCT_IN_CART":
 			return produce(state, draft=>{

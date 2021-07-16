@@ -1,6 +1,6 @@
 import { produce } from 'immer';
 
-const INTIAL_STATE= {
+export const INTIAL_STATE= {
     success: false,
     fail: false,
     errors: null,

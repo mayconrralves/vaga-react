@@ -26,12 +26,6 @@ export const updateCartSub = index => {
 	}
 }
 
-export const deleteCart = () => {
-	return {
-		type: "@cart/DELETE_CART",
-	}
-}
-
 export const deleteProductInCart = index => {
 	return {
 		type: "@cart/DELETE_PRODUCT_IN_CART",
