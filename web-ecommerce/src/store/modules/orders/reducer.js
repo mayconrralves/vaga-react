@@ -1,14 +1,15 @@
 import { produce } from 'immer';
 
-export const INTIAL_STATE= {
+export const INITIAL_STATE= {
     success: false,
     fail: false,
     errors: null,
     loading: false,
     orders: [],
+    msgError: '',
 }
 
-export default function ordersReducer(state=INTIAL_STATE, action){
+export default function ordersReducer(state=INITIAL_STATE, action){
     switch(action.type){
         case '@orders/REQUEST_CLOSE_CART':
             return produce(state,draft=>{
