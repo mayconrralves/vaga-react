@@ -1,6 +1,6 @@
 import { produce } from 'immer';
 
-const INITIAL_STATE= {
+export const INITIAL_STATE= {
 	loading: false,
 	products: [],
 	success: false,
@@ -27,7 +27,7 @@ export default function products(state=INITIAL_STATE, action){
 		case "@products/FAILED_REQUEST":
 			return produce(state, draft=>{
 				draft.loading = false;
-				draft.fail = false;
+				draft.fail = true;
 				draft.msgError = action.payload.msg;
 			});
 		default:

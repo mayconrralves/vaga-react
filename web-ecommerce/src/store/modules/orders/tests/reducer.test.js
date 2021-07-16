@@ -37,4 +37,12 @@ describe("Orders",()=>{
             loading: true,
         });     
     });
+    test("return State", ()=>{
+        const state = reducer(INITIAL_STATE, ()=>{
+            type: "state"
+        });
+        expect(state).toStrictEqual({
+            ...INITIAL_STATE,
+        });
+    });
 });
