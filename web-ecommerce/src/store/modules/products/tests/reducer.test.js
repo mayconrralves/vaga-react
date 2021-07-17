@@ -1,6 +1,5 @@
 import reducer, { INITIAL_STATE } from '../reducer';
 import * as Products from '../actions';
-import { reduce } from 'lodash';
 
 
 describe('Products',()=>{

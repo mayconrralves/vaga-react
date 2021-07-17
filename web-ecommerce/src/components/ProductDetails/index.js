@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../store/modules/products/actions';
 import { addProductInCart } from '../../store/modules/cart/actions';
 import Loading from '../Loading';
-import {Container } from './styles';
+import { Container } from './styles';
 
 export default function ProductDetails() {
 	const dispatch = useDispatch();
@@ -18,8 +18,9 @@ export default function ProductDetails() {
 		if(quantityPurchase <=  quantityProduct ) {
 			dispatch(addProductInCart({
 				...product,
-				quantityPurchase
+				quantityPurchase,
 			}));
+			
 			return true;
 		}
 		return false;
@@ -27,10 +28,10 @@ export default function ProductDetails() {
 	const purchaseProduct = () => {
 		const productCurrent = cart.products.filter(product=>product.id===id);
 		if( productCurrent.length){
-			saveProduct(parseFloat(product.quantity) - productCurrent[0].quantityPurchase);
+			saveProduct(parseInt(product.quantity) - productCurrent[0].quantityPurchase);
 		}
 		else {
-			saveProduct(parseFloat(product.quantity));
+			saveProduct(parseInt(product.quantity));
 		}
 	}
 
@@ -40,7 +41,7 @@ export default function ProductDetails() {
 		} else {
 			setProduct(products.filter(product=> product.id === id)[0]);
 		}
-	}, [success]);
+	}, [ success ]);
 	return product ? ( 
 		<Container  productQuantity={product.quantity} >
 			<section>
@@ -54,8 +55,10 @@ export default function ProductDetails() {
 			</section>
 			<aside>
 					<h3>{product.name}</h3>
-					<div className='details'>
-						<p><strong>Marca:</strong> {product.brand}</p>
+					<div 
+						className='details'
+					>
+						<p><strong >Marca:</strong> {product.brand}</p>
 						<p><strong>Descrição:</strong>  {product.description}</p>
 						<p><strong>Quantidade: </strong> {product.quantity}  unidades</p>
 						<p><strong>Preço:</strong>  {product.price}</p>
@@ -68,22 +71,31 @@ export default function ProductDetails() {
 								defaultValue={1}
 								onChange={ e=>setQuantityPurchase(parseFloat(e.target.value)) } 
 								name='quantity'
+								data-testid='quantity'
 							/>
 							<button 
 								onClick={purchaseProduct}
+								data-testid='button'
 							>
 								Comprar
 							</button>
 						</div>
 					) : (
-						<div className='buy-function'>
-							<strong>Produto indisponível</strong>
+						<div 
+							className='buy-function'
+							data-testid='buy-function'
+						>
+							<strong 
+								data-testid='unavailable'
+							>
+									Produto indisponível
+							</strong>
 						</div>
 					)
 				}
 			</aside>
 		</Container >
 		) : (
-			<Loading width='40%' height='40%' />
+			<Loading width='40%' height='40%' data-testid='loading'/>
 		)
 }

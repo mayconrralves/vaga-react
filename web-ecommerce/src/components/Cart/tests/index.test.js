@@ -68,7 +68,6 @@ describe('Cart ',()=>{
             expect(screen.getByTestId('sum')).toBeTruthy();
             expect(screen.getByText('Esvaziar carrinho')).toBeTruthy();
             expect(screen.getByText('Fechar Carrinho')).toBeTruthy();
-            screen.debug();
        });
     });
 });
